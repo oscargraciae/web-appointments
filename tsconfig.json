@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["googlemaps"],
     "target": "es5",
     "lib": [
       "dom",
@@ -13,8 +14,8 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,

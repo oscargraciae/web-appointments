@@ -1,47 +1,95 @@
-import React from 'react'
-import { Box, Link, Flex, Button } from '@chakra-ui/core';
+import React, { useContext, useEffect } from 'react'
+import { Box, Link, Flex, Button, Stack, Image, Menu, MenuButton, MenuList, MenuItem, HStack, Avatar } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import { useMeQuery, useLogoutMutation } from '../generated/graphql';
-import { isServer } from '../utils/isServer';
+import Router, { useRouter } from 'next/router'
+import { BiChevronDown } from 'react-icons/bi';
+import { FiChevronDown } from 'react-icons/fi';
 
-interface NavBarProps {
+import { UserContext } from '../context/userContext';
+import nProgress from 'nprogress';
 
-}
+// import { isServer } from '../utils/isServer';
+
+interface NavBarProps {}
+
+// Router.onRouteChangeStart = () => {
+//   return NProgress.start();
+// };
+// Router.onRouteChangeComplete = () => {
+//   return NProgress.done();
+// };
+// Router.onRouteChangeError = () => {
+//   return NProgress.done();
+// };
+
+const MenuItems = ({ children }) => (
+  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+    {children}
+  </Text>
+);
 
 export const NavBar: React.FC<NavBarProps> = ({}) => {
-  const [{ data, fetching }] = useMeQuery({
-    pause: isServer(),
-  });
-  const [, logout] = useLogoutMutation();
 
-  let body = null;
+  const { user, isLogged } = useContext(UserContext);
+  console.log('isLopgged', isLogged);
+  // useEffect(() => {
+  //   Router.events.on("routeChangeStart", () => {
+  //     console.log('Cambiando de pagina');
+  //     nProgress.start();
+  //   });
+  //   Router.events.on("routeChangeComplete", nProgress.done);
+  //   Router.events.on("routeChangeError", nProgress.done);
+  // }, []);
+  
 
-  if (fetching) {
-    
-  } else if (!data?.me) {
-    body = (
-      <>
-        <NextLink href="/login">
-          <Link color="white" mr={4}>login</Link>
-        </NextLink>
-        <NextLink href="/register">
-          <Link color="white">register</Link>
-        </NextLink>
-      </>
-    )
-  } else {
-    body = (
-      <Flex>
-        <Box>{data.me.username}</Box>
-        <Button variant="link" onClick={() => logout()}>logout</Button>
+  const menuAuth = () => {
+    return (
+      <Flex bg='tomato' w='100%'>
+        <Menu>
+          <MenuButton as={Link} rightIcon={FiChevronDown({})}>
+            <HStack>
+              <Avatar bg="teal.500" size='sm' />
+              { user.firstName } 
+            </HStack>
+          </MenuButton>
+          <MenuList>
+            <MenuItem>Perfil</MenuItem>
+            <MenuItem>Salir</MenuItem>
+          </MenuList>
+        </Menu>
+        <Button variant="link">logout</Button>
       </Flex>
     )
   }
+
+  const menuGuest = () => {
+    return (
+      <Flex>
+        <NextLink href="/manager/login">
+          <Link as={Button}>Inicio de sesion</Link>
+        </NextLink>
+        <NextLink href="/manager/login">
+          <Link>Perfil</Link>
+        </NextLink>
+        <NextLink href="/manager/register">
+          <Link>Salir</Link>
+        </NextLink>
+      </Flex>
+    )
+  }
+
   return (
-    <Flex zIndex={1} position="sticky" top={0} bg='tomato' p={4}>
-      <Box ml={'auto'}>
-        {body}
-      </Box>
+    <Flex w='100%' h='60px' shadow="md" p={4} borderBottomWidth={1} borderColor='borders' zIndex={99} pos='fixed' bg='white'>
+      <Stack isInline justifyContent="space-between" flex={1} align='center'>
+        <Box>
+          <NextLink href="/explore">
+            <Image src="/reserly-logo.png" height='32px' />
+          </NextLink>
+        </Box>
+        <Box ml={'auto'}>
+          { isLogged ? menuAuth() : menuGuest() }
+        </Box>
+      </Stack>
     </Flex>
   );
 }
