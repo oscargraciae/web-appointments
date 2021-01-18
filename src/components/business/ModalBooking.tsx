@@ -6,6 +6,7 @@ import { CalendarTime } from './CalendarTime';
 import { BookingContext } from '../../context/bookingContext';
 import { BookingResume } from './BookingResume';
 import { BookingService } from '../../services/bookingService';
+import { BookingSuccess } from './BookingSuccess';
 
 
 interface ModalBookingProps {
@@ -15,19 +16,23 @@ interface ModalBookingProps {
 }
 
 export const ModalBooking: React.FC<ModalBookingProps> = ({ business, isOpen, onClose }) => {
+  const [isLoading, setIsLoading] = useState(false);
 
   const { step, setStep, time, date, message } = useContext(BookingContext);
 
-  const submitBooking = () => {
-    const response = new BookingService().create({
+  const submitBooking = async () => {
+    setIsLoading(true);
+    const response = await new BookingService().create({
       bookingDate: date,
       bookingTime: time,
       message,
       businessId: business.id,
     })
 
-    console.log('Respuesta de reserva', response);
-    
+    if (response.success) {
+      setStep(4);
+    }
+    setIsLoading(false);
   }
 
   return (
@@ -40,15 +45,16 @@ export const ModalBooking: React.FC<ModalBookingProps> = ({ business, isOpen, on
             { step === 1 && <CalendarDate hours={business.hours} /> }
             { step === 2 && <CalendarTime hours={business.hours} /> }
             { step === 3 && <BookingResume /> }
+            { step === 4 && <BookingSuccess /> }
           </Flex>
         </ModalBody>
         <ModalFooter>
           <Flex justify='space-between' w='100%'>
-            { step > 1 && <Button variant='outline' onClick={() => setStep(step - 1)}>Atrás</Button>}
+            { (step > 1 && step < 4) && <Button variant='outline' onClick={() => setStep(step - 1)}>Atrás</Button>}
             <Spacer />
             { step < 3 && <Button alignSelf='flex-end' variant='primary' onClick={() => setStep(step + 1)}>Siguiente</Button>}
 
-            { step === 3 && <Button alignSelf='flex-end' variant='primary' onClick={submitBooking}>Confirmar reserva</Button>}
+            { step === 3 && <Button alignSelf='flex-end' variant='primary' onClick={submitBooking} isLoading={isLoading}>Confirmar reserva</Button>}
           </Flex>
           
         </ModalFooter>
