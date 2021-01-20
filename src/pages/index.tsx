@@ -10,8 +10,6 @@ const Index = () => {
       <Box width="700px" bg="white" p="32px" rounded="sm">
         <Text mt={2} fontSize="3xl" fontWeight="semibold" lineHeight="short">
           Encuentra el servicios profesionales cerca de ti y reserva fácil, rápido y seguro.
-
-          aas
         </Text>
         <Stack mt={8} isInline>
           <Input placeholder="Basic usage" size="lg" />

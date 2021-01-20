@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Button, Flex, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spacer, Text } from '@chakra-ui/react';
+import moment from 'moment';
+
 import { CalendarDate } from './CalendarDate';
 import { IBusiness } from '../../types/IBusiness';
 import { CalendarTime } from './CalendarTime';
@@ -18,15 +20,25 @@ interface ModalBookingProps {
 export const ModalBooking: React.FC<ModalBookingProps> = ({ business, isOpen, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { step, setStep, time, date, message } = useContext(BookingContext);
+  const { step, setStep, time, date, message, services, totalTime } = useContext(BookingContext);
 
   const submitBooking = async () => {
     setIsLoading(true);
+    console.log('FEcha de reserva', date);
+    const d = moment(date).format('YYYY-MM-DD').toString();
+    console.log('Fecha d', d);
+    
+    const dateB = moment(`${d} ${time}`).toDate();
+    console.log('Fecha dateB', dateB);
+
     const response = await new BookingService().create({
-      bookingDate: date,
+      // bookingDate: moment(date).format('YYYY-MM-DD').toString(),
+      bookingDate: dateB,
       bookingTime: time,
       message,
       businessId: business.id,
+      businessServices: services,
+      totalTime,
     })
 
     if (response.success) {

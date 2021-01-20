@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Box, Stack, Checkbox, Text, Flex, Spacer, Button } from '@chakra-ui/react';
+import { Box, Stack, Checkbox, Text, Flex, Spacer, Button, VStack } from '@chakra-ui/react';
 
 // types
 import { IBusiness } from '../../types/IBusiness';
@@ -73,8 +73,11 @@ export const BookingBox: React.FC<BookingBoxProps> = ({ businessService, handleB
                 <Spacer />
                 
                 <Flex alignSelf='center'>
-                  <Box w='20px' />
-                  <Text fontSize='sm' pr='10px'>${item.price}MXN</Text>
+                  <Box w='15px' />
+                  <Flex direction='column'>
+                    <Text fontSize='xs' pr='10px'>${item.price}MXN</Text>
+                    <Text fontSize='xs' pr='10px'> {item.time}min</Text>
+                  </Flex>
                 </Flex>
               </Flex>
             </Checkbox>
