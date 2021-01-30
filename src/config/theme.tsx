@@ -26,8 +26,11 @@ const theme = extendTheme({
     error: '#B00020',
     background: '#F6F7F9',
     surface: '#FFFFFF',
+    // borders: 'rgb(246, 246, 248)',
     borders: '#d9e3eb',
-    primaryLight: '#E9F9EF'
+    primaryLight: '#E9F9EF',
+    // subtext: 'rgb(151, 156, 166)',
+    subtext: '#5c6b85',
   },
   fonts,
   // breakpoints,
@@ -40,7 +43,20 @@ const theme = extendTheme({
     Link: {
       variants: {
         "primary": {
-          fontWeight: 'semibold',
+          fontWeight: '600',
+          _hover: {
+            textDecoration: 'none',
+            color: 'primary'
+          },
+        },
+        "primary-btn": {
+          fontWeight: '600',
+          borderWidth: 1,
+          borderColor: 'primary',
+          color: 'primary',
+          py: 2,
+          px: 5,
+          borderRadius: 3,
           _hover: {
             textDecoration: 'none',
             color: 'primary'
@@ -56,6 +72,19 @@ const theme = extendTheme({
           color: '#FFF',
           _hover: {
             bg: "_primary",
+            _disabled: {
+              bg: 'gray.500',
+            }
+          },
+        },
+        "primary-outline": {
+          bg: "transparent",
+          borderColor: "primary",
+          borderWidth: 1,
+          color: 'primary',
+          _hover: {
+            bg: "_primary",
+            color: '#FFFFFF',
           },
         },
         "secondary": {
@@ -71,6 +100,7 @@ const theme = extendTheme({
     Input: {
       baseStyle: {
         field: {
+          borderColor: '',
           _focus: {
             borderColor: '_primary',
             borderWidth: 1,
@@ -94,7 +124,9 @@ const theme = extendTheme({
           },
         }),
         outline: () => ({
+          borderColor: 'rgb(226, 232, 240)',
           field: {
+            borderColor: 'rgb(226, 232, 240) !important',
             _focus: {
               borderColor: '_primary',
               borderWidth: 1,
@@ -116,6 +148,26 @@ const theme = extendTheme({
             },
           },
         },
+      },
+    },
+    NumberInput: {
+      variants: {
+        outline: () => ({
+          borderColor: 'rgb(226, 232, 240)',
+          field: {
+            borderColor: 'rgb(226, 232, 240) !important',
+            _focus: {
+              borderColor: '_primary',
+              borderWidth: 1,
+              outline: 0,
+              boxShadow: 'none',
+            },
+            _hover: {
+              borderColor: '_primary',
+              borderWidth: 1,
+            }
+          },
+        }),
       },
     },
     Textarea: {

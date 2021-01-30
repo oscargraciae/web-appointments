@@ -47,8 +47,8 @@ export const BookingResume: React.FC<BookingResumeProps> = ({}) => {
         <Text fontSize='lg' fontWeight='bold' mb={3}>Servicios</Text>
         { services.map((service :IService) => (
           <Flex justify='space-between'>
-            <Text fontWeight='semibold' fontSize='sm'>{service.name}</Text>
-            <Text fontSize='sm'>{service.time ? minutesToHour(service.time) : 0} / ${service.price}MXN</Text>
+            <Text isTruncated fontWeight='semibold' fontSize='sm' w='70%'>{service.name}</Text>
+            <Text fontSize='xs' w='30%'>{service.time ? minutesToHour(service.time) : 0} / ${service.price}MXN</Text>
           </Flex>
         )) }
         <Flex justify='flex-end' alignItems='flex-end'>

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-import { Box, Stack, Checkbox, Text, Flex, Spacer, Button, VStack } from '@chakra-ui/react';
+import { Box, Stack, Checkbox, Text, Flex, Spacer, Button, VStack, IconButton, Tooltip } from '@chakra-ui/react';
+import { AiOutlineClose } from 'react-icons/ai'
 
 // types
 import { IBusiness } from '../../types/IBusiness';
@@ -8,92 +9,56 @@ import { BookingContext } from '../../context/bookingContext';
 import { formatTime } from '../../utils/formatTime';
 
 interface BookingBoxProps {
-  businessService: IService[]
   handleBooking: any
 }
 
-export const BookingBox: React.FC<BookingBoxProps> = ({ businessService, handleBooking }) => {
+export const BookingBox: React.FC<BookingBoxProps> = ({ handleBooking }) => {
   const { setServices, services, setTotalTime, totalTime } = useContext(BookingContext);
+  console.log('Servicios en store4', services);
+  
 
-  const onCheckboxChange = (e :any, item: IService, index :number) => {
-    const { checked, name } = e.target;
-    let servicesTmp = [...services];
-    if (checked) {
-      servicesTmp = [...services, item];
-      setServices(servicesTmp)
-    } else {
-      const eIndex = services.indexOf(item)
-      servicesTmp = [
-        ...services.slice(0, eIndex),
-        ...services.slice(eIndex + 1)
-      ];
-      setServices(servicesTmp)
-    }
-
-    
-    // let totalTime = services.forEach(e => e.time + totalTime);
-    
-    // let initialValue = 0;
-    // let objArray = [
-    //     {x: 1},
-    //     {x: 2},
-    //     {x: 3},
-    //     {x: 4},
-    //     {x: 5},
-    // ]
-    // let sum = objArray.reduce(function (total, currentValue) {
-    //     return total + currentValue.x;
-    // }, initialValue);
-
-    const totalT = servicesTmp.reduce((total :number, service :any) => total + service.time, 0)
-    setTotalTime(totalT);
+  const deleteService = (index :number) => {
+    setServices([
+      ...services.slice(0, index),
+      ...services.slice(index + 1)
+    ])
   }
 
   return (
     <>
-      <Box mt={4} maxH='70%' w='100%' overflow='scroll' shadow="rgba(0, 0, 0, 0.12) 0px 6px 16px">
-        <Stack mb={3} >
-          { businessService.map((item: IService, index) => (
-          <Stack isInline align='center' borderBottomWidth={1} borderColor='borders' key={item.id}>
-            <Checkbox
-              name={`service[${index}]`}
-              onChange={val => onCheckboxChange(val, item, index)}
-              colorScheme="green"
-              borderColor='#DDD'
-              w='100%'
-              size='lg'
-              px={6}
-              py={4}
-              display='flex'
-              alignItems='center'
-              _hover={{ bg: 'primaryLight' }}
-            >
+      <Box>
+        <Box mt={4} w='100%' maxHeight='330px' overflow='scroll' shadow="rgba(0, 0, 0, 0.12) 0px 6px 16px">
+          <Stack mb={3} >
+            { services.map((item: IService, index :number) => (
+            <Stack isInline align='center' borderBottomWidth={1} borderColor='borders' key={index} px={4} py={3}>
               <Flex align='center' justify='space-evenly' flex='100%'>
-                <Text fontSize='md' fontWeight='semibold' w='260px'>{item.name}</Text>
+                <Text fontSize='md' fontWeight='semibold' noOfLines={2} pr={2} >{item.name}</Text>
                 <Spacer />
                 
                 <Flex alignSelf='center'>
-                  <Box w='15px' />
                   <Flex direction='column'>
                     <Text fontSize='xs' pr='10px'>${item.price}MXN</Text>
                     <Text fontSize='xs' pr='10px'> {item.time}min</Text>
                   </Flex>
                 </Flex>
+                <IconButton aria-label='Eliminar' icon={<AiOutlineClose />} variant='ghost' onClick={() => deleteService(index)} />
               </Flex>
-            </Checkbox>
+            </Stack>
+            )) }
           </Stack>
-          )) }
-        </Stack>
-        <Button
-          onClick={handleBooking}
-          variant='primary'
-          isFullWidth
-          size='lg'
-          isDisabled={services.length === 0}
-        >
-          Reservar
-          {/* <Text pl={2} fontSize='xs'>{ formatTime(totalTime) }min</Text> */}
-        </Button>
+        </Box>
+        <Tooltip label='Selecciona un servicio para reservar' isDisabled>
+          <Button
+              onClick={handleBooking}
+              variant='primary'
+              isFullWidth
+              size='lg'
+              isDisabled={services.length === 0}
+            >
+              Reservar
+              {/* <Text pl={2} fontSize='xs'>{ formatTime(totalTime) }min</Text> */}
+            </Button>
+        </Tooltip>
       </Box>
     </>
   );

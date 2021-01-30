@@ -1,26 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
-  Box, Heading, Flex, Text, Button, Link as Lnk, MenuButton, MenuItem, Menu, MenuList, Spacer,
+  Box, Heading, Flex, Text, Button, Link, MenuButton, MenuItem, Menu, MenuList, Spacer, MenuDivider,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import ReachLink from 'next/link';
 import { FiChevronDown } from 'react-icons/fi';
 
 import { UserContext } from '../context/userContext';
 
 const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+  <Box mt={{ base: 4, md: 0 }} mx={3} display="block">
     {children}
-  </Text>
+  </Box>
 );
 
-const Header = () => {
-  const [show, setShow] = React.useState(false);
-  const handleToggle = () => setShow(!show);
+const Header = ({ handleAuthModal }) => {
+  // context
+  const { user, isLogged, logout } = useContext(UserContext);
 
-  const { user, isLogged } = useContext(UserContext);
+  // hooks
   const router = useRouter();
+  
+  // state
+  const [show, setShow] = useState(false);
+
   const currentRoute = router.pathname;
+
+  const handleToggle = () => setShow(!show);
 
   const menuGuest = () => (
     <>
@@ -31,98 +37,93 @@ const Header = () => {
         flexGrow={1}
       >
         <Spacer />
-        { currentRoute !== '/' && (
-        <>
-          <MenuItems>
-            <Link href="/login">
-              <Lnk size="sm" variant="link">Iniciar sesión</Lnk>
-            </Link>
-          </MenuItems>
-          <MenuItems>
-            <Link href="/signup">
-              <Lnk size="sm" variant="link">Regístrate</Lnk>
-            </Link>
-          </MenuItems>
-        </>
-        )}
+        <MenuItems>
+          <Link href='/' fontWeight="bold" variant="primary">
+            Publica tu negocio
+          </Link>
+        </MenuItems>
+        <MenuItems>
+          <Link variant="primary" onClick={() => handleAuthModal(1)}>
+            Iniciar sesión
+          </Link>
+        </MenuItems>
+        <MenuItems>
+          <Link variant="primary-btn" onClick={() => handleAuthModal(2)}>
+            Regístrate
+          </Link>
+        </MenuItems>
       </Box>
 
-      <Box
-        display={{ base: show ? 'block' : 'none', md: 'block' }}
-        mt={{ base: 4, md: 0 }}
-      >
-        { currentRoute === '/' && (
-          <Link href="/stores">
-            <Lnk as={Button} mr={2}>Ver negocios</Lnk>
-          </Link>
-        )}
-        <Link href='/'>
-          <Lnk fontWeight="bold" as={Button} variant="secondary">
-            Comienza a vender
-          </Lnk>
-        </Link>
+        <Box
+          display={{ base: show ? 'block' : 'none', md: 'block' }}
+          mt={{ base: 4, md: 0 }}
+        >
       </Box>
     </>
   );
 
   const menuAuth = () => {
     return (
-      (
-        <>
-          {/* MOVIL */}
+      <>
+        {/* MOVIL */}
+        <Box
+          display={{ base: show ? 'block' : 'none', md: 'none' }}
+          width={{ base: 'full', sm: 'full', md: 'auto' }}
+          alignItems="center"
+          flexGrow={1}
+        >
+          <MenuItems>
+            <Link href="/orders">
+              Mis compras
+            </Link>
+          </MenuItems>
+          <MenuItems>
+            <Link href="/logout">
+              Salir
+            </Link>
+          </MenuItems>
+
           <Box
-            display={{ base: show ? 'block' : 'none', md: 'none' }}
-            width={{ base: 'full', sm: 'full', md: 'auto' }}
-            alignItems="center"
-            flexGrow={1}
+            display={{ base: show ? 'block' : 'none', md: 'block' }}
+            mt={{ base: 4, md: 0 }}
           >
-            <MenuItems>
-              <Link href="/orders">
-                <Lnk size="sm">Mis compras</Lnk>
-              </Link>
-            </MenuItems>
-            <MenuItems>
-              <Link href="/logout">
-                <Lnk size="sm">Salir</Lnk>
-              </Link>
-            </MenuItems>
-
-            <Box
-              display={{ base: show ? 'block' : 'none', md: 'block' }}
-              mt={{ base: 4, md: 0 }}
-            >
-              { isLogged ? <Link href='/' size="sm" variant="link" ml={4}>Administrar mi tienda</Link>
-                : <Button size="sm" variant="link" ml={4}>Publica tu tienda</Button>
-              }
-            </Box>
+            { isLogged ? <Link href='/' size="sm" variant="link" ml={4}>Administrar mi tienda</Link>
+              : <Button size="sm" variant="link" ml={4}>Publica tu tienda</Button>
+            }
           </Box>
+        </Box>
 
-          {/* WEB */}
-          <Flex flex={1} justify="flex-end" align="center" display={{ base: 'none', md: 'flex' }}>
-            { isLogged ? <Lnk href='/manager' size="sm" variant="primary" mx={3}>Modo negocio</Lnk>
-              : <Button size="sm" variant="primary" ml={4}>Comienza a vender</Button> }
-            <Menu>
-              <MenuButton as={Lnk} rightIcon={FiChevronDown({})} mx={3} variant='primary'>
-                Cuenta
-              </MenuButton>
-              <MenuList zIndex={3} borderColor="#DDD">
-                <MenuItem onClick={() => router.push('/orders')}>Perfil</MenuItem>
-                <MenuItem onClick={() => router.push('/orders')}>Direcciónes</MenuItem>
-                <MenuItem onClick={() => router.push('/orders')}>Mis reservas</MenuItem>
-                <MenuItem onClick={() => router.push('/logout')}>Cerrar sesión</MenuItem>
-              </MenuList>
-            </Menu>
-          </Flex>
-        </>
-      )
-    );
+        {/* WEB */}
+        <Flex flex={1} justify="flex-end" align="center" display={{ base: 'none', md: 'flex' }}>
+          {/* { user.businessUser ? <Link href='/manager' size="sm" variant="primary" mx={3}>Administrar mi negocio</Link>
+            : <Button size="sm" variant="primary" ml={4}>Comienza a vender</Button> } */}
+          <Menu variant='primary'>
+            <MenuButton as={Button} rightIcon={<FiChevronDown />} mx={3} variant='ghost'>
+              Mi cuenta
+            </MenuButton>
+            <MenuList zIndex={3} borderColor="#DDD">
+              {/* <MenuItem onClick={() => router.push('/orders')}>Perfil</MenuItem>
+              <MenuItem onClick={() => router.push('/orders')}>Direcciónes</MenuItem> */}
+              <MenuItem onClick={() => router.push('/orders')}>Mis reservas</MenuItem>
+              <MenuItem onClick={logout}>Cerrar sesión</MenuItem>
+              <MenuDivider />
+                { user.businessUser 
+                  ? <MenuItem onClick={logout} color='primary'>Administrar mi negocio</MenuItem>
+                  : <MenuItem onClick={logout} color='primary'>Publica tu negocio</MenuItem>
+                }
+            </MenuList>
+          </Menu>
+        </Flex>
+      </>
+    )
   };
 
   return (
     <Flex
       w='100%'
-      h='60px'
+      h='66px'
       shadow="md"
+      alignItems='center'
       borderBottomWidth={1} 
       borderColor='borders' 
       zIndex={99}
@@ -134,9 +135,7 @@ const Header = () => {
     >
       <Flex align='center'>
         <Link href="/">
-          <Lnk>
-            <img src="/logo-reserly-2.png" alt="uorder" width="120" height="90" />
-          </Lnk>
+          <img src="/logo-reserly-2.png" alt="uorder" width="120" height="90" />
         </Link>
       </Flex>
 

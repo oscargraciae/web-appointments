@@ -17,7 +17,7 @@ export const BusinessItem: React.FC<BusinessItemProps> = ({ business }) => {
       <Link _hover={{ textDecor: 'none' }} >
         <Box mb={3} py={2} pl={2} w='100%' _hover={{ bg: 'primaryLight', cursor: 'pointer' }}>
           <Stack isInline justify='flex-start' align='center'>
-            <Image borderRadius="md" src="https://bit.ly/2k1H1t6" boxSize='120px' w='180px' objectFit="cover" fallback={<Progress />} loading='lazy' />
+            <Image borderRadius="md" src={business.cover} boxSize='120px' w='180px' objectFit="cover" fallback={<Progress />} loading='lazy' />
             <Box pl={3}>
               <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
                 {business.name}

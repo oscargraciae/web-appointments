@@ -22,12 +22,12 @@ export const useGoogleMaps = ({ coords, setCoords } : any) : any => {
     const uluru = { lat: coords.lat, lng: coords.lng };
     const map = new google.maps.Map(refContainer.current, {
       center: uluru,
-      zoom: 14,
+      zoom: 13,
       scrollwheel: false,
       streetViewControl: false,
       fullscreenControl: false,
       mapTypeControl: false,
-      zoomControl: false,
+      zoomControl: true,
       disableDoubleClickZoom: true,
       zoomControlOptions: { position: google.maps.ControlPosition.TOP_LEFT }
     });

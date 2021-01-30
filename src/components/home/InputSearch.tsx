@@ -1,16 +1,15 @@
-import React, { useContext, useState } from 'react'
-import { Box, Flex, Heading, Input, Progress, Text } from '@chakra-ui/react';
+import React, { useState } from 'react'
+import { Button, Input, Stack, Box, Progress, Text } from '@chakra-ui/react';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-import { ExploreContext } from '../../context/exploreContext';
 
-interface ExploreFormProps {}
+interface InputSearchProps {
 
-export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
-  // context
-  const { setCoords, setCenterMapCoords } = useContext(ExploreContext);
+}
+
+export const InputSearch: React.FC<InputSearchProps> = ({}) => {
   // states
   const [geoAddress, setGeoAddress] = useState<string>('');
 
@@ -19,15 +18,13 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
   const handleSelect = async (address: string) => {
     const results = await geocodeByAddress(address)
     const latLng = await getLatLng(results[0]);
-    // changeLocation(latLng)
-    setCenterMapCoords(latLng);
-    setCoords(latLng);
+    
     setGeoAddress(address);
   }
 
   return (
-    <Flex direction="row" pt={2} px={4} align='center' justify='flex-start'>
-      {/* <Heading as="h2" fontSize='2xl' pr={2}>Resultados en</Heading> */}
+    <Stack mt={0} isInline bg='#FFF' px={2} py={2} boxShadow='0px 5px 10px rgba(0,0,0,.08)' borderRadius={6}>
+      {/* <Input placeholder="Ubicación" size="lg" border='0px' fontWeight='600' /> */}
       <PlacesAutocomplete
           value={geoAddress}
           onChange={(geoaddress) => setGeoAddress(geoaddress)}
@@ -35,8 +32,9 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
           searchOptions={{ componentRestrictions: { country: ['mx'] } }}
         >
           { (({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-              <Box w="70%">
-                <Input {...getInputProps()} placeholder='Dirección ' size='lg' variant="flushed" my={4} fontSize='xl' borderBottomColor='#DDD' fontWeight='semibold' pt='9px' />
+              <Box w="100%">
+                {/* <Input {...getInputProps()} placeholder='Dirección ' size='lg' variant="flushed" my={4} fontSize='xl' borderBottomColor='#DDD' fontWeight='semibold' pt='9px' /> */}
+                <Input {...getInputProps()} placeholder="Ubicación" size="lg" border='0px' fontWeight='600' /> 
                 <Box shadow='md' background='#FFFFFF' zIndex={10} pos="absolute" >
                   { loading && <Progress size="xs" isIndeterminate colorScheme='green' /> }
                   {suggestions.map(suggestion => {
@@ -50,6 +48,9 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
               </Box>
           )) }
         </PlacesAutocomplete>
-    </Flex>
+      <Button variant='primary' size="lg">
+        Buscar
+      </Button>
+    </Stack>
   );
 }

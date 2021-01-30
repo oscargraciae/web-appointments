@@ -5,9 +5,8 @@ import { TiCalendar, TiStar, TiLocation } from 'react-icons/ti';
 
 import { Layout } from '../components/Layout';
 import { Wrapper } from '../components/Wrapper';
-import { InputSearch } from '../components/home/InputSearch';
 
-const Index = () => {
+const Home = () => {
   return (
     <Flex justify="center" align="center" w="100%" bgSize="cover" direction='column'>
       <Flex w='100%' h='340px' alignItems='center' bg='linear-gradient(90deg,rgba(47,45,65,.7),rgba(47,45,65,.7)),url(/bg-main.jpg);' bgSize='cover' bgRepeat='no-repeat'>
@@ -17,7 +16,12 @@ const Index = () => {
       </Flex>
       
       <Box width="700px" bg="transparent" p="16px" rounded="sm" zIndex={10} mt='-50px'>
-        <InputSearch />
+        <Stack mt={0} isInline bg='#FFF' px={2} py={2} boxShadow='0px 5px 10px rgba(0,0,0,.08)' borderRadius={6}>
+          <Input placeholder="Ubicación" size="lg" border='0px' fontWeight='600' />
+          <Button variant='primary' size="lg" onClick={() => Rotuer.push('/explore')}>
+            Buscar
+          </Button>
+        </Stack>
 
         <Wrap spacing={4} mt={4} justify='center'>
           <WrapItem>
@@ -76,4 +80,4 @@ const Index = () => {
   )
 }
 
-export default Index;
+export default Home;

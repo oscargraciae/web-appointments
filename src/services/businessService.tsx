@@ -10,4 +10,6 @@ export class BusinessService extends HttpClient {
   get = () => this.instance.get<IBusinessesResponse>('/businesses');
   getById = (id:number) => this.instance.get<IBusinessResponse>(`/businesses/${id}`);
 
+  getPhotos = (id :number) => this.instance.get(`/businesses/${id}/photos`);
+
 }
