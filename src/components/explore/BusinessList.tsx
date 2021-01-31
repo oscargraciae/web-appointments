@@ -21,8 +21,9 @@ const BusinessList: React.FC<BusinessListProps> = ({  }) => {
 
   if (!businesses || businesses.length === 0) {
     return (
-      <Box py={4}>
-        <Text>No hay resultados</Text>
+      <Box py={4} px={4} textAlign='center'>
+        <Text fontSize='lg' fontWeight='bold'>No hay negocios en esta zona.</Text>
+        <Text fontSize='sm'>Lo sentimos, estamos trabajando para traer más negocios.</Text>
       </Box>
     )
   }

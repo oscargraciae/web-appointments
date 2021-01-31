@@ -1,13 +1,26 @@
-import React from  'react';
-import { Box, Flex, Input, Stack, Text, Button, Wrap, WrapItem, Center, HStack, Image } from '@chakra-ui/react';
-import Rotuer from 'next/router';
+import React, { useEffect, useState } from  'react';
+import { Box, Flex, Input, Stack, Text, Button, Wrap, WrapItem, Center, HStack, Image, Link } from '@chakra-ui/react';
+import Rotuer, { useRouter } from 'next/router';
 import { TiCalendar, TiStar, TiLocation } from 'react-icons/ti';
 
 import { Layout } from '../components/Layout';
 import { Wrapper } from '../components/Wrapper';
 import { InputSearch } from '../components/home/InputSearch';
+import { CategoryService } from '../services/categoryService';
 
 const Index = () => {
+  // hooks
+  const router = useRouter();
+  // state
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { categories} = await new CategoryService().getAll()
+      setCategories(categories);
+    };
+    fetchCategories();
+  }, [])
   return (
     <Flex justify="center" align="center" w="100%" bgSize="cover" direction='column'>
       <Flex w='100%' h='340px' alignItems='center' bg='linear-gradient(90deg,rgba(47,45,65,.7),rgba(47,45,65,.7)),url(/bg-main.jpg);' bgSize='cover' bgRepeat='no-repeat'>
@@ -20,27 +33,21 @@ const Index = () => {
         <InputSearch />
 
         <Wrap spacing={4} mt={4} justify='center'>
-          <WrapItem>
-            <Center borderRadius={3} w="144px" h="44px" bg="secondary" color='#FFF'>Salon</Center>
-          </WrapItem>
-          <WrapItem>
-            <Center borderRadius={3} w="144px" h="44px" bg="secondary" color='#FFF'>Spa</Center>
-          </WrapItem>
-          <WrapItem>
-            <Center borderRadius={3} w="144px" h="44px" bg="secondary" color='#FFF'>Barberia</Center>
-          </WrapItem>
-          <WrapItem>
-            <Center borderRadius={3} w="144px" h="44px" bg="secondary" color='#FFF'>Tatuajes</Center>
-          </WrapItem>
-          <WrapItem>
-            <Center borderRadius={3} w="144px" h="44px" bg="secondary" color='#FFF'>Maquillaje</Center>
-          </WrapItem>
-          <WrapItem>
-            <Center borderRadius={3} w="144px" h="44px" bg="secondary" color='#FFF'>Depilación</Center>
-          </WrapItem>
-          <WrapItem>
-            <Center borderRadius={3} w="144px" h="44px" bg="secondary" color='#FFF'>Mascotas</Center>
-          </WrapItem>
+          { categories.map((item :any) => (
+            <WrapItem>
+              <Link
+                borderRadius={3}
+                w="144px"
+                textAlign='center'
+                py={2}
+                bg="secondary"
+                color='#FFF'
+                href={`/explore/${item.name}?cat=${item.id}`}
+              >
+                {item.name}
+              </Link>
+            </WrapItem>
+          )) }
         </Wrap>
       </Box>
 

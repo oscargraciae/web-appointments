@@ -32,7 +32,7 @@ export const getServerSideProps : GetServerSideProps = async ({ params }) => {
   
   let response = null;
   if (params?.id) {
-    response = await new BusinessService().getById(Number(3));
+    response = await new BusinessService().getById(Number(params.id));
   }
   
   return {
