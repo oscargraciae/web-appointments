@@ -35,7 +35,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({}) => {
     
   }
 
-  const onSubmit = (e) :any => {
+  const onSubmit = (e :any) :any => {
     e.preventDefault();
     
     router.push(`/explore/todo/${stringToUrl(geoAddressSelected)}?placeId=${placeId}`)
@@ -62,7 +62,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({}) => {
                 <Box shadow='md' background='#FFFFFF' zIndex={10} pos="absolute" _hover={{ cursor: 'pointer' }}>
                   { loading && <Progress size="xs" isIndeterminate colorScheme='green' /> }
                   {suggestions.map((suggestion, index :number) => (
-                    <Box key={index} {...getSuggestionItemProps(suggestion)} textAlign='left' px={6} py={4} _hover={{ background: 'primaryLight' }}>
+                    <Box {...getSuggestionItemProps(suggestion)} textAlign='left' px={6} py={4} _hover={{ background: 'primaryLight' }}>
                       <Text>{suggestion.description}</Text>
                     </Box>
                   ))}

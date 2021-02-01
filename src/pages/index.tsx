@@ -7,10 +7,9 @@ import { Layout } from '../components/Layout';
 import { Wrapper } from '../components/Wrapper';
 import { InputSearch } from '../components/home/InputSearch';
 import { CategoryService } from '../services/categoryService';
-import { query } from 'express';
 import { stringToUrl, urlToString } from '../utils/stringToUrl';
 
-export const getServerSideProps = async (props: any) => {
+export const getServerSideProps = async ({ query } : any) => {
   
   let address;
   let placeId;
@@ -20,20 +19,20 @@ export const getServerSideProps = async (props: any) => {
     placeId = 'ChIJ9fg3tDGVYoYRlJjIasrT06M';
   }
   
-  console.log('Parametros', props.query);
+  console.log('Parametros', query);
 
   
   return {
     props: {
       id: 1,
-      data: props.query,
+      data: query,
       address,
       placeId,
     },
   }
 }
 
-const Index = ({ address, placeId }) => {
+const Index = ({ address, placeId } : any) => {
   
   
   // hooks

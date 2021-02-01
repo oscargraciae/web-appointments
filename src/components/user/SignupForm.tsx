@@ -54,7 +54,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ setTab, onClose }) => {
               <InputNumberField name='phone' label='Número telefónico' />
               <InputField name='email' label='Correo eletrónico' />
               
-              <PasswordInputField size='lg'  name='password' label='Contraseña' />
+              <PasswordInputField inputSize='lg'  name='password' label='Contraseña' />
               <Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Regístrate</Button>
               { error && <AlertError description={error} /> }
 

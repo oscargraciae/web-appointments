@@ -8,13 +8,13 @@ import { FiChevronDown } from 'react-icons/fi';
 
 import { UserContext } from '../context/userContext';
 
-const MenuItems = ({ children }) => (
+const MenuItems = ({ children } : any) => (
   <Box mt={{ base: 4, md: 0 }} mx={3} display="block">
     {children}
   </Box>
 );
 
-const Header = ({ handleAuthModal }) => {
+const Header = ({ handleAuthModal } : any) => {
   // context
   const { user, isLogged, logout } = useContext(UserContext);
 

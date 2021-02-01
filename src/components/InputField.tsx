@@ -16,12 +16,19 @@ import {
 } from "@chakra-ui/react";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
-type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
+type InputFieldProps = {
   label: string,
   name: string,
   errors?: string
   inputSize?: string
 }
+
+// type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
+//   label: string,
+//   name: string,
+//   errors?: string
+//   inputSize?: string
+// }
 
 export const InputField: React.FC<InputFieldProps> = ({ label, errors, inputSize = 'md', ...props }) => {
   const [field, { error, touched }] = useField(props);
@@ -72,7 +79,7 @@ export const InputNumberField: React.FC<InputFieldProps> = ({ label, errors, inp
     <FormControl isInvalid={!!(touched && error)}>
       <FormLabel fontWeight='bold' fontSize='sm' htmlFor={field.name}>{label}</FormLabel>
       <NumberInput precision={0}>
-        <NumberInputField size={inputSize} {...field} {...props} id={field.name} />
+        <NumberInputField {...field} {...props} id={field.name} />
       </NumberInput>
       {(touched && error) ? <FormErrorMessage>{error}</FormErrorMessage> : null}
     </FormControl>

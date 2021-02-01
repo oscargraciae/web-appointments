@@ -6,7 +6,6 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { IBusiness } from '../../types/IBusiness';
 import { IService } from '../../types/IService';
 import { BookingContext } from '../../context/bookingContext';
-import { formatTime } from '../../utils/formatTime';
 
 interface BookingBoxProps {
   handleBooking: any

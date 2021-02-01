@@ -1,11 +1,16 @@
+import { Box, Text } from '@chakra-ui/react';
 import React from 'react'
 
-interface BusinessProps {
+interface BusinessPageProps {
 
 }
 
-export const Business: React.FC<BusinessProps> = ({}) => {
+const BusinessPage: React.FC<BusinessPageProps> = ({}) => {
   return (
-
+    <Box>
+      <Text>Bsiness</Text>
+    </Box>
   );
 }
+
+export default BusinessPage;

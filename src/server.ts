@@ -28,9 +28,9 @@ app.prepare().then(() => {
     let ip :any = req.headers['x-real-ip']
     let ip2 = req.connection.remoteAddress // Este es el bueno
     console.log('IP', ip);
-    if (!ip) {
-      ip = '187.160.100.166';
-    }
+    // if (!ip) {
+    //   ip = '187.160.100.166';
+    // }
 
     console.log('REQ HEADERS REAL IP', ip);
     console.log('REQ remote address', ip2);
@@ -56,12 +56,6 @@ app.prepare().then(() => {
 
   server.get('/explore/:category', (req: Request, res: Response) => {
     return app.render(req, res, '/explore', { ...req.params });
-  })
-
-  server.get('/search', (req: Request, res: Response) => {
-    console.log('Ejecutando ruta inicial');
-    
-    return app.render(req, res, '/search');
   })
 
   server.get('*', (req: Request, res: Response) => {

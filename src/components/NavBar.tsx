@@ -22,12 +22,6 @@ interface NavBarProps {}
 //   return NProgress.done();
 // };
 
-const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
-    {children}
-  </Text>
-);
-
 export const NavBar: React.FC<NavBarProps> = ({}) => {
 
   const { user, isLogged } = useContext(UserContext);

@@ -32,7 +32,7 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
   useEffect(() => {
     console.log('categoryId', categoryId);
     
-    const cat = categories.filter(item => item.id == categoryId)[0];
+    const cat : any = categories.filter((item :any) => item.id == categoryId)[0];
     console.log('Categoria effect', cat);
     
       if (cat) {
@@ -53,7 +53,7 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
   const handleCategory = (value :any) => {
     console.log('Categoria valor', value);
     if (value != '0') {
-      const cat = categories.filter(item => item.id == value)[0];
+      const cat : any= categories.filter((item :any)  => item.id == value)[0];
       if (cat) {
         setNameCategory(cat.name);
         setCategoryId(Number(cat.id));

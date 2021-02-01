@@ -47,7 +47,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setTab, onClose }) => {
               {/* <InputField name='firstName' label='Nombre' />
               <InputField name='lastName' label='Apellido' /> */}
               <InputField inputSize='lg' name='email' label='Correo eletrónico' />
-              <PasswordInputField size='lg'  name='password' label='Contraseña' />
+              <PasswordInputField inputSize='lg'  name='password' label='Contraseña' />
               <Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Iniciar sesión</Button>
               <Button alignSelf='flex-end' textAlign='right' size='sm' variant='link'>¿Olvidaste tu contraseña?</Button>
               { error && <AlertError description={error} /> }

@@ -9,16 +9,12 @@ import { ExploreForm } from '../components/explore/ExploreForm'
 import { useRouter } from 'next/router'
 import { urlToString } from '../utils/stringToUrl'
 
-export const getServerSideProps = async (props) => {
-  
-  let response = null;
-  
-  console.log('Parametros', props.query);
+export const getServerSideProps = async ({ query } : any) => {
+  console.log('Parametros', query);
   
   return {
     props: {
-      id: 1,
-      ...props.query,
+      ...query,
     },
   }
 }

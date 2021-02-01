@@ -12,7 +12,7 @@
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "next build",
     "build": "npm run build:next && npm run build:server",
-    "deploy": "NODE_ENV=production node dist/index.js"
+    "deploy": "NODE_ENV=production node dist/server.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",

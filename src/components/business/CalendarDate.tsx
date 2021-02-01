@@ -39,7 +39,7 @@ export const CalendarDate: React.FC<CalendarDateProps> = ({ hours }) => {
         onChange={date => onChangeDate(date)} 
         inline
         minDate={new Date()}
-        locale={es}
+        locale='es-mx'
         filterDate={isWeekday}
       />
     </Flex>
