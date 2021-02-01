@@ -38,7 +38,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({}) => {
   const onSubmit = (e) :any => {
     e.preventDefault();
     
-    router.push(`/explore/todo/${stringToUrl(geoAddressSelected)}?place=${placeId}`)
+    router.push(`/explore/todo/${stringToUrl(geoAddressSelected)}?placeId=${placeId}`)
   }
 
   return (

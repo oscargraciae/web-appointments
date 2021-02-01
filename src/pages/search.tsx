@@ -1,4 +1,4 @@
-import { Box, Heading } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
 import React from 'react'
 
 export const getServerSideProps = async (props) => {
@@ -10,14 +10,16 @@ export const getServerSideProps = async (props) => {
   return {
     props: {
       id: 1,
+      data: props.query,
     },
   }
 }
 
-const search = ({}) => {
+const search = (props) => {
   return (
     <Box>
       <Heading>Buscador</Heading>
+      <Text>{JSON.stringify(props)}</Text>
     </Box>
   );
 }

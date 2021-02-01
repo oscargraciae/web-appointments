@@ -7,8 +7,35 @@ import { Layout } from '../components/Layout';
 import { Wrapper } from '../components/Wrapper';
 import { InputSearch } from '../components/home/InputSearch';
 import { CategoryService } from '../services/categoryService';
+import { query } from 'express';
+import { stringToUrl, urlToString } from '../utils/stringToUrl';
 
-const Index = () => {
+export const getServerSideProps = async (props: any) => {
+  
+  let address;
+  let placeId;
+
+  if (!query.geo) {
+    address = 'Monterrey, Nuevo León';
+    placeId = 'ChIJ9fg3tDGVYoYRlJjIasrT06M';
+  }
+  
+  console.log('Parametros', props.query);
+
+  
+  return {
+    props: {
+      id: 1,
+      data: props.query,
+      address,
+      placeId,
+    },
+  }
+}
+
+const Index = ({ address, placeId }) => {
+  
+  
   // hooks
   const router = useRouter();
   // state
@@ -42,7 +69,7 @@ const Index = () => {
                 py={2}
                 bg="secondary"
                 color='#FFF'
-                href={`/explore/${item.name}?cat=${item.id}`}
+                href={`/explore/${item.name}/${stringToUrl(address)}?cat=${item.id}&placeId=${placeId}`}
               >
                 {item.name}
               </Link>

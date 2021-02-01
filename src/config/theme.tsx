@@ -139,6 +139,22 @@ const theme = extendTheme({
             }
           },
         }),
+        "flushed-app": {
+          
+          field: {
+            boxShadow: '0px 1px 0px 0px #25CB67',
+            _focus: {
+              borderWidth: 0,
+              outline: 0,
+              // borderColor: 'tomato'
+              boxShadow: '0px 1px 0px 0px #25CB67',
+              
+            },
+            _hover: {
+              boxShadow: '0px 1px 0px 0px #25CB67',
+            }
+          },
+        },
         "app": {
           field: {
             _focus: {

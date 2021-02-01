@@ -22,8 +22,6 @@ import { UserContext } from '../../../context/userContext';
 import { MetaBusiness } from '../../../components/business/MetaBusiness';
 import { BusinessPhotos } from '../../../components/business/BusinessPhotos';
 
-
-
 interface BusinessProps {
   business: IBusiness
 }

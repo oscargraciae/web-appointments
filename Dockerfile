@@ -15,4 +15,5 @@ COPY . /usr/src/app
 # RUN yarn build
 
 # EXPOSE 8000
-CMD [ "yarn", "dev", "-p", "8000" ]
+# CMD [ "yarn", "dev", "-p", "8000" ]
+CMD [ "yarn", "server"]

@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: any) {
   return (
     <ThemeProvider theme={theme}>
       <Head>
-        <title>Reserly</title>
+        <title>Reserly prubea</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4dAUayOWy12OKwc4WUnJNPfZsJnPgyIw&libraries=places"></script>
@@ -22,9 +22,10 @@ function MyApp({ Component, pageProps }: any) {
       <CSSReset />
       <UserProvider>
         <Layout>
-          <SocketProvider>
+          {/* <SocketProvider>
             <Component {...pageProps} />
-          </SocketProvider>
+          </SocketProvider> */}
+          <Component {...pageProps} />
         </Layout>
       </UserProvider>
     </ThemeProvider>

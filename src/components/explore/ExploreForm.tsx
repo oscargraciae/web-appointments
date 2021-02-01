@@ -77,7 +77,7 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
           >
             { (({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                 <Box w="70%">
-                  <Input {...getInputProps()} placeholder='Dirección ' color='primary' size='md' variant="flushed" my={4} borderBottomColor='#DDD' fontWeight='semibold' pt='3px' border='0px' _hover={{ borderBottomWidth: 4, cursor: 'pointer' }} />
+                  <Input {...getInputProps()} placeholder='Dirección ' color='primary' size='md' variant="flushed-app" my={4} borderBottomColor='#DDD' fontWeight='semibold' pt='3px' border='0px' _hover={{ borderBottomWidth: 4, cursor: 'pointer' }} />
                   <Box shadow='md' background='#FFFFFF' zIndex={10} pos="absolute" >
                     { loading && <Progress size="xs" isIndeterminate colorScheme='green' /> }
                     {suggestions.map(suggestion => {
