@@ -1,0 +1,11 @@
+{
+  "/404": "pages/404.html",
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/b/[name]/[id]": "pages/b/[name]/[id].js",
+  "/business": "pages/business.html",
+  "/explore": "pages/explore.js",
+  "/explores/[[...slug]]": "pages/explores/[[...slug]].html",
+  "/": "pages/index.js",
+  "/_document": "pages/_document.js"
+}
