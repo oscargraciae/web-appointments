@@ -12,7 +12,7 @@ var generateName_1 = require("../../utils/generateName");
 exports.BusinessItem = function (_a) {
     var _b, _c;
     var business = _a.business;
-    return (<link_1.default href={"/b/" + generateName_1.generateName(business.name) + "/" + business.id} passHref>
+    return (<link_1.default href={"/" + generateName_1.generateName(business.name) + "/" + business.id} passHref>
       <react_2.Link _hover={{ textDecor: 'none' }}>
         <react_2.Box mb={3} py={2} pl={2} w='100%' _hover={{ bg: 'primaryLight', cursor: 'pointer' }}>
           <react_2.Stack isInline justify='flex-start' align='center'>

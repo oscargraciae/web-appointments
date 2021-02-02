@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from  'react';
+import React, { useContext, useEffect, useState } from  'react';
 import { Box, Flex, Input, Stack, Text, Button, Wrap, WrapItem, Center, HStack, Image, Link } from '@chakra-ui/react';
 import Rotuer, { useRouter } from 'next/router';
 import { TiCalendar, TiStar, TiLocation } from 'react-icons/ti';
@@ -8,16 +8,29 @@ import { Wrapper } from '../components/Wrapper';
 import { InputSearch } from '../components/home/InputSearch';
 import { CategoryService } from '../services/categoryService';
 import { stringToUrl, urlToString } from '../utils/stringToUrl';
+import { UserContext } from '../context/userContext';
+
+// geo: {
+//   range: [ 3147849728, 3147851775 ],
+//   country: 'MX',
+//   region: 'NLE',
+//   eu: '0',
+//   timezone: 'America/Monterrey',
+//   city: 'Apodaca',
+//   ll: [ 25.7657, -100.2159 ],
+//   metro: 0,
+//   area: 5
+// }
 
 export const getServerSideProps = async ({ query } : any) => {
   
-  let address;
-  let placeId;
+  let address = query.geo.city;
+  // let placeId;
 
-  if (!query.geo) {
-    address = 'Monterrey, Nuevo León';
-    placeId = 'ChIJ9fg3tDGVYoYRlJjIasrT06M';
-  }
+  // if (!query.geo) {
+  //   address = 'Monterrey, Nuevo León';
+  //   placeId = 'ChIJ9fg3tDGVYoYRlJjIasrT06M';
+  // }
   
   console.log('Parametros', query);
 
@@ -27,16 +40,14 @@ export const getServerSideProps = async ({ query } : any) => {
       id: 1,
       data: query,
       address,
-      placeId,
+      geo: query.geo,
+      // placeId,
     },
   }
 }
 
-const Index = ({ address, placeId } : any) => {
-  
-  
-  // hooks
-  const router = useRouter();
+const Index = ({ address, geo } : any) => {
+
   // state
   const [categories, setCategories] = useState([]);
 
@@ -68,7 +79,7 @@ const Index = ({ address, placeId } : any) => {
                 py={2}
                 bg="secondary"
                 color='#FFF'
-                href={`/explore/${item.name}/${stringToUrl(address)}?cat=${item.id}&placeId=${placeId}`}
+                href={`/explore/${item.name}/${stringToUrl(address)}`}
               >
                 {item.name}
               </Link>

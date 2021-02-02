@@ -56,15 +56,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserProvider = exports.UserContext = void 0;
-var router_1 = require("next/router");
 var react_1 = __importStar(require("react"));
 var LoadingView_1 = require("../components/general/LoadingView");
 var userService_1 = require("../services/userService");
 exports.UserContext = react_1.default.createContext(null);
 exports.UserProvider = function (_a) {
     var children = _a.children;
-    // hooks
-    var router = router_1.useRouter();
     // state
     var _b = react_1.useState(), user = _b[0], setUser = _b[1];
     var _c = react_1.useState(false), isLogged = _c[0], setIsLogged = _c[1];
@@ -98,7 +95,6 @@ exports.UserProvider = function (_a) {
                 case 1:
                     _a.sent();
                     fetchMeUser();
-                    // router.push('/');
                     location.href = '/';
                     return [2 /*return*/];
             }
@@ -107,7 +103,12 @@ exports.UserProvider = function (_a) {
     if (isLoading) {
         return <LoadingView_1.LoadingView />;
     }
-    return (<exports.UserContext.Provider value={{ user: user, isLogged: isLogged, reloadUser: reloadUser, logout: logout }}>
+    return (<exports.UserContext.Provider value={{
+        user: user,
+        isLogged: isLogged,
+        reloadUser: reloadUser,
+        logout: logout,
+    }}>
       {children}
     </exports.UserContext.Provider>);
 };

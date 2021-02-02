@@ -16,40 +16,22 @@ const server = express();
 
 
 app.prepare().then(() => {
-  console.log('Custom server');
   
-  // server.all("*", (req: Request, res: Response) => {
-  //   return handle(req, res);
-  // });
-
-  // server.get('/', (req, res) => app.render(req, res, '/index'));
   server.get('/', (req: Request, res: Response) => {
-    console.log('Ejecutando ruta inicial');
     let ip :any = req.headers['x-real-ip']
-    let ip2 = req.connection.remoteAddress // Este es el bueno
-    console.log('IP', ip);
-    // if (!ip) {
-    //   ip = '187.160.100.166';
-    // }
-
-    console.log('REQ HEADERS REAL IP', ip);
-    console.log('REQ remote address', ip2);
-    
-    console.log('IP2', ip);
+    if (!ip) {
+      ip = '187.160.100.166';
+    }
     
     const geo :any = geoip.lookup(ip);
-    console.log('Geo data', geo);
     
     return app.render(req, res, '/index', { geo: geo });
   })
 
   server.get('/explore/:category/:location', (req: Request, res: Response) => {
-    console.log('Query', req.query);
-    const cat : string = req.query.cat ? req.query.cat?.toString() : '';
     const placeId : string = req.query.placeId ? req.query.placeId?.toString() : '';
     return app.render(req, res, '/explore', {
       ...req.params,
-      cat,
       placeId,
     });
   })
@@ -58,9 +40,11 @@ app.prepare().then(() => {
     return app.render(req, res, '/explore', { ...req.params });
   })
 
+  server.get('/:name/:id', (req: Request, res: Response) => {
+    return app.render(req, res, '/business', { ...req.params });
+  })
+
   server.get('*', (req: Request, res: Response) => {
-    console.log('Server get handle');
-    
     return handle(req, res);
   });
 

@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { LoadingView } from '../components/general/LoadingView';
 import { UserService } from '../services/userService';
@@ -7,9 +6,6 @@ import { IUser } from '../types/IUser';
 export const UserContext = React.createContext<any>(null);
 
 export const UserProvider: React.FC = ({ children }) => {
-  // hooks
-  const router = useRouter();
-  
   // state
   const [user, setUser] = useState<IUser>()
   const [isLogged, setIsLogged] = useState(false);
@@ -35,7 +31,6 @@ export const UserProvider: React.FC = ({ children }) => {
   const logout = async () => {
     await new UserService().logout();
     fetchMeUser();
-    // router.push('/');
     location.href = '/';
   }
 
@@ -44,7 +39,12 @@ export const UserProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={{ user, isLogged, reloadUser, logout }}>
+    <UserContext.Provider value={{
+      user,
+      isLogged,
+      reloadUser,
+      logout,
+    }}>
       { children }
     </UserContext.Provider>
   );

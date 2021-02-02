@@ -3,7 +3,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/b/[name]/[id]": "pages/b/[name]/[id].js",
-  "/business": "pages/business.html",
+  "/business": "pages/business.js",
   "/explore": "pages/explore.js",
   "/explores/[[...slug]]": "pages/explores/[[...slug]].html",
   "/": "pages/index.js",

@@ -84,11 +84,15 @@ exports.BusinessPhotos = function (_a) {
         fetch();
     }, []);
     return (<react_1.Flex direction='column' flex={1}>
-      <react_1.Heading as="h3" size="lg" mb={3}>Fotos</react_1.Heading>
-      <react_1.SimpleGrid columns={3} mt={4}>
-        {photos.slice(0, 6).map(function (photo, index) { return (<react_1.Box p={2} key={index} role='group'>
-            <react_1.Image w='200px' h='133px' objectFit="cover" src={photo.file}/>
-          </react_1.Box>); })}
-      </react_1.SimpleGrid>
+      {photos.length > 0 &&
+        <react_1.Box>
+          <react_1.Divider my={8}/>
+          <react_1.Heading as="h3" fontSize="24px" mb={3}>Fotos</react_1.Heading>
+          <react_1.SimpleGrid columns={3} mt={4}>
+            {photos.slice(0, 6).map(function (photo, index) { return (<react_1.Box p={2} key={index} role='group'>
+                <react_1.Image w='200px' h='133px' objectFit="cover" src={photo.file}/>
+              </react_1.Box>); })}
+          </react_1.SimpleGrid>
+        </react_1.Box>}
     </react_1.Flex>);
 };

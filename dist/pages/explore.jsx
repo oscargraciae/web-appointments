@@ -62,7 +62,6 @@ exports.getServerSideProps = function (_a) {
     var query = _a.query;
     return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_b) {
-            console.log('Parametros', query);
             return [2 /*return*/, {
                     props: __assign({}, query),
                 }];
@@ -71,16 +70,10 @@ exports.getServerSideProps = function (_a) {
 };
 var Explore = function (_a) {
     var location = _a.location, category = _a.category, placeId = _a.placeId, cat = _a.cat;
-    console.log('Place id', placeId);
-    var place = placeId === null || placeId === void 0 ? void 0 : placeId.toString();
-    var addressParam = location ? location : undefined;
-    var categoryId = cat ? cat : undefined;
-    return (<exploreContext_1.ExploreProvider placeId={place} addressParam={addressParam} category={categoryId}>
+    return (<exploreContext_1.ExploreProvider placeId={placeId} addressParam={location} category={category}>
       <react_2.Stack isInline>
-
         <react_2.Box w='840px'>
           <ExploreForm_1.ExploreForm />
-          
           <BusinessList_1.default />
         </react_2.Box>
         <react_2.Box w='55%' display={{ base: 'none', md: 'block' }}>

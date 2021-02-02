@@ -11,7 +11,6 @@ import { urlToString } from '../../utils/stringToUrl'
 
 const Explore: React.FC<{}> = () => {
   const router = useRouter()
-  console.log('Router', router);
   
   const { slug, place, cat } = router.query
   const placeId :string | undefined = place?.toString();
@@ -24,10 +23,6 @@ const Explore: React.FC<{}> = () => {
     categoryId = cat ? cat.toString() : undefined;
   }
 
-  console.log('Direccion params', addressParam);
-  console.log('Categoria params', categoryId);
-  
-  
   return (
     <ExploreProvider placeId={placeId} addressParam={addressParam} category={categoryId}>
       <Stack isInline>

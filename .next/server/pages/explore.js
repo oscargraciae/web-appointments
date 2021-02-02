@@ -581,16 +581,13 @@ const ExploreForm = ({}) => {
       const {
         categories
       } = await new _services_categoryService__WEBPACK_IMPORTED_MODULE_4__[/* CategoryService */ "a"]().getAll();
-      console.log('Respuesta cateogirws', categories);
       setCategories(categories);
     };
 
     fetchCategories();
   }, []);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    console.log('categoryId', categoryId);
     const cat = categories.filter(item => item.id == categoryId)[0];
-    console.log('Categoria effect', cat);
 
     if (cat) {
       setNameCategory(cat.name);
@@ -608,8 +605,6 @@ const ExploreForm = ({}) => {
   };
 
   const handleCategory = value => {
-    console.log('Categoria valor', value);
-
     if (value != '0') {
       const cat = categories.filter(item => item.id == value)[0];
 
@@ -685,7 +680,8 @@ const ExploreForm = ({}) => {
   }))))), __jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"], null, __jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__["MenuButton"], {
     as: _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"],
     rightIcon: __jsx(react_icons_bi__WEBPACK_IMPORTED_MODULE_5__["BiChevronDown"], null),
-    w: "230px"
+    w: "230px",
+    size: "sm"
   }, nameCategory), __jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__["MenuList"], null, __jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__["MenuOptionGroup"], {
     defaultValue: String(categoryId),
     type: "radio",
@@ -1033,7 +1029,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 const getServerSideProps = async ({
   query
 }) => {
-  console.log('Parametros', query);
   return {
     props: _objectSpread({}, query)
   };
@@ -1045,14 +1040,10 @@ const Explore = ({
   placeId,
   cat
 }) => {
-  console.log('Place id', placeId);
-  const place = placeId === null || placeId === void 0 ? void 0 : placeId.toString();
-  const addressParam = location ? location : undefined;
-  const categoryId = cat ? cat : undefined;
   return __jsx(_context_exploreContext__WEBPACK_IMPORTED_MODULE_4__[/* ExploreProvider */ "b"], {
-    placeId: place,
-    addressParam: addressParam,
-    category: categoryId
+    placeId: placeId,
+    addressParam: location,
+    category: category
   }, __jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__["Stack"], {
     isInline: true
   }, __jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__["Box"], {
@@ -1286,7 +1277,7 @@ const BusinessItem = ({
   var _business$businessCat, _business$businessAdd;
 
   return __jsx(link_default.a, {
-    href: `/b/${generateName(business.name)}/${business.id}`,
+    href: `/${generateName(business.name)}/${business.id}`,
     passHref: true
   }, __jsx(react_["Link"], {
     _hover: {
@@ -1363,7 +1354,6 @@ const BusinessList = ({}) => {
     businesses,
     isLoading
   } = Object(external_react_["useContext"])(exploreContext["a" /* ExploreContext */]);
-  console.log('businesses liosta', businesses);
 
   if (isLoading) {
     return BusinessList_jsx(LoadingView["a" /* LoadingView */], null);
@@ -2944,7 +2934,8 @@ function getRouteMatcher(routeRegex) {
 /* harmony import */ var react_places_autocomplete__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_places_autocomplete__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_general_LoadingView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("eyCa");
 /* harmony import */ var _services_businessService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("8vme");
-/* harmony import */ var _utils_stringToUrl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("bI8x");
+/* harmony import */ var _services_categoryService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("ieLr");
+/* harmony import */ var _utils_stringToUrl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("bI8x");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -2958,6 +2949,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 const ExploreContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(null);
 const ExploreProvider = ({
   children,
@@ -2965,7 +2957,7 @@ const ExploreProvider = ({
   addressParam,
   category
 }) => {
-  console.log('category', category);
+  // states
   const {
     0: businesses,
     1: setBusinesses
@@ -2989,16 +2981,7 @@ const ExploreProvider = ({
   const {
     0: categoryId,
     1: setCategoryId
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(category ? category : null); // const { socket } = useContext(SocketContext);
-  // useEffect(() => {
-  //   socket?.emit('hola', coords);
-  //   socket.on('listado', (businesses: IBusiness[]) => {
-  //     console.log('data', businesses);   
-  //     setBusinesses(businesses);
-  //     // setIsLoading(false)
-  //   })
-  //   setIsLoading(false);
-  // }, [coords])
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
 
   const getCoords = async () => {
     if (placeId) {
@@ -3006,11 +2989,13 @@ const ExploreProvider = ({
       const latLng = await Object(react_places_autocomplete__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(results[0]);
       setCoords(latLng);
       setCenterMapCoords(latLng);
-
-      if (addressParam) {
-        const strAddress = Object(_utils_stringToUrl__WEBPACK_IMPORTED_MODULE_4__[/* urlToString */ "b"])(addressParam);
-        setAddressMap(strAddress);
-      }
+      setAddressMap(results[0].formatted_address);
+    } else if (addressParam) {
+      const newAddress = await Object(react_places_autocomplete__WEBPACK_IMPORTED_MODULE_1__["geocodeByAddress"])(Object(_utils_stringToUrl__WEBPACK_IMPORTED_MODULE_5__[/* urlToString */ "b"])(addressParam));
+      const latLng = await Object(react_places_autocomplete__WEBPACK_IMPORTED_MODULE_1__["getLatLng"])(newAddress[0]);
+      setAddressMap(newAddress[0].formatted_address);
+      setCoords(latLng);
+      setCenterMapCoords(latLng);
     } else {
       setCoords({
         lat: 25.6866142,
@@ -3022,6 +3007,25 @@ const ExploreProvider = ({
       });
       setAddressMap('Centro, Monterrey, N.L., México');
     }
+  };
+
+  const getCategory = () => {
+    const fetchCategories = async () => {
+      const {
+        categories
+      } = await new _services_categoryService__WEBPACK_IMPORTED_MODULE_4__[/* CategoryService */ "a"]().getAll();
+
+      if (category) {
+        const currCategory = categories.filter(item => item.name === category)[0];
+        console.log('currCategory', currCategory);
+
+        if (currCategory) {
+          setCategoryId(currCategory.id);
+        }
+      }
+    };
+
+    fetchCategories();
   };
 
   const fetch = async () => {
@@ -3043,6 +3047,9 @@ const ExploreProvider = ({
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     getCoords();
+  }, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    getCategory();
   }, []);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     fetch();
@@ -3407,7 +3414,6 @@ const useGoogleMaps = ({
         lat,
         lng
       } = map.getCenter();
-      console.log('Cambio del mapa', lat(), lng());
       setCoords({
         lat: lat(),
         lng: lng()

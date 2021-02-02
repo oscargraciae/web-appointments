@@ -23,9 +23,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({}) => {
 
   const handleSelect = async (address: string) => {
     const results : google.maps.GeocoderResult[] = await geocodeByAddress(address);
-    console.log('Resultados', results);
     
-    // const latLng = await getLatLng(results[0]);
     if (results) {
       setPlaceId(results[0].place_id);
     }

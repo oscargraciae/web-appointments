@@ -228,5 +228,12 @@ var theme = react_1.extendTheme(__assign(__assign({}, react_1.theme), { styles: 
                 },
             },
         },
+        Menu: {
+            baseStyle: {
+                list: {
+                    borderColor: 'borders'
+                }
+            }
+        }
     } }));
 exports.default = theme;

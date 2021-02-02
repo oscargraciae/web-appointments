@@ -26,7 +26,6 @@ var exploreContext_1 = require("../../context/exploreContext");
 var LoadingView_1 = require("../general/LoadingView");
 var BusinessList = function (_a) {
     var _b = react_2.useContext(exploreContext_1.ExploreContext), businesses = _b.businesses, isLoading = _b.isLoading;
-    console.log('businesses liosta', businesses);
     if (isLoading) {
         return <LoadingView_1.LoadingView />;
     }
@@ -37,10 +36,7 @@ var BusinessList = function (_a) {
       </react_1.Box>);
     }
     return (<react_1.Box py={4}>
-      
-      {businesses.map(function (business) { return (<BusinessItem_1.BusinessItem key={business.id} business={business}/>); })}
-      
-      
+      {businesses.map(function (business) { return (<BusinessItem_1.BusinessItem key={business.id} business={business}/>); })}      
     </react_1.Box>);
 };
 exports.default = BusinessList;

@@ -76,8 +76,6 @@ exports.InputSearch = function (_a) {
                 case 0: return [4 /*yield*/, react_places_autocomplete_1.geocodeByAddress(address)];
                 case 1:
                     results = _a.sent();
-                    console.log('Resultados', results);
-                    // const latLng = await getLatLng(results[0]);
                     if (results) {
                         setPlaceId(results[0].place_id);
                     }

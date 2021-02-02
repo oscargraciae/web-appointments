@@ -13,7 +13,7 @@ interface BusinessItemProps {
 
 export const BusinessItem: React.FC<BusinessItemProps> = ({ business }) => {
   return (
-    <NextLink href={`/b/${generateName(business.name)}/${business.id}`} passHref>
+    <NextLink href={`/${generateName(business.name)}/${business.id}`} passHref>
       <Link _hover={{ textDecor: 'none' }} >
         <Box mb={3} py={2} pl={2} w='100%' _hover={{ bg: 'primaryLight', cursor: 'pointer' }}>
           <Stack isInline justify='flex-start' align='center'>

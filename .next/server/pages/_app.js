@@ -208,39 +208,34 @@ module.exports = require("react");
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserContext; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return UserProvider; });
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("4Q3z");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_general_LoadingView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("eyCa");
-/* harmony import */ var _services_userService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("bQ0D");
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_general_LoadingView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("eyCa");
+/* harmony import */ var _services_userService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("bQ0D");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-
-const UserContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createContext(null);
+const UserContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(null);
 const UserProvider = ({
   children
 }) => {
-  // hooks
-  const router = Object(next_router__WEBPACK_IMPORTED_MODULE_0__["useRouter"])(); // state
-
+  // state
   const {
     0: user,
     1: setUser
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])();
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
   const {
     0: isLogged,
     1: setIsLogged
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const {
     0: isLoading,
     1: setIsLoading
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true);
 
   const fetchMeUser = async () => {
-    const response = await new _services_userService__WEBPACK_IMPORTED_MODULE_3__[/* UserService */ "a"]().getMe();
+    const response = await new _services_userService__WEBPACK_IMPORTED_MODULE_2__[/* UserService */ "a"]().getMe();
 
     if (response.success && response.user) {
       setUser(response.user);
@@ -250,7 +245,7 @@ const UserProvider = ({
     setIsLoading(false);
   };
 
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     fetchMeUser();
   }, []);
 
@@ -259,14 +254,13 @@ const UserProvider = ({
   };
 
   const logout = async () => {
-    await new _services_userService__WEBPACK_IMPORTED_MODULE_3__[/* UserService */ "a"]().logout();
-    fetchMeUser(); // router.push('/');
-
+    await new _services_userService__WEBPACK_IMPORTED_MODULE_2__[/* UserService */ "a"]().logout();
+    fetchMeUser();
     location.href = '/';
   };
 
   if (isLoading) {
-    return __jsx(_components_general_LoadingView__WEBPACK_IMPORTED_MODULE_2__[/* LoadingView */ "a"], null);
+    return __jsx(_components_general_LoadingView__WEBPACK_IMPORTED_MODULE_1__[/* LoadingView */ "a"], null);
   }
 
   return __jsx(UserContext.Provider, {
@@ -1167,6 +1161,13 @@ const theme = Object(react_["extendTheme"])(_objectSpread(_objectSpread({}, reac
               outline: 0
             }
           }
+        }
+      }
+    },
+    Menu: {
+      baseStyle: {
+        list: {
+          borderColor: 'borders'
         }
       }
     }

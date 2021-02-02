@@ -11,7 +11,7 @@ var nameDays = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 
 exports.BusinessHours = function (_a) {
     var hours = _a.hours;
     return (<react_2.Box>
-      <react_2.Heading as="h3" size="lg" mb={4}>Horarios</react_2.Heading>
+      <react_2.Heading as="h3" fontSize="24px" mb={4}>Horario</react_2.Heading>
       <react_2.Stack mt={3} width='50%'>
         {hours.map(function (item) {
         if (!item.isOpen) {

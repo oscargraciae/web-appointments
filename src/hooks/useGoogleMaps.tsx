@@ -55,7 +55,6 @@ export const useGoogleMaps = ({ coords, setCoords } : any) : any => {
 
       map.addListener('dragend', () => {
         const { lat, lng } = map.getCenter();
-        console.log('Cambio del mapa', lat(), lng());
         setCoords({ lat: lat(), lng: lng() });
       });
 

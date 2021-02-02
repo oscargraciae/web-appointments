@@ -238,6 +238,13 @@ const theme = extendTheme({
         },
       },
     },
+    Menu: {
+      baseStyle: {
+        list: {
+          borderColor: 'borders'
+        }
+      }
+    }
   }
 })
 

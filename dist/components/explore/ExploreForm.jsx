@@ -78,7 +78,6 @@ exports.ExploreForm = function (_a) {
                     case 0: return [4 /*yield*/, new categoryService_1.CategoryService().getAll()];
                     case 1:
                         categories = (_a.sent()).categories;
-                        console.log('Respuesta cateogirws', categories);
                         setCategories(categories);
                         return [2 /*return*/];
                 }
@@ -87,9 +86,7 @@ exports.ExploreForm = function (_a) {
         fetchCategories();
     }, []);
     react_1.useEffect(function () {
-        console.log('categoryId', categoryId);
         var cat = categories.filter(function (item) { return item.id == categoryId; })[0];
-        console.log('Categoria effect', cat);
         if (cat) {
             setNameCategory(cat.name);
             setCategoryId(Number(cat.id));
@@ -114,7 +111,6 @@ exports.ExploreForm = function (_a) {
         });
     }); };
     var handleCategory = function (value) {
-        console.log('Categoria valor', value);
         if (value != '0') {
             var cat = categories.filter(function (item) { return item.id == value; })[0];
             if (cat) {
@@ -149,7 +145,7 @@ exports.ExploreForm = function (_a) {
       </react_2.Flex>
       
       <react_2.Menu>
-        <react_2.MenuButton as={react_2.Button} rightIcon={<bi_1.BiChevronDown />} w='230px'>
+        <react_2.MenuButton as={react_2.Button} rightIcon={<bi_1.BiChevronDown />} w='230px' size="sm">
           {nameCategory}
         </react_2.MenuButton>
         <react_2.MenuList>

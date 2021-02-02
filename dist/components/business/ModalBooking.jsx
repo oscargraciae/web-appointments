@@ -78,11 +78,8 @@ exports.ModalBooking = function (_a) {
             switch (_a.label) {
                 case 0:
                     setIsLoading(true);
-                    console.log('FEcha de reserva', date);
                     d = moment_1.default(date).format('YYYY-MM-DD').toString();
-                    console.log('Fecha d', d);
                     dateB = moment_1.default(d + " " + time).toDate();
-                    console.log('Fecha dateB', dateB);
                     return [4 /*yield*/, new bookingService_1.BookingService().create({
                             // bookingDate: moment(date).format('YYYY-MM-DD').toString(),
                             bookingDate: dateB,

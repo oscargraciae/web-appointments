@@ -24,39 +24,26 @@ var app = next_1.default({ dev: dev });
 var handle = app.getRequestHandler();
 var server = express_1.default();
 app.prepare().then(function () {
-    console.log('Custom server');
-    // server.all("*", (req: Request, res: Response) => {
-    //   return handle(req, res);
-    // });
-    // server.get('/', (req, res) => app.render(req, res, '/index'));
     server.get('/', function (req, res) {
-        console.log('Ejecutando ruta inicial');
         var ip = req.headers['x-real-ip'];
-        var ip2 = req.connection.remoteAddress; // Este es el bueno
-        console.log('IP', ip);
-        // if (!ip) {
-        //   ip = '187.160.100.166';
-        // }
-        console.log('REQ HEADERS REAL IP', ip);
-        console.log('REQ remote address', ip2);
-        console.log('IP2', ip);
+        if (!ip) {
+            ip = '187.160.100.166';
+        }
         var geo = geoip_lite_1.default.lookup(ip);
-        console.log('Geo data', geo);
         return app.render(req, res, '/index', { geo: geo });
     });
     server.get('/explore/:category/:location', function (req, res) {
-        var _a, _b;
-        console.log('Query', req.query);
-        var cat = req.query.cat ? (_a = req.query.cat) === null || _a === void 0 ? void 0 : _a.toString() : '';
-        var placeId = req.query.placeId ? (_b = req.query.placeId) === null || _b === void 0 ? void 0 : _b.toString() : '';
-        return app.render(req, res, '/explore', __assign(__assign({}, req.params), { cat: cat,
-            placeId: placeId }));
+        var _a;
+        var placeId = req.query.placeId ? (_a = req.query.placeId) === null || _a === void 0 ? void 0 : _a.toString() : '';
+        return app.render(req, res, '/explore', __assign(__assign({}, req.params), { placeId: placeId }));
     });
     server.get('/explore/:category', function (req, res) {
         return app.render(req, res, '/explore', __assign({}, req.params));
     });
+    server.get('/:name/:id', function (req, res) {
+        return app.render(req, res, '/business', __assign({}, req.params));
+    });
     server.get('*', function (req, res) {
-        console.log('Server get handle');
         return handle(req, res);
     });
     server.listen(8000, function () {

@@ -58,37 +58,47 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getServerSideProps = void 0;
 var react_1 = __importStar(require("react"));
 var react_2 = require("@chakra-ui/react");
-var router_1 = require("next/router");
 var ti_1 = require("react-icons/ti");
 var Wrapper_1 = require("../components/Wrapper");
 var InputSearch_1 = require("../components/home/InputSearch");
 var categoryService_1 = require("../services/categoryService");
 var stringToUrl_1 = require("../utils/stringToUrl");
+// geo: {
+//   range: [ 3147849728, 3147851775 ],
+//   country: 'MX',
+//   region: 'NLE',
+//   eu: '0',
+//   timezone: 'America/Monterrey',
+//   city: 'Apodaca',
+//   ll: [ 25.7657, -100.2159 ],
+//   metro: 0,
+//   area: 5
+// }
 exports.getServerSideProps = function (_a) {
     var query = _a.query;
     return __awaiter(void 0, void 0, void 0, function () {
-        var address, placeId;
+        var address;
         return __generator(this, function (_b) {
-            if (!query.geo) {
-                address = 'Monterrey, Nuevo León';
-                placeId = 'ChIJ9fg3tDGVYoYRlJjIasrT06M';
-            }
+            address = query.geo.city;
+            // let placeId;
+            // if (!query.geo) {
+            //   address = 'Monterrey, Nuevo León';
+            //   placeId = 'ChIJ9fg3tDGVYoYRlJjIasrT06M';
+            // }
             console.log('Parametros', query);
             return [2 /*return*/, {
                     props: {
                         id: 1,
                         data: query,
                         address: address,
-                        placeId: placeId,
+                        geo: query.geo,
                     },
                 }];
         });
     });
 };
 var Index = function (_a) {
-    var address = _a.address, placeId = _a.placeId;
-    // hooks
-    var router = router_1.useRouter();
+    var address = _a.address, geo = _a.geo;
     // state
     var _b = react_1.useState([]), categories = _b[0], setCategories = _b[1];
     react_1.useEffect(function () {
@@ -118,7 +128,7 @@ var Index = function (_a) {
 
         <react_2.Wrap spacing={4} mt={4} justify='center'>
           {categories.map(function (item) { return (<react_2.WrapItem>
-              <react_2.Link borderRadius={3} w="144px" textAlign='center' py={2} bg="secondary" color='#FFF' href={"/explore/" + item.name + "/" + stringToUrl_1.stringToUrl(address) + "?cat=" + item.id + "&placeId=" + placeId}>
+              <react_2.Link borderRadius={3} w="144px" textAlign='center' py={2} bg="secondary" color='#FFF' href={"/explore/" + item.name + "/" + stringToUrl_1.stringToUrl(address)}>
                 {item.name}
               </react_2.Link>
             </react_2.WrapItem>); })}

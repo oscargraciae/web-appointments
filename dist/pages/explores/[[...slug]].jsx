@@ -13,7 +13,6 @@ var ExploreForm_1 = require("../../components/explore/ExploreForm");
 var router_1 = require("next/router");
 var Explore = function () {
     var router = router_1.useRouter();
-    console.log('Router', router);
     var _a = router.query, slug = _a.slug, place = _a.place, cat = _a.cat;
     var placeId = place === null || place === void 0 ? void 0 : place.toString();
     var addressParam;
@@ -22,8 +21,6 @@ var Explore = function () {
         addressParam = slug ? slug[slug.length - 1] : undefined;
         categoryId = cat ? cat.toString() : undefined;
     }
-    console.log('Direccion params', addressParam);
-    console.log('Categoria params', categoryId);
     return (<exploreContext_1.ExploreProvider placeId={placeId} addressParam={addressParam} category={categoryId}>
       <react_2.Stack isInline>
         <react_2.Box w='840px'>

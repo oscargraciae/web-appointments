@@ -10,8 +10,6 @@ import { useRouter } from 'next/router'
 import { urlToString } from '../utils/stringToUrl'
 
 export const getServerSideProps = async ({ query } : any) => {
-  console.log('Parametros', query);
-  
   return {
     props: {
       ...query,
@@ -28,20 +26,11 @@ interface ExploreProps {
 }
 
 const Explore: React.FC<ExploreProps> = ({ location, category, placeId, cat }) => {
-  console.log('Place id', placeId);
-  
-  const place :string | undefined = placeId?.toString();
-  const addressParam = location ? location : undefined;
-  const categoryId = cat ? cat : undefined;
-
-  
   return (
-    <ExploreProvider placeId={place} addressParam={addressParam} category={categoryId}>
+    <ExploreProvider placeId={placeId} addressParam={location} category={category}>
       <Stack isInline>
-
         <Box w='840px'>
           <ExploreForm />
-          {/* <Text>{JSON.stringify(query)}</Text> */}
           <BusinessList />
         </Box>
         <Box w='55%' display={{ base: 'none', md: 'block' }}>

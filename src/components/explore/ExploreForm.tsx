@@ -22,23 +22,18 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
   useEffect(() => {
     const fetchCategories = async () => {
       const { categories } = await new CategoryService().getAll();
-      console.log('Respuesta cateogirws', categories);
       setCategories(categories);
     }
 
     fetchCategories();
   }, [])
 
-  useEffect(() => {
-    console.log('categoryId', categoryId);
-    
+  useEffect(() => {    
     const cat : any = categories.filter((item :any) => item.id == categoryId)[0];
-    console.log('Categoria effect', cat);
-    
-      if (cat) {
-        setNameCategory(cat.name);
-        setCategoryId(Number(cat.id));
-      }
+    if (cat) {
+      setNameCategory(cat.name);
+      setCategoryId(Number(cat.id));
+    }
   }, [categories, categoryId])
 
   const handleSelect = async (address: string) => {
@@ -51,7 +46,6 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
   }
 
   const handleCategory = (value :any) => {
-    console.log('Categoria valor', value);
     if (value != '0') {
       const cat : any= categories.filter((item :any)  => item.id == value)[0];
       if (cat) {
@@ -98,7 +92,7 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
         )) }
       </Select> */}
       <Menu>
-        <MenuButton as={Button} rightIcon={<BiChevronDown />} w='230px'>
+        <MenuButton as={Button} rightIcon={<BiChevronDown />} w='230px' size="sm">
           {nameCategory}
         </MenuButton>
         <MenuList>

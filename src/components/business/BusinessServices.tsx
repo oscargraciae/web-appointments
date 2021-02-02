@@ -32,7 +32,7 @@ export const BusinessServices: React.FC<BusinessServicesProps> = ({ businessServ
 
   return (
     <Box>
-      <Heading as="h3" size="lg" mb={6}>Servicios</Heading>
+      <Heading as="h2" fontSize="24px" mb={6}>Servicios</Heading>
       <SimpleGrid columns={2} spacing={2}>
       { businessServices.map((item :IService, index :number) => (
         <Box px={5} py={4} borderWidth={1} borderColor='borders' borderRadius={3}>

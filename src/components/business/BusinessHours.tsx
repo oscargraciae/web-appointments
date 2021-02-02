@@ -11,7 +11,7 @@ const nameDays = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'
 export const BusinessHours: React.FC<BusinessHoursProps> = ({ hours }) => {
   return (
     <Box>
-      <Heading as="h3" size="lg" mb={4}>Horarios</Heading>
+      <Heading as="h3" fontSize="24px" mb={4}>Horario</Heading>
       <Stack mt={3} width='50%'>
         { hours.map((item :any) => {
           if (!item.isOpen) {

@@ -163,9 +163,6 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 // EXTERNAL MODULE: external "@chakra-ui/react"
 var react_ = __webpack_require__("LZ34");
 
-// EXTERNAL MODULE: external "next/router"
-var router_ = __webpack_require__("4Q3z");
-
 // EXTERNAL MODULE: external "react-icons/ti"
 var ti_ = __webpack_require__("2FnJ");
 
@@ -175,6 +172,9 @@ var Wrapper = __webpack_require__("uHth");
 // EXTERNAL MODULE: external "react-places-autocomplete"
 var external_react_places_autocomplete_ = __webpack_require__("KOAY");
 var external_react_places_autocomplete_default = /*#__PURE__*/__webpack_require__.n(external_react_places_autocomplete_);
+
+// EXTERNAL MODULE: external "next/router"
+var router_ = __webpack_require__("4Q3z");
 
 // EXTERNAL MODULE: ./src/utils/stringToUrl.tsx
 var stringToUrl = __webpack_require__("bI8x");
@@ -208,7 +208,6 @@ const InputSearch = ({}) => {
 
   const handleSelect = async address => {
     const results = await Object(external_react_places_autocomplete_["geocodeByAddress"])(address);
-    console.log('Resultados', results); // const latLng = await getLatLng(results[0]);
 
     if (results) {
       setPlaceId(results[0].place_id);
@@ -295,17 +294,25 @@ var pages_jsx = external_react_default.a.createElement;
 
 
 
-
+// geo: {
+//   range: [ 3147849728, 3147851775 ],
+//   country: 'MX',
+//   region: 'NLE',
+//   eu: '0',
+//   timezone: 'America/Monterrey',
+//   city: 'Apodaca',
+//   ll: [ 25.7657, -100.2159 ],
+//   metro: 0,
+//   area: 5
+// }
 const getServerSideProps = async ({
   query
 }) => {
-  let address;
-  let placeId;
-
-  if (!query.geo) {
-    address = 'Monterrey, Nuevo León';
-    placeId = 'ChIJ9fg3tDGVYoYRlJjIasrT06M';
-  }
+  let address = query.geo.city; // let placeId;
+  // if (!query.geo) {
+  //   address = 'Monterrey, Nuevo León';
+  //   placeId = 'ChIJ9fg3tDGVYoYRlJjIasrT06M';
+  // }
 
   console.log('Parametros', query);
   return {
@@ -313,18 +320,17 @@ const getServerSideProps = async ({
       id: 1,
       data: query,
       address,
-      placeId
+      geo: query.geo // placeId,
+
     }
   };
 };
 
 const Index = ({
   address,
-  placeId
+  geo
 }) => {
-  // hooks
-  const router = Object(router_["useRouter"])(); // state
-
+  // state
   const {
     0: categories,
     1: setCategories
@@ -381,7 +387,7 @@ const Index = ({
     py: 2,
     bg: "secondary",
     color: "#FFF",
-    href: `/explore/${item.name}/${Object(stringToUrl["a" /* stringToUrl */])(address)}?cat=${item.id}&placeId=${placeId}`
+    href: `/explore/${item.name}/${Object(stringToUrl["a" /* stringToUrl */])(address)}`
   }, item.name))))), pages_jsx(Wrapper["a" /* Wrapper */], null, pages_jsx(react_["Flex"], {
     zIndex: 10
   }, pages_jsx(react_["HStack"], {

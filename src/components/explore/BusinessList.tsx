@@ -12,8 +12,6 @@ interface BusinessListProps {
 
 const BusinessList: React.FC<BusinessListProps> = ({  }) => {
   const { businesses, isLoading } = useContext(ExploreContext);
-  console.log('businesses liosta', businesses);
-  
   
   if(isLoading) {
     return <LoadingView />
@@ -30,20 +28,9 @@ const BusinessList: React.FC<BusinessListProps> = ({  }) => {
 
   return (
     <Box py={4}>
-      {/* <Text>Coordenadas de busqueda: {coords?.lat} | {coords?.lng}</Text> */}
       { businesses.map((business : IBusiness) => (
         <BusinessItem key={business.id} business={business} />
-      )) }
-      {/* { businesses.map((business) => (
-        <BusinessItem key={business.id} business={business} />
-      )) }
-      { businesses.map((business) => (
-        <BusinessItem key={business.id} business={business} />
-      )) }
-      { businesses.map((business) => (
-        <BusinessItem key={business.id} business={business} />
-      )) } */}
-      
+      )) }      
     </Box>
   );
 }

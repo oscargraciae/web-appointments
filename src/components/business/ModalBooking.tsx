@@ -24,13 +24,10 @@ export const ModalBooking: React.FC<ModalBookingProps> = ({ business, isOpen, on
 
   const submitBooking = async () => {
     setIsLoading(true);
-    console.log('FEcha de reserva', date);
-    const d = moment(date).format('YYYY-MM-DD').toString();
-    console.log('Fecha d', d);
     
+    const d = moment(date).format('YYYY-MM-DD').toString();
     const dateB = moment(`${d} ${time}`).toDate();
-    console.log('Fecha dateB', dateB);
-
+    
     const response = await new BookingService().create({
       // bookingDate: moment(date).format('YYYY-MM-DD').toString(),
       bookingDate: dateB,

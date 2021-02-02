@@ -50,7 +50,6 @@ exports.useGoogleMaps = function (_a) {
         // });
         map.addListener('dragend', function () {
             var _a = map.getCenter(), lat = _a.lat, lng = _a.lng;
-            console.log('Cambio del mapa', lat(), lng());
             setCoords({ lat: lat(), lng: lng() });
         });
         // map.addListener('click', function({ latLng,  }) {

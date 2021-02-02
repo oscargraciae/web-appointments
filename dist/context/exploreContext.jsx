@@ -71,29 +71,20 @@ var react_1 = __importStar(require("react"));
 var react_places_autocomplete_1 = require("react-places-autocomplete");
 var LoadingView_1 = require("../components/general/LoadingView");
 var businessService_1 = require("../services/businessService");
+var categoryService_1 = require("../services/categoryService");
 var stringToUrl_1 = require("../utils/stringToUrl");
 exports.ExploreContext = react_1.default.createContext(null);
 exports.ExploreProvider = function (_a) {
     var children = _a.children, placeId = _a.placeId, addressParam = _a.addressParam, category = _a.category;
-    console.log('category', category);
+    // states
     var _b = react_1.useState([]), businesses = _b[0], setBusinesses = _b[1];
     var _c = react_1.useState(null), coords = _c[0], setCoords = _c[1];
     var _d = react_1.useState(null), centerMapCoords = _d[0], setCenterMapCoords = _d[1];
     var _e = react_1.useState(), addressMap = _e[0], setAddressMap = _e[1];
     var _f = react_1.useState(true), isLoading = _f[0], setIsLoading = _f[1];
-    var _g = react_1.useState(category ? category : null), categoryId = _g[0], setCategoryId = _g[1];
-    // const { socket } = useContext(SocketContext);
-    // useEffect(() => {
-    //   socket?.emit('hola', coords);
-    //   socket.on('listado', (businesses: IBusiness[]) => {
-    //     console.log('data', businesses);   
-    //     setBusinesses(businesses);
-    //     // setIsLoading(false)
-    //   })
-    //   setIsLoading(false);
-    // }, [coords])
+    var _g = react_1.useState(), categoryId = _g[0], setCategoryId = _g[1];
     var getCoords = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var results, latLng, strAddress;
+        var results, latLng, newAddress, latLng;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -106,20 +97,50 @@ exports.ExploreProvider = function (_a) {
                     latLng = _a.sent();
                     setCoords(latLng);
                     setCenterMapCoords(latLng);
-                    if (addressParam) {
-                        strAddress = stringToUrl_1.urlToString(addressParam);
-                        setAddressMap(strAddress);
-                    }
-                    return [3 /*break*/, 4];
+                    setAddressMap(results[0].formatted_address);
+                    return [3 /*break*/, 7];
                 case 3:
+                    if (!addressParam) return [3 /*break*/, 6];
+                    return [4 /*yield*/, react_places_autocomplete_1.geocodeByAddress(stringToUrl_1.urlToString(addressParam))];
+                case 4:
+                    newAddress = _a.sent();
+                    return [4 /*yield*/, react_places_autocomplete_1.getLatLng(newAddress[0])];
+                case 5:
+                    latLng = _a.sent();
+                    setAddressMap(newAddress[0].formatted_address);
+                    setCoords(latLng);
+                    setCenterMapCoords(latLng);
+                    return [3 /*break*/, 7];
+                case 6:
                     setCoords({ lat: 25.6866142, lng: -100.3161126 });
                     setCenterMapCoords({ lat: 25.6866142, lng: -100.3161126 });
                     setAddressMap('Centro, Monterrey, N.L., México');
-                    _a.label = 4;
-                case 4: return [2 /*return*/];
+                    _a.label = 7;
+                case 7: return [2 /*return*/];
             }
         });
     }); };
+    var getCategory = function () {
+        var fetchCategories = function () { return __awaiter(void 0, void 0, void 0, function () {
+            var categories, currCategory;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, new categoryService_1.CategoryService().getAll()];
+                    case 1:
+                        categories = (_a.sent()).categories;
+                        if (category) {
+                            currCategory = categories.filter(function (item) { return item.name === category; })[0];
+                            console.log('currCategory', currCategory);
+                            if (currCategory) {
+                                setCategoryId(currCategory.id);
+                            }
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        fetchCategories();
+    };
     var fetch = function () { return __awaiter(void 0, void 0, void 0, function () {
         var _a, success, business;
         return __generator(this, function (_b) {
@@ -140,6 +161,9 @@ exports.ExploreProvider = function (_a) {
     }); };
     react_1.useEffect(function () {
         getCoords();
+    }, []);
+    react_1.useEffect(function () {
+        getCategory();
     }, []);
     react_1.useEffect(function () {
         fetch();
