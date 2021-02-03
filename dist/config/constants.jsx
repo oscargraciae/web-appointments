@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TOKEN_MAPBOX = exports.APP_NAME = exports.URL_API = exports.API_DOMAIN = void 0;
 // export const API_DOMAIN =  process.browser ? 'http://localhost:8001' : 'http://api:8001'
-// export const API_DOMAIN = 'http://localhost:8001';
-exports.API_DOMAIN = 'https://api.reserly.mx';
+exports.API_DOMAIN = process.env.NEXT_PUBLIC_API_URL || 'https://api.reserly.mx';
+// export const API_DOMAIN = 'https://api.reserly.mx';
 // export const API_DOMAIN = 'http://api:8001'
 exports.URL_API = exports.API_DOMAIN + "/api/v1";
 exports.APP_NAME = 'Reserly';

@@ -9,7 +9,6 @@ import { UserProvider } from '../context/userContext';
 import "react-datepicker/dist/react-datepicker.css";
 
 function MyApp({ Component, pageProps }: any) {
-
   return (
     <ThemeProvider theme={theme}>
       <Head>
@@ -22,9 +21,6 @@ function MyApp({ Component, pageProps }: any) {
       <CSSReset />
       <UserProvider>
         <Layout>
-          {/* <SocketProvider>
-            <Component {...pageProps} />
-          </SocketProvider> */}
           <Component {...pageProps} />
         </Layout>
       </UserProvider>
