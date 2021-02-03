@@ -348,7 +348,7 @@ const formatDate = date => {
 /* unused harmony export TOKEN_MAPBOX */
 // export const API_DOMAIN =  process.browser ? 'http://localhost:8001' : 'http://api:8001'
 // export const API_DOMAIN = 'http://localhost:8001';
-const API_DOMAIN = 'https://api.reserly'; // export const API_DOMAIN = 'http://api:8001'
+const API_DOMAIN = 'https://api.reserly.mx'; // export const API_DOMAIN = 'http://api:8001'
 
 const URL_API = `${API_DOMAIN}/api/v1`;
 const APP_NAME = 'Reserly';
