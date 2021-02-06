@@ -52,12 +52,12 @@ export const TextareaField: React.FC<InputFieldProps> = ({ label, errors, inputS
   );
 };
 
-export const PasswordInputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
+export const PasswordInputField: React.FC<InputFieldProps> = ({ label = 'Contraseña', ...props }) => {
   const [field, { error, touched }] = useField(props);
   const [showPassword, setShowPassword] = useState(false);
   return (
     <FormControl isInvalid={!!(touched && error)}>
-      <FormLabel htmlFor="description" fontSize='sm' fontWeight='bold'>Contraseña</FormLabel>
+      <FormLabel htmlFor="description" fontSize='sm' fontWeight='bold'>{label}</FormLabel>
       <InputGroup>
         <Input
           type={showPassword ? "text" : "password"}

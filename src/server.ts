@@ -40,8 +40,14 @@ app.prepare().then(() => {
     return app.render(req, res, '/explore', { ...req.params });
   })
 
-  server.get('/:name/:id', (req: Request, res: Response) => {
+  server.get('/b/:name/:id', (req: Request, res: Response) => {
     return app.render(req, res, '/business', { ...req.params });
+  })
+
+  server.get('/change-password/:token', (req: Request, res: Response) => {
+    console.log('req.params', req.params);
+    
+    return app.render(req, res, '/changePassword', { ...req.params });
   })
 
   server.get('/bookings', (req: Request, res: Response) => {

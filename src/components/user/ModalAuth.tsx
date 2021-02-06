@@ -6,6 +6,7 @@ import { PasswordInputField } from '../general/InputField';
 import { AlertError } from '../general/AlertError';
 import { LoginForm } from './LoginForm';
 import { SignupForm } from './SignupForm';
+import { ForgotPasswordForm } from './ForgotPasswordForm';
 
 interface ModalAuthProps {
   isOpen: boolean
@@ -35,7 +36,7 @@ export const ModalAuth: React.FC<ModalAuthProps> = ({ isOpen, onClose, onOpen, v
         <ModalCloseButton />
         { VIEWS.LOGIN === tab && <LoginForm setTab={setTab} onClose={onClose} /> }
         { VIEWS.SIGNUP === tab && <SignupForm setTab={setTab} onClose={onClose} /> }
-        { VIEWS.FORGOT_PASSWORD === tab && <LoginForm setTab={setTab} onClose={onClose} /> }
+        { VIEWS.FORGOT_PASSWORD === tab && <ForgotPasswordForm setTab={setTab} onClose={onClose} /> }
       </ModalContent>
     </Modal>
   );

@@ -49,7 +49,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setTab, onClose }) => {
               <InputField inputSize='lg' name='email' label='Correo eletrónico' />
               <PasswordInputField inputSize='lg'  name='password' label='Contraseña' />
               <Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Iniciar sesión</Button>
-              <Button alignSelf='flex-end' textAlign='right' size='sm' variant='link'>¿Olvidaste tu contraseña?</Button>
+              <Button alignSelf='flex-end' textAlign='right' size='sm' variant='link' onClick={() => setTab(3)}>¿Olvidaste tu contraseña?</Button>
               { error && <AlertError description={error} /> }
 
               <Divider orientation='horizontal' my={4} />
