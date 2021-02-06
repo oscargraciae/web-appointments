@@ -29,7 +29,7 @@ const Explore: React.FC<ExploreProps> = ({ location, category, placeId, cat }) =
   return (
     <ExploreProvider placeId={placeId} addressParam={location} category={category}>
       <Stack isInline>
-        <Box w='840px'>
+        <Box w={{ base: '100%', md: '840px' }}>
           <ExploreForm />
           <BusinessList />
         </Box>

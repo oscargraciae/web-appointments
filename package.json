@@ -3,16 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 8000",
-    "server": "node server.js",
-    "serverdev": "ts-node --project tsconfig.server.json src/server.ts",
-    "start": "next start",
-    "gen": "graphql-codegen --config codegen.yml",
-
+    "dev2": "next dev -p 8000",
+    "dev": "ts-node --project tsconfig.server.json src/server.ts",
+    "start2": "next start",
+    
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "next build",
     "build": "npm run build:next && npm run build:server",
-    "deploy": "NODE_ENV=production node dist/server.js"
+    "start": "NODE_ENV=production node dist/server.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",

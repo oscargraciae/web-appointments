@@ -1,12 +1,8 @@
-import React, { useContext } from 'react'
-import { Box, Stack, Image, Heading, Text, Button, Divider, useDisclosure, Flex } from '@chakra-ui/react';
+import React, { useContext, useState } from 'react'
+import { Box, Image, Heading, Text, Button, Divider, useDisclosure, Flex } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
-// import DatePicker from "react-datepicker";
-
-// import "react-datepicker/dist/react-datepicker.css";
 
 // local libraries
-import { formatTime } from '../utils/formatDate';
 import { BusinessService } from '../services/businessService';
 import { IBusiness } from '../types/IBusiness';
 
@@ -21,14 +17,13 @@ import { BusinessServices } from '../components/business/BusinessServices';
 import { UserContext } from '../context/userContext';
 import { MetaBusiness } from '../components/business/MetaBusiness';
 import { BusinessPhotos } from '../components/business/BusinessPhotos';
+import { BookingBoxMobile } from '../components/business/BookingBoxMobile';
 
 interface BusinessProps {
   business: IBusiness
 }
 
 export const getServerSideProps : GetServerSideProps = async ({ query }) => {
-  console.log('query name', query.name);
-  
   let response = null;
   if (query?.id) {
     response = await new BusinessService().getById(Number(query.id));
@@ -59,7 +54,7 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
       <ModalBooking business={business} isOpen={isOpen} onClose={onClose} />
       <Wrapper>
         <Flex mb={6} pb={4} borderBottomWidth={2} borderColor='borders' justifyContent='space-between'>
-          <Box pl={0} pr={24} w='880px'>
+          <Box pl={0} pr={{ base: 0, md: 24 }} w={{ base: '100%', md: '880px' }} textAlign={{ base: 'center', md: 'left' }}>
             <Heading mt={4} mb={4} fontSize='44px'>{business.name}</Heading>
             <Text
               my={2}
@@ -70,12 +65,12 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
             >
             {businessCategory?.name}
             </Text>
-            <Text fontSize="sm" color='grey' mb={2} display='flex' alignItems='center'>
+            <Text fontSize="sm" color='grey' mb={2} display='flex' justifyContent={{ base: 'center', md: 'flex-start' }}>
               <TiLocation style={{ marginBottom: '2px', marginRight: '4px' }} size='18px' />
               {businessAddress?.addressMap}
             </Text>
             { business.phone &&
-              <Text fontSize="sm" color='grey' mb={2} display='flex' alignItems='center'>
+              <Text fontSize="sm" color='grey' mb={2} display='flex' alignItems='center' justifyContent={{ base: 'center', md: 'flex-start' }}>
                 <TiDevicePhone style={{ marginBottom: '2px', marginRight: '4px' }} size='18px' />
                 {business.phone}
               </Text>
@@ -83,13 +78,13 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
             <Text py={3} color='subtext'>{business.description}</Text>
           </Box>
           { business.cover && 
-            <Box w='300px'>
+            <Box w='300px' display={{ base: 'none', md: 'block' }}>
               <Image objectFit="cover" htmlWidth="300px" htmlHeight='200px' w="300px" h='200px'  rounded="md" src={business.cover} />
             </Box>
           }
         </Flex>
-        <Flex mb={10} direction='row'>
-          <Box w='58.33%'>            
+        <Flex mb={10} direction={{ base: 'column', md: 'row' }}>
+          <Box w={{ base: '99%', md: '58.33%' }} px={{ base: 3, md: 0 }}>
             { business.businessService && <BusinessServices businessServices={business.businessService} /> } 
             { id && <BusinessPhotos businessId={id} /> }
             <Divider my={8} />
@@ -97,13 +92,17 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
             <Divider my={8} />
           </Box>
 
-          <Box w='36.33%' ml='4.33%' px={4}>
+          <Box w='36.33%' ml='4.33%' px={4} display={{ base: 'none', md: 'block' }}>
             <Box pos='sticky' top='70px' right='0px' h='100vh'>
               {/* <Button size='lg' isFullWidth variant='outline' colorScheme='gray' onClick={handleContact}>Contactar al negocio</Button> */}
               <BookingBox handleBooking={handleBooking} />
             </Box>
           </Box>
         </Flex>
+          
+        <BookingBoxMobile handleBooking={handleBooking} />
+        
+
       </Wrapper>
     </BookingProvider>
   );

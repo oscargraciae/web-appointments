@@ -17,14 +17,6 @@ export const BusinessServices: React.FC<BusinessServicesProps> = ({ businessServ
     servicesTmp = [...services, item];
     setServices(servicesTmp)
     
-      // Eliminar servoicx
-      // const eIndex = services.indexOf(item)
-      // servicesTmp = [
-      //   ...services.slice(0, eIndex),
-      //   ...services.slice(eIndex + 1)
-      // ];
-      // setServices(servicesTmp)
-
     const totalT = servicesTmp.reduce((total :number, service :any) => total + service.time, 0)
     
     setTotalTime(totalT);
@@ -33,7 +25,7 @@ export const BusinessServices: React.FC<BusinessServicesProps> = ({ businessServ
   return (
     <Box>
       <Heading as="h2" fontSize="24px" mb={6}>Servicios</Heading>
-      <SimpleGrid columns={2} spacing={2}>
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={2}>
       { businessServices.map((item :IService, index :number) => (
         <Box px={5} py={4} borderWidth={1} borderColor='borders' borderRadius={3}>
           <Text noOfLines={2} fontWeight='bold' mb={2} h='48px'>{item.name}</Text>

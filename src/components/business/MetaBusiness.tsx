@@ -8,8 +8,6 @@ interface MetaBusinessProps {
 }
 
 export const MetaBusiness: React.FC<MetaBusinessProps> = ({ business }) => {
-  console.log('Business meta', business);
-  
   return (
     <Head>
       <title>{business.name} en {business.businessAddress?.addressMap} - Reserly</title>

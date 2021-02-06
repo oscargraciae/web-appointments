@@ -1,3 +1,4 @@
+import { IBusiness } from "./IBusiness";
 import { IService } from "./IService";
 
 export interface IBooking {
@@ -6,5 +7,7 @@ export interface IBooking {
   message?: string
   businessId?: number
   totalTime?: number
+  totalPrice?: number
   businessServices?: IService[]
+  business?: IBusiness
 }

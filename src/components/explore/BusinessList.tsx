@@ -27,7 +27,7 @@ const BusinessList: React.FC<BusinessListProps> = ({  }) => {
   }
 
   return (
-    <Box py={4}>
+    <Box py={4} minH='100vh'>
       { businesses.map((business : IBusiness) => (
         <BusinessItem key={business.id} business={business} />
       )) }      

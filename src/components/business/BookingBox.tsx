@@ -13,9 +13,7 @@ interface BookingBoxProps {
 
 export const BookingBox: React.FC<BookingBoxProps> = ({ handleBooking }) => {
   const { setServices, services, setTotalTime, totalTime } = useContext(BookingContext);
-  console.log('Servicios en store4', services);
   
-
   const deleteService = (index :number) => {
     setServices([
       ...services.slice(0, index),
@@ -26,7 +24,7 @@ export const BookingBox: React.FC<BookingBoxProps> = ({ handleBooking }) => {
   return (
     <>
       <Box>
-        <Box mt={4} w='100%' maxHeight='330px' overflow='scroll' shadow="rgba(0, 0, 0, 0.12) 0px 6px 16px">
+        <Box mt={0} w='100%' maxHeight='330px' overflow='scroll' shadow="rgba(0, 0, 0, 0.12) 0px 6px 16px">
           <Stack mb={3} >
             { services.map((item: IService, index :number) => (
             <Stack isInline align='center' borderBottomWidth={1} borderColor='borders' key={index} px={4} py={3}>

@@ -62,7 +62,7 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
   return (
     <Flex direction='column' pt={2} px={4} >
       <Flex direction="row" align='center' justify='flex-start'>
-        <Heading as="h2" fontSize='md' pr={2}>Resultados en</Heading>
+        <Heading as="h2" fontSize='md' pr={2} display={{ base: 'none', md: 'block' }} >Resultados en</Heading>
         <PlacesAutocomplete
             value={geoAddress}
             onChange={(geoaddress) => setGeoAddress(geoaddress)}
@@ -70,7 +70,7 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
             searchOptions={{ componentRestrictions: { country: ['mx'] } }}
           >
             { (({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                <Box w="70%">
+                <Box w={{ base: '100%', md: '70%' }}>
                   <Input {...getInputProps()} placeholder='Dirección ' color='primary' size='md' variant="flushed-app" my={4} borderBottomColor='#DDD' fontWeight='semibold' pt='3px' border='0px' _hover={{ borderBottomWidth: 4, cursor: 'pointer' }} />
                   <Box shadow='md' background='#FFFFFF' zIndex={10} pos="absolute" >
                     { loading && <Progress size="xs" isIndeterminate colorScheme='green' /> }
@@ -92,7 +92,7 @@ export const ExploreForm: React.FC<ExploreFormProps> = ({}) => {
         )) }
       </Select> */}
       <Menu>
-        <MenuButton as={Button} rightIcon={<BiChevronDown />} w='230px' size="sm">
+        <MenuButton as={Button} rightIcon={<BiChevronDown />} w={{ base: '100%', md: '230px' }} size="sm">
           {nameCategory}
         </MenuButton>
         <MenuList>

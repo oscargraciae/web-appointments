@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Flex, Stack, Text, Button } from '@chakra-ui/react';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { useRouter } from 'next/router';
+import { BookingContext } from '../../context/bookingContext';
 
 interface BookingSuccessProps {}
 
@@ -9,8 +10,10 @@ export const BookingSuccess: React.FC<BookingSuccessProps> = ({}) => {
 
   const router = useRouter();
 
+  const { setStep } = useContext(BookingContext);
+
   const handleConfimration = () => {
-    router.push('/');
+    router.push('/bookings'); 
   }
 
   return (

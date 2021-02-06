@@ -32,13 +32,13 @@ export const BusinessItem: React.FC<BusinessItemProps> = ({ business }) => {
               {business.businessCategory?.name}
               </Text>
               <Text fontSize="xs" color='grey'>{business.businessAddress?.addressMap}</Text>
-              <HStack pt={2} spacing={1}>
+              {/* <HStack pt={2} spacing={1}>
                 <AiFillStar color='gold' />
                 <AiFillStar color='gold' />
                 <AiFillStar color='gold' />
                 <AiFillStar color='gold' />
                 <AiFillStar color='gold' />
-              </HStack>
+              </HStack> */}
             </Box>
           </Stack>
         </Box>

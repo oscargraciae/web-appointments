@@ -20,7 +20,7 @@ interface ModalBookingProps {
 export const ModalBooking: React.FC<ModalBookingProps> = ({ business, isOpen, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { step, setStep, time, date, message, services, totalTime } = useContext(BookingContext);
+  const { step, setStep, time, date, message, services, setServices, totalTime } = useContext(BookingContext);
 
   const submitBooking = async () => {
     setIsLoading(true);
@@ -40,6 +40,7 @@ export const ModalBooking: React.FC<ModalBookingProps> = ({ business, isOpen, on
 
     if (response.success) {
       setStep(4);
+      setServices([]);
     }
     setIsLoading(false);
   }

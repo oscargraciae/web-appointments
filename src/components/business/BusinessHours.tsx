@@ -12,7 +12,7 @@ export const BusinessHours: React.FC<BusinessHoursProps> = ({ hours }) => {
   return (
     <Box>
       <Heading as="h3" fontSize="24px" mb={4}>Horario</Heading>
-      <Stack mt={3} width='50%'>
+      <Stack mt={3} width={{ base: '100%', md: '50%' }}>
         { hours.map((item :any) => {
           if (!item.isOpen) {
             return (

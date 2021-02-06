@@ -44,6 +44,22 @@ app.prepare().then(() => {
     return app.render(req, res, '/business', { ...req.params });
   })
 
+  server.get('/bookings', (req: Request, res: Response) => {
+    return app.render(req, res, '/bookings');
+  })
+
+  server.get('/negocios', (req: Request, res: Response) => {
+    return app.render(req, res, '/business-landing');
+  })
+
+  server.get('/terminos-y-condiciones', (req: Request, res: Response) => {
+    return app.render(req, res, '/terms');
+  })
+
+  server.get('/aviso-de-privacidad', (req: Request, res: Response) => {
+    return app.render(req, res, '/privacy');
+  })
+
   server.get('*', (req: Request, res: Response) => {
     return handle(req, res);
   });
