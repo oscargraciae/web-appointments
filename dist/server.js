@@ -40,8 +40,24 @@ app.prepare().then(function () {
     server.get('/explore/:category', function (req, res) {
         return app.render(req, res, '/explore', __assign({}, req.params));
     });
-    server.get('/:name/:id', function (req, res) {
+    server.get('/b/:name/:id', function (req, res) {
         return app.render(req, res, '/business', __assign({}, req.params));
+    });
+    server.get('/change-password/:token', function (req, res) {
+        console.log('req.params', req.params);
+        return app.render(req, res, '/changePassword', __assign({}, req.params));
+    });
+    server.get('/bookings', function (req, res) {
+        return app.render(req, res, '/bookings');
+    });
+    server.get('/negocios', function (req, res) {
+        return app.render(req, res, '/business-landing');
+    });
+    server.get('/terminos-y-condiciones', function (req, res) {
+        return app.render(req, res, '/terms');
+    });
+    server.get('/aviso-de-privacidad', function (req, res) {
+        return app.render(req, res, '/privacy');
     });
     server.get('*', function (req, res) {
         return handle(req, res);

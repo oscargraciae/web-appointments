@@ -38,19 +38,12 @@ exports.BusinessServices = function (_a) {
         var servicesTmp = __spreadArrays(services);
         servicesTmp = __spreadArrays(services, [item]);
         setServices(servicesTmp);
-        // Eliminar servoicx
-        // const eIndex = services.indexOf(item)
-        // servicesTmp = [
-        //   ...services.slice(0, eIndex),
-        //   ...services.slice(eIndex + 1)
-        // ];
-        // setServices(servicesTmp)
         var totalT = servicesTmp.reduce(function (total, service) { return total + service.time; }, 0);
         setTotalTime(totalT);
     };
     return (<react_2.Box>
       <react_2.Heading as="h2" fontSize="24px" mb={6}>Servicios</react_2.Heading>
-      <react_2.SimpleGrid columns={2} spacing={2}>
+      <react_2.SimpleGrid columns={{ base: 1, md: 2 }} spacing={2}>
       {businessServices.map(function (item, index) { return (<react_2.Box px={5} py={4} borderWidth={1} borderColor='borders' borderRadius={3}>
           <react_2.Text noOfLines={2} fontWeight='bold' mb={2} h='48px'>{item.name}</react_2.Text>
           

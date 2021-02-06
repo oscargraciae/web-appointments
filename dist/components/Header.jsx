@@ -44,7 +44,7 @@ var Header = function (_a) {
       <react_2.Box display={{ base: show ? 'block' : 'none', md: 'flex' }} width={{ base: 'full', sm: 'full', md: 'auto' }} alignItems="center" flexGrow={1}>
         <react_2.Spacer />
         <MenuItems>
-          <react_2.Link href='/' fontWeight="bold" variant="primary">
+          <react_2.Link href='/negocios' fontWeight="bold" variant="primary">
             Publica tu negocio
           </react_2.Link>
         </MenuItems>
@@ -66,14 +66,14 @@ var Header = function (_a) {
     var menuAuth = function () {
         return (<>
         
-        <react_2.Box display={{ base: show ? 'block' : 'none', md: 'none' }} width={{ base: 'full', sm: 'full', md: 'auto' }} alignItems="center" flexGrow={1}>
+        <react_2.Box display={{ base: show ? 'block' : 'none', md: 'none' }} width={{ base: '100%', sm: 'full', md: 'auto' }} alignItems="center" flexGrow={1}>
           <MenuItems>
             <react_2.Link href="/orders">
               Mis compras
             </react_2.Link>
           </MenuItems>
           <MenuItems>
-            <react_2.Link href="/logout">
+            <react_2.Link onClick={logout}>
               Salir
             </react_2.Link>
           </MenuItems>
@@ -86,25 +86,27 @@ var Header = function (_a) {
 
         
         <react_2.Flex flex={1} justify="flex-end" align="center" display={{ base: 'none', md: 'flex' }}>
-          
           <react_2.Menu variant='primary'>
             <react_2.MenuButton as={react_2.Button} rightIcon={<fi_1.FiChevronDown />} mx={3} variant='ghost'>
               Mi cuenta
             </react_2.MenuButton>
             <react_2.MenuList zIndex={3} borderColor="#DDD">
-              
-              <react_2.MenuItem onClick={function () { return router.push('/orders'); }}>Mis reservas</react_2.MenuItem>
+              <react_2.MenuItem onClick={function () { return router.push('/bookings'); }}>Mis reservas</react_2.MenuItem>
               <react_2.MenuItem onClick={logout}>Cerrar sesión</react_2.MenuItem>
               <react_2.MenuDivider />
                 {user.businessUser
-            ? <react_2.MenuItem onClick={logout} color='primary'>Administrar mi negocio</react_2.MenuItem>
-            : <react_2.MenuItem onClick={logout} color='primary'>Publica tu negocio</react_2.MenuItem>}
+            ? <react_2.Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href={"" + process.env.NEXT_PUBLIC_MANAGER_URL}>Administrar mi negocio</react_2.Link>
+            : <react_2.Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href='/negocios'>Publica tu negocio</react_2.Link>}
             </react_2.MenuList>
           </react_2.Menu>
         </react_2.Flex>
       </>);
     };
-    return (<react_2.Flex w='100%' h='66px' shadow="md" alignItems='center' borderBottomWidth={1} borderColor='borders' zIndex={99} pos='fixed' px={6} bg="#FFFFFF" color="#333" boxShadow="md">
+    return (<react_2.Flex as="nav" align="center" justify="space-between" wrap="wrap" 
+    // padding="1.5rem"
+    bg="#FFFFFF" color="#333" boxShadow="md" w='100%' h='66px' shadow="md" alignItems='center' borderBottomWidth={1} borderColor='borders' zIndex={99} 
+    // pos='absolute' 
+    px={6}>
       <react_2.Flex align='center'>
         <react_2.Link href="/">
           <img src="/logo-reserly-2.png" alt="uorder" width="120" height="90"/>

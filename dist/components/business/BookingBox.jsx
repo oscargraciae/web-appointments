@@ -34,13 +34,12 @@ var bookingContext_1 = require("../../context/bookingContext");
 exports.BookingBox = function (_a) {
     var handleBooking = _a.handleBooking;
     var _b = react_1.useContext(bookingContext_1.BookingContext), setServices = _b.setServices, services = _b.services, setTotalTime = _b.setTotalTime, totalTime = _b.totalTime;
-    console.log('Servicios en store4', services);
     var deleteService = function (index) {
         setServices(__spreadArrays(services.slice(0, index), services.slice(index + 1)));
     };
     return (<>
       <react_2.Box>
-        <react_2.Box mt={4} w='100%' maxHeight='330px' overflow='scroll' shadow="rgba(0, 0, 0, 0.12) 0px 6px 16px">
+        <react_2.Box mt={0} w='100%' maxHeight='330px' overflow='scroll' shadow="rgba(0, 0, 0, 0.12) 0px 6px 16px">
           <react_2.Stack mb={3}>
             {services.map(function (item, index) { return (<react_2.Stack isInline align='center' borderBottomWidth={1} borderColor='borders' key={index} px={4} py={3}>
               <react_2.Flex align='center' justify='space-evenly' flex='100%'>

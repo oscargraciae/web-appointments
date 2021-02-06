@@ -55,68 +55,74 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginForm = void 0;
-var react_1 = __importStar(require("react"));
-var react_2 = require("@chakra-ui/react");
+exports.ForgotPasswordForm = void 0;
+var react_1 = require("@chakra-ui/react");
 var formik_1 = require("formik");
-var InputField_1 = require("../InputField");
-var AlertError_1 = require("../general/AlertError");
-var login_1 = require("../../validations/login");
+var react_2 = __importStar(require("react"));
 var userService_1 = require("../../services/userService");
-var userContext_1 = require("../../context/userContext");
-exports.LoginForm = function (_a) {
+var forgotPassword_1 = require("../../validations/forgotPassword");
+var AlertError_1 = require("../general/AlertError");
+var InputField_1 = require("../InputField");
+exports.ForgotPasswordForm = function (_a) {
     var setTab = _a.setTab, onClose = _a.onClose;
-    // context
-    var reloadUser = react_1.useContext(userContext_1.UserContext).reloadUser;
     // state
-    var _b = react_1.useState(''), error = _b[0], setError = _b[1];
+    var _b = react_2.useState(''), error = _b[0], setError = _b[1];
+    var _c = react_2.useState(false), success = _c[0], setSuccess = _c[1];
     var onSubmit = function (values) { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, new userService_1.UserService().login(values)];
+                case 0:
+                    if (!values.email) return [3 /*break*/, 2];
+                    return [4 /*yield*/, new userService_1.UserService().forgotPasword(values)];
                 case 1:
                     response = _a.sent();
                     if (response.success) {
-                        reloadUser();
-                        onClose();
+                        setSuccess(true);
+                        // reloadUser();
+                        // onClose();
                     }
                     else {
                         if (response.message) {
                             setError(response.message);
                         }
                     }
-                    return [2 /*return*/];
+                    _a.label = 2;
+                case 2: return [2 /*return*/];
             }
         });
     }); };
     var initalState = {
         email: '',
-        password: ''
     };
     return (<>
-      <react_2.ModalHeader>Inicia sesión</react_2.ModalHeader>
-        <react_2.ModalBody>
-          <formik_1.Formik initialValues={initalState} validationSchema={login_1.LoginSchemaValidation} onSubmit={onSubmit}>
+      <react_1.ModalHeader>Restablece tu contraseña</react_1.ModalHeader>
+        <react_1.ModalBody>
+          <react_1.Text mb={3}>Te enviaremos un enlace a tu correo para que puedas cambiar la contraseña</react_1.Text>
+          <formik_1.Formik initialValues={initalState} onSubmit={onSubmit} validationSchema={forgotPassword_1.forgotSchemaValidation}>
           {function (_a) {
         var isSubmitting = _a.isSubmitting, errors = _a.errors, touched = _a.touched;
         return (<formik_1.Form>
-            <react_2.VStack spacing={4}>
-              
+            <react_1.VStack spacing={4}>
               <InputField_1.InputField inputSize='lg' name='email' label='Correo eletrónico'/>
-              <InputField_1.PasswordInputField inputSize='lg' name='password' label='Contraseña'/>
-              <react_2.Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Iniciar sesión</react_2.Button>
-              <react_2.Button alignSelf='flex-end' textAlign='right' size='sm' variant='link' onClick={function () { return setTab(3); }}>¿Olvidaste tu contraseña?</react_2.Button>
+              <react_1.Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Cambiar mi contraseña</react_1.Button>
+              <react_1.Button alignSelf='flex-end' textAlign='right' size='sm' variant='link' onClick={function () { return setTab(1); }}>Regresar a iniciar sesión</react_1.Button>
               {error && <AlertError_1.AlertError description={error}/>}
-
-              <react_2.Divider orientation='horizontal' my={4}/>
-              <react_2.Text mb={2}>¿No tienes cuenta?{" "}
-                <react_2.Link color='primary' fontWeight='bold' onClick={function () { return setTab(2); }}>Registrate</react_2.Link>
-              </react_2.Text>
-            </react_2.VStack>
+              {success && <react_1.Alert status='success'>
+                <react_1.AlertDescription>
+                  Te hemos enviado un correo con las instrucciones para cambiar tu contraseña.
+                  *Si no logras encontrarlo, revisa tu bandeja de spam.
+                </react_1.AlertDescription>
+              </react_1.Alert>}
+            
+              <react_1.Divider orientation='horizontal' my={4}/>
+              <react_1.Text mb={2}>¿No tienes cuenta?{" "}
+                <react_1.Link color='primary' fontWeight='bold' onClick={function () { return setTab(2); }}>Registrate</react_1.Link>
+              </react_1.Text>
+            </react_1.VStack>
           </formik_1.Form>);
     }}
       </formik_1.Formik>
-    </react_2.ModalBody>
+    </react_1.ModalBody>
     </>);
 };

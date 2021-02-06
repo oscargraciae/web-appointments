@@ -11,10 +11,9 @@ var userContext_1 = require("../context/userContext");
 require("react-datepicker/dist/react-datepicker.css");
 function MyApp(_a) {
     var Component = _a.Component, pageProps = _a.pageProps;
-    console.log('APIURLENVIRIOMNET', process.env.NEXT_PUBLIC_API_URL);
     return (<react_1.ThemeProvider theme={theme_1.default}>
       <head_1.default>
-        <title>Reserly prubea</title>
+        <title>Reserly - Encuentra servicios profesionales cerca de ti y reserva fácil, rápido y seguro.</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
         <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"/>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4dAUayOWy12OKwc4WUnJNPfZsJnPgyIw&libraries=places"></script>

@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -55,68 +66,87 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginForm = void 0;
+exports.getServerSideProps = void 0;
 var react_1 = __importStar(require("react"));
 var react_2 = require("@chakra-ui/react");
+var router_1 = require("next/router");
 var formik_1 = require("formik");
-var InputField_1 = require("../InputField");
-var AlertError_1 = require("../general/AlertError");
-var login_1 = require("../../validations/login");
-var userService_1 = require("../../services/userService");
-var userContext_1 = require("../../context/userContext");
-exports.LoginForm = function (_a) {
-    var setTab = _a.setTab, onClose = _a.onClose;
-    // context
-    var reloadUser = react_1.useContext(userContext_1.UserContext).reloadUser;
-    // state
+var InputField_1 = require("../components/InputField");
+var AlertError_1 = require("../components/general/AlertError");
+var Wrapper_1 = require("../components/Wrapper");
+var userService_1 = require("../services/userService");
+var changePassword_1 = require("../validations/changePassword");
+exports.getServerSideProps = function (_a) {
+    var query = _a.query;
+    return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_b) {
+            return [2 /*return*/, {
+                    props: __assign({}, query),
+                }];
+        });
+    });
+};
+var ChangePassword = function (_a) {
+    var token = _a.token;
+    var router = router_1.useRouter();
+    var toast = react_2.useToast();
+    console.log('Roputer', router);
+    console.log('Token', token);
     var _b = react_1.useState(''), error = _b[0], setError = _b[1];
+    var _c = react_1.useState(false), success = _c[0], setSuccess = _c[1];
+    // const [isLoading, setIsLoading] = useState(false);
+    // const [password, setPassword] = useState('');
     var onSubmit = function (values) { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, new userService_1.UserService().login(values)];
+                case 0:
+                    if (!(values.password === values.confirmPassword)) return [3 /*break*/, 2];
+                    return [4 /*yield*/, new userService_1.UserService().changePasword({ token: token, password: values.password })];
                 case 1:
                     response = _a.sent();
                     if (response.success) {
-                        reloadUser();
-                        onClose();
+                        toast({
+                            status: 'success',
+                            title: 'Contraseña actualizada',
+                            position: 'top',
+                        });
+                        // setSuccess(true);
+                        router.push('/');
                     }
                     else {
-                        if (response.message) {
-                            setError(response.message);
-                        }
+                        setError(response.message);
                     }
-                    return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 2:
+                    setError('Las contraseñas no coinciden');
+                    _a.label = 3;
+                case 3: return [2 /*return*/];
             }
         });
     }); };
-    var initalState = {
-        email: '',
-        password: ''
+    var initialState = {
+        password: '',
+        confirmPassword: '',
     };
-    return (<>
-      <react_2.ModalHeader>Inicia sesión</react_2.ModalHeader>
-        <react_2.ModalBody>
-          <formik_1.Formik initialValues={initalState} validationSchema={login_1.LoginSchemaValidation} onSubmit={onSubmit}>
-          {function (_a) {
+    return (<Wrapper_1.Wrapper variant='small'>
+      <react_2.Box h='100vh'>
+        <react_2.Heading mb={6}>Cambiar contraseña</react_2.Heading>
+          <formik_1.Formik initialValues={initialState} onSubmit={onSubmit} validationSchema={changePassword_1.changePasswordSchemaValidation}>
+            {function (_a) {
         var isSubmitting = _a.isSubmitting, errors = _a.errors, touched = _a.touched;
         return (<formik_1.Form>
-            <react_2.VStack spacing={4}>
-              
-              <InputField_1.InputField inputSize='lg' name='email' label='Correo eletrónico'/>
-              <InputField_1.PasswordInputField inputSize='lg' name='password' label='Contraseña'/>
-              <react_2.Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Iniciar sesión</react_2.Button>
-              <react_2.Button alignSelf='flex-end' textAlign='right' size='sm' variant='link' onClick={function () { return setTab(3); }}>¿Olvidaste tu contraseña?</react_2.Button>
-              {error && <AlertError_1.AlertError description={error}/>}
-
-              <react_2.Divider orientation='horizontal' my={4}/>
-              <react_2.Text mb={2}>¿No tienes cuenta?{" "}
-                <react_2.Link color='primary' fontWeight='bold' onClick={function () { return setTab(2); }}>Registrate</react_2.Link>
-              </react_2.Text>
-            </react_2.VStack>
-          </formik_1.Form>);
+              <react_2.VStack spacing={4}>
+                <InputField_1.PasswordInputField inputSize='lg' name='password' label='Nueva contraseña'/>
+                <InputField_1.PasswordInputField inputSize='lg' name='confirmPassword' label='Confirmar nueva contraseña'/>
+                <react_2.Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Cambiar mi contraseña</react_2.Button>
+                {error && <AlertError_1.AlertError description={error}/>}
+                
+              </react_2.VStack>
+            </formik_1.Form>);
     }}
-      </formik_1.Formik>
-    </react_2.ModalBody>
-    </>);
+        </formik_1.Formik>
+      </react_2.Box>
+    </Wrapper_1.Wrapper>);
 };
+exports.default = ChangePassword;

@@ -54,69 +54,70 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginForm = void 0;
+exports.BookingsList = void 0;
 var react_1 = __importStar(require("react"));
 var react_2 = require("@chakra-ui/react");
-var formik_1 = require("formik");
-var InputField_1 = require("../InputField");
-var AlertError_1 = require("../general/AlertError");
-var login_1 = require("../../validations/login");
-var userService_1 = require("../../services/userService");
-var userContext_1 = require("../../context/userContext");
-exports.LoginForm = function (_a) {
-    var setTab = _a.setTab, onClose = _a.onClose;
-    // context
-    var reloadUser = react_1.useContext(userContext_1.UserContext).reloadUser;
-    // state
-    var _b = react_1.useState(''), error = _b[0], setError = _b[1];
-    var onSubmit = function (values) { return __awaiter(void 0, void 0, void 0, function () {
-        var response;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, new userService_1.UserService().login(values)];
-                case 1:
-                    response = _a.sent();
-                    if (response.success) {
-                        reloadUser();
-                        onClose();
-                    }
-                    else {
-                        if (response.message) {
-                            setError(response.message);
+var moment_1 = __importDefault(require("moment"));
+var formatDate_1 = require("../../utils/formatDate");
+var formatTime_1 = require("../../utils/formatTime");
+var bookingService_1 = require("../../services/bookingService");
+var LoadingView_1 = require("../general/LoadingView");
+exports.BookingsList = function (_a) {
+    var tab = _a.tab;
+    var _b = react_1.useState([]), bookings = _b[0], setBookings = _b[1];
+    var _c = react_1.useState(true), isLoading = _c[0], setIsLoading = _c[1];
+    react_1.useEffect(function () {
+        var fetchBookings = function () { return __awaiter(void 0, void 0, void 0, function () {
+            var params, bookings;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        params = {};
+                        if (tab === 1) {
+                            params = { endDate: moment_1.default(new Date()).toISOString() };
                         }
-                    }
-                    return [2 /*return*/];
-            }
-        });
-    }); };
-    var initalState = {
-        email: '',
-        password: ''
-    };
-    return (<>
-      <react_2.ModalHeader>Inicia sesión</react_2.ModalHeader>
-        <react_2.ModalBody>
-          <formik_1.Formik initialValues={initalState} validationSchema={login_1.LoginSchemaValidation} onSubmit={onSubmit}>
-          {function (_a) {
-        var isSubmitting = _a.isSubmitting, errors = _a.errors, touched = _a.touched;
-        return (<formik_1.Form>
-            <react_2.VStack spacing={4}>
-              
-              <InputField_1.InputField inputSize='lg' name='email' label='Correo eletrónico'/>
-              <InputField_1.PasswordInputField inputSize='lg' name='password' label='Contraseña'/>
-              <react_2.Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Iniciar sesión</react_2.Button>
-              <react_2.Button alignSelf='flex-end' textAlign='right' size='sm' variant='link' onClick={function () { return setTab(3); }}>¿Olvidaste tu contraseña?</react_2.Button>
-              {error && <AlertError_1.AlertError description={error}/>}
-
-              <react_2.Divider orientation='horizontal' my={4}/>
-              <react_2.Text mb={2}>¿No tienes cuenta?{" "}
-                <react_2.Link color='primary' fontWeight='bold' onClick={function () { return setTab(2); }}>Registrate</react_2.Link>
-              </react_2.Text>
-            </react_2.VStack>
-          </formik_1.Form>);
-    }}
-      </formik_1.Formik>
-    </react_2.ModalBody>
-    </>);
+                        else {
+                            params = { startDate: moment_1.default(new Date()).toISOString() };
+                        }
+                        return [4 /*yield*/, new bookingService_1.BookingService().getAll(params)];
+                    case 1:
+                        bookings = (_a.sent()).bookings;
+                        console.log('bookings', bookings);
+                        setBookings(bookings);
+                        setIsLoading(false);
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        fetchBookings();
+    }, []);
+    if (isLoading) {
+        return <LoadingView_1.LoadingView />;
+    }
+    return (<react_2.Table variant="simple" size="md">
+        <react_2.Thead>
+          <react_2.Tr>
+            <react_2.Th>Negocio</react_2.Th>
+            <react_2.Th>Fecha de servicio</react_2.Th>
+            <react_2.Th>Tiempo de servicio*</react_2.Th>
+            <react_2.Th>Costo</react_2.Th>
+            <react_2.Th />
+          </react_2.Tr>
+        </react_2.Thead>
+        <react_2.Tbody>
+          {bookings.map(function (item) {
+        var _a;
+        return (<react_2.Tr fontSize='14px'>
+              <react_2.Td>{(_a = item.business) === null || _a === void 0 ? void 0 : _a.name}</react_2.Td>
+              <react_2.Td>{item.bookingDate ? formatDate_1.formatDate(item.bookingDate) : ''}</react_2.Td>
+              <react_2.Td>{item.totalTime ? formatTime_1.minutesToHour(item.totalTime) : ''}</react_2.Td>
+              <react_2.Td>${item.totalPrice}MXN</react_2.Td>
+            </react_2.Tr>);
+    })}
+        </react_2.Tbody>
+      </react_2.Table>);
 };

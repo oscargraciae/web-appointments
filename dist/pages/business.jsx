@@ -58,6 +58,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getServerSideProps = void 0;
 var react_1 = __importStar(require("react"));
 var react_2 = require("@chakra-ui/react");
+// local libraries
 var businessService_1 = require("../services/businessService");
 // local components
 var Wrapper_1 = require("../components/Wrapper");
@@ -70,6 +71,7 @@ var BusinessServices_1 = require("../components/business/BusinessServices");
 var userContext_1 = require("../context/userContext");
 var MetaBusiness_1 = require("../components/business/MetaBusiness");
 var BusinessPhotos_1 = require("../components/business/BusinessPhotos");
+var BookingBoxMobile_1 = require("../components/business/BookingBoxMobile");
 exports.getServerSideProps = function (_a) {
     var query = _a.query;
     return __awaiter(void 0, void 0, void 0, function () {
@@ -77,7 +79,6 @@ exports.getServerSideProps = function (_a) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    console.log('query name', query.name);
                     response = null;
                     if (!(query === null || query === void 0 ? void 0 : query.id)) return [3 /*break*/, 2];
                     return [4 /*yield*/, new businessService_1.BusinessService().getById(Number(query.id))];
@@ -107,29 +108,29 @@ var Business = function (_a) {
       <ModalBooking_1.ModalBooking business={business} isOpen={isOpen} onClose={onClose}/>
       <Wrapper_1.Wrapper>
         <react_2.Flex mb={6} pb={4} borderBottomWidth={2} borderColor='borders' justifyContent='space-between'>
-          <react_2.Box pl={0} pr={24} w='880px'>
+          <react_2.Box pl={0} pr={{ base: 0, md: 24 }} w={{ base: '100%', md: '880px' }} textAlign={{ base: 'center', md: 'left' }}>
             <react_2.Heading mt={4} mb={4} fontSize='44px'>{business.name}</react_2.Heading>
             <react_2.Text my={2} textTransform="uppercase" fontSize="sm" fontWeight="bold" color="primary">
             {businessCategory === null || businessCategory === void 0 ? void 0 : businessCategory.name}
             </react_2.Text>
-            <react_2.Text fontSize="sm" color='grey' mb={2} display='flex' alignItems='center'>
+            <react_2.Text fontSize="sm" color='grey' mb={2} display='flex' justifyContent={{ base: 'center', md: 'flex-start' }}>
               <ti_1.TiLocation style={{ marginBottom: '2px', marginRight: '4px' }} size='18px'/>
               {businessAddress === null || businessAddress === void 0 ? void 0 : businessAddress.addressMap}
             </react_2.Text>
             {business.phone &&
-        <react_2.Text fontSize="sm" color='grey' mb={2} display='flex' alignItems='center'>
+        <react_2.Text fontSize="sm" color='grey' mb={2} display='flex' alignItems='center' justifyContent={{ base: 'center', md: 'flex-start' }}>
                 <ti_1.TiDevicePhone style={{ marginBottom: '2px', marginRight: '4px' }} size='18px'/>
                 {business.phone}
               </react_2.Text>}
             <react_2.Text py={3} color='subtext'>{business.description}</react_2.Text>
           </react_2.Box>
           {business.cover &&
-        <react_2.Box w='300px'>
+        <react_2.Box w='300px' display={{ base: 'none', md: 'block' }}>
               <react_2.Image objectFit="cover" htmlWidth="300px" htmlHeight='200px' w="300px" h='200px' rounded="md" src={business.cover}/>
             </react_2.Box>}
         </react_2.Flex>
-        <react_2.Flex mb={10} direction='row'>
-          <react_2.Box w='58.33%'>            
+        <react_2.Flex mb={10} direction={{ base: 'column', md: 'row' }}>
+          <react_2.Box w={{ base: '99%', md: '58.33%' }} px={{ base: 3, md: 0 }}>
             {business.businessService && <BusinessServices_1.BusinessServices businessServices={business.businessService}/>} 
             {id && <BusinessPhotos_1.BusinessPhotos businessId={id}/>}
             <react_2.Divider my={8}/>
@@ -137,13 +138,17 @@ var Business = function (_a) {
             <react_2.Divider my={8}/>
           </react_2.Box>
 
-          <react_2.Box w='36.33%' ml='4.33%' px={4}>
+          <react_2.Box w='36.33%' ml='4.33%' px={4} display={{ base: 'none', md: 'block' }}>
             <react_2.Box pos='sticky' top='70px' right='0px' h='100vh'>
               
               <BookingBox_1.BookingBox handleBooking={handleBooking}/>
             </react_2.Box>
           </react_2.Box>
         </react_2.Flex>
+          
+        <BookingBoxMobile_1.BookingBoxMobile handleBooking={handleBooking}/>
+        
+
       </Wrapper_1.Wrapper>
     </bookingContext_1.BookingProvider>);
 };

@@ -12,7 +12,7 @@ exports.BusinessHours = function (_a) {
     var hours = _a.hours;
     return (<react_2.Box>
       <react_2.Heading as="h3" fontSize="24px" mb={4}>Horario</react_2.Heading>
-      <react_2.Stack mt={3} width='50%'>
+      <react_2.Stack mt={3} width={{ base: '100%', md: '50%' }}>
         {hours.map(function (item) {
         if (!item.isOpen) {
             return (<react_2.Stack isInline py={1} justify='space-between' key={item.id}>

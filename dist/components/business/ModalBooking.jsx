@@ -71,7 +71,7 @@ var BookingSuccess_1 = require("./BookingSuccess");
 exports.ModalBooking = function (_a) {
     var business = _a.business, isOpen = _a.isOpen, onClose = _a.onClose;
     var _b = react_1.useState(false), isLoading = _b[0], setIsLoading = _b[1];
-    var _c = react_1.useContext(bookingContext_1.BookingContext), step = _c.step, setStep = _c.setStep, time = _c.time, date = _c.date, message = _c.message, services = _c.services, totalTime = _c.totalTime;
+    var _c = react_1.useContext(bookingContext_1.BookingContext), step = _c.step, setStep = _c.setStep, time = _c.time, date = _c.date, message = _c.message, services = _c.services, setServices = _c.setServices, totalTime = _c.totalTime;
     var submitBooking = function () { return __awaiter(void 0, void 0, void 0, function () {
         var d, dateB, response;
         return __generator(this, function (_a) {
@@ -93,6 +93,7 @@ exports.ModalBooking = function (_a) {
                     response = _a.sent();
                     if (response.success) {
                         setStep(4);
+                        setServices([]);
                     }
                     setIsLoading(false);
                     return [2 /*return*/];

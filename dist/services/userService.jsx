@@ -25,6 +25,8 @@ var UserService = /** @class */ (function (_super) {
         var _this = _super.call(this, constants_1.URL_API) || this;
         _this.login = function (data) { return _this.instance.post('/users/auth', data); };
         _this.signup = function (data) { return _this.instance.post('/users', data); };
+        _this.forgotPasword = function (data) { return _this.instance.post('/users/forgot-password', data); };
+        _this.changePasword = function (data) { return _this.instance.post('/users/change-password', data); };
         _this.logout = function () { return _this.instance.get('/users/auth/logout'); };
         _this.getMe = function () { return _this.instance.get('/users'); };
         return _this;

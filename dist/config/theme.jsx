@@ -56,6 +56,22 @@ var theme = react_1.extendTheme(__assign(__assign({}, react_1.theme), { styles: 
                         color: 'primary'
                     },
                 },
+                "primary-solid": {
+                    bg: "primary",
+                    borderColor: "#05AF3C",
+                    color: '#FFF',
+                    fontWeight: '600',
+                    borderWidth: 1,
+                    py: 3,
+                    px: 6,
+                    borderRadius: 3,
+                    _hover: {
+                        bg: "_primary",
+                        _disabled: {
+                            bg: 'gray.500',
+                        }
+                    },
+                },
             },
         },
         Button: {

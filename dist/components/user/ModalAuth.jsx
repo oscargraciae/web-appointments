@@ -24,6 +24,7 @@ var react_1 = __importStar(require("react"));
 var react_2 = require("@chakra-ui/react");
 var LoginForm_1 = require("./LoginForm");
 var SignupForm_1 = require("./SignupForm");
+var ForgotPasswordForm_1 = require("./ForgotPasswordForm");
 var VIEWS = {
     LOGIN: 1,
     SIGNUP: 2,
@@ -42,7 +43,7 @@ exports.ModalAuth = function (_a) {
         <react_2.ModalCloseButton />
         {VIEWS.LOGIN === tab && <LoginForm_1.LoginForm setTab={setTab} onClose={onClose}/>}
         {VIEWS.SIGNUP === tab && <SignupForm_1.SignupForm setTab={setTab} onClose={onClose}/>}
-        {VIEWS.FORGOT_PASSWORD === tab && <LoginForm_1.LoginForm setTab={setTab} onClose={onClose}/>}
+        {VIEWS.FORGOT_PASSWORD === tab && <ForgotPasswordForm_1.ForgotPasswordForm setTab={setTab} onClose={onClose}/>}
       </react_2.ModalContent>
     </react_2.Modal>);
 };

@@ -80,12 +80,6 @@ exports.getServerSideProps = function (_a) {
         var address;
         return __generator(this, function (_b) {
             address = query.geo.city;
-            // let placeId;
-            // if (!query.geo) {
-            //   address = 'Monterrey, Nuevo León';
-            //   placeId = 'ChIJ9fg3tDGVYoYRlJjIasrT06M';
-            // }
-            console.log('Parametros', query);
             return [2 /*return*/, {
                     props: {
                         id: 1,
@@ -116,14 +110,14 @@ var Index = function (_a) {
         }); };
         fetchCategories();
     }, []);
-    return (<react_2.Flex justify="center" align="center" w="100%" bgSize="cover" direction='column'>
+    return (<react_2.Flex justify="center" align="center" w="100%" bgSize="cover" direction='column' mb={16}>
       <react_2.Flex w='100%' h='340px' alignItems='center' bg='linear-gradient(90deg,rgba(47,45,65,.7),rgba(47,45,65,.7)),url(/bg-main.jpg);' bgSize='cover' bgRepeat='no-repeat'>
-        <react_2.Text mx='auto' pt={10} width="800px" mt={2} fontSize="4xl" fontWeight="semibold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
+        <react_2.Text mx='auto' pt={10} width={{ base: '90%', md: '800px' }} mt={2} fontSize={{ base: 'xl', md: '4xl' }} fontWeight="semibold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
           Encuentra servicios profesionales cerca de ti y reserva fácil, rápido y seguro.
         </react_2.Text>
       </react_2.Flex>
       
-      <react_2.Box width="700px" bg="transparent" p="16px" rounded="sm" zIndex={10} mt='-50px'>
+      <react_2.Box width={{ base: '90%', md: '700px' }} bg="transparent" p="16px" rounded="sm" zIndex={10} mt='-50px'>
         <InputSearch_1.InputSearch />
 
         <react_2.Wrap spacing={4} mt={4} justify='center'>
@@ -137,29 +131,29 @@ var Index = function (_a) {
 
       <Wrapper_1.Wrapper>
         <react_2.Flex zIndex={10}>
-          <react_2.HStack justify='space-between'>
-            <react_2.Box w='32%'>
+          <react_2.Flex justify='space-between' alignItems='center' direction={{ base: 'column', md: 'row' }}>
+            <react_2.Box w={{ base: '80%', md: '32%' }} my={4}>
               <react_2.HStack alignItems='center'>
                 <ti_1.TiLocation size={24}/>
                 <react_2.Text fontWeight='bold' fontSize='lg'>Ubicación</react_2.Text>
               </react_2.HStack>
               <react_2.Text color='subtext'>Reserly te permite localizar negocios cercanos a tu ubicación.</react_2.Text>
             </react_2.Box>
-            <react_2.Box w='32%'>
+            <react_2.Box w={{ base: '80%', md: '32%' }} my={4}>
               <react_2.HStack>
                 <ti_1.TiStar size={24}/>
                 <react_2.Text fontWeight='bold' fontSize='lg'>Mayor confianza</react_2.Text>
               </react_2.HStack>
               <react_2.Text color='subtext'>Elige el negocio que se adapte a lo que tu necesitas, comparando los servicios, precio y comentarios.</react_2.Text>
             </react_2.Box>
-            <react_2.Box w='32%'>
+            <react_2.Box w={{ base: '80%', md: '32%' }} my={4}>
               <react_2.HStack>
                 <ti_1.TiCalendar size={24}/>
                 <react_2.Text fontWeight='bold' fontSize='lg'>Reservaciones</react_2.Text>
               </react_2.HStack>
               <react_2.Text color='subtext'>Selecciona los servicios que necesitas y reserva de manera segura, disponible las 24 horas del día.</react_2.Text>
             </react_2.Box>
-          </react_2.HStack>
+          </react_2.Flex>
         </react_2.Flex>
       </Wrapper_1.Wrapper>
 

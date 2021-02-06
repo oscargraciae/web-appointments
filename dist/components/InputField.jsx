@@ -60,11 +60,11 @@ exports.TextareaField = function (_a) {
     </react_2.FormControl>);
 };
 exports.PasswordInputField = function (_a) {
-    var label = _a.label, props = __rest(_a, ["label"]);
-    var _b = formik_1.useField(props), field = _b[0], _c = _b[1], error = _c.error, touched = _c.touched;
-    var _d = react_1.useState(false), showPassword = _d[0], setShowPassword = _d[1];
+    var _b = _a.label, label = _b === void 0 ? 'Contraseña' : _b, props = __rest(_a, ["label"]);
+    var _c = formik_1.useField(props), field = _c[0], _d = _c[1], error = _d.error, touched = _d.touched;
+    var _e = react_1.useState(false), showPassword = _e[0], setShowPassword = _e[1];
     return (<react_2.FormControl isInvalid={!!(touched && error)}>
-      <react_2.FormLabel htmlFor="description" fontSize='sm' fontWeight='bold'>Contraseña</react_2.FormLabel>
+      <react_2.FormLabel htmlFor="description" fontSize='sm' fontWeight='bold'>{label}</react_2.FormLabel>
       <react_2.InputGroup>
         <react_2.Input type={showPassword ? "text" : "password"} {...field} {...props} id={field.name}/>
         <react_2.InputRightElement>
