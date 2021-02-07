@@ -10,4 +10,6 @@ export interface IBooking {
   totalPrice?: number
   businessServices?: IService[]
   business?: IBusiness
+  createdAt?: Date
+  bookingStatusId?: number
 }

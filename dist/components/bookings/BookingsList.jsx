@@ -105,6 +105,7 @@ exports.BookingsList = function (_a) {
             <react_2.Th>Fecha de servicio</react_2.Th>
             <react_2.Th>Tiempo de servicio*</react_2.Th>
             <react_2.Th>Costo</react_2.Th>
+            <react_2.Th>Fecha de solicitud</react_2.Th>
             <react_2.Th />
           </react_2.Tr>
         </react_2.Thead>
@@ -116,6 +117,8 @@ exports.BookingsList = function (_a) {
               <react_2.Td>{item.bookingDate ? formatDate_1.formatDate(item.bookingDate) : ''}</react_2.Td>
               <react_2.Td>{item.totalTime ? formatTime_1.minutesToHour(item.totalTime) : ''}</react_2.Td>
               <react_2.Td>${item.totalPrice}MXN</react_2.Td>
+              <react_2.Td>{item.createdAt ? formatDate_1.formatDate(item.createdAt) : ''}</react_2.Td>
+              <react_2.Td color={item.bookingStatusId === 1 ? 'yellow.500' : 'primary'}>{item.bookingStatusId === 1 ? 'Por confirmar' : 'Agendada'}</react_2.Td>
             </react_2.Tr>);
     })}
         </react_2.Tbody>

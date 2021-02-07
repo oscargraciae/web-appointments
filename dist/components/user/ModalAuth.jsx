@@ -33,9 +33,9 @@ var VIEWS = {
 exports.ModalAuth = function (_a) {
     var isOpen = _a.isOpen, onClose = _a.onClose, onOpen = _a.onOpen, view = _a.view;
     // state
-    var _b = react_1.useState(view), tab = _b[0], setTab = _b[1];
+    var _b = react_1.useState(view || 1), tab = _b[0], setTab = _b[1];
     react_1.useEffect(function () {
-        setTab(view);
+        setTab(view || 1);
     }, [view]);
     return (<react_2.Modal isOpen={isOpen} onClose={onClose}>
       <react_2.ModalOverlay />

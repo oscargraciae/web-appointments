@@ -66,6 +66,7 @@ exports.UserProvider = function (_a) {
     var _b = react_1.useState(), user = _b[0], setUser = _b[1];
     var _c = react_1.useState(false), isLogged = _c[0], setIsLogged = _c[1];
     var _d = react_1.useState(true), isLoading = _d[0], setIsLoading = _d[1];
+    var _e = react_1.useState(false), openModalLogin = _e[0], setOpenModalLogin = _e[1];
     var fetchMeUser = function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
@@ -108,6 +109,8 @@ exports.UserProvider = function (_a) {
         isLogged: isLogged,
         reloadUser: reloadUser,
         logout: logout,
+        setOpenModalLogin: setOpenModalLogin,
+        openModalLogin: openModalLogin,
     }}>
       {children}
     </exports.UserContext.Provider>);

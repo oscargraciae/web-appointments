@@ -28,16 +28,23 @@ var react_2 = require("@chakra-ui/react");
 var Header_1 = __importDefault(require("./Header"));
 var ModalAuth_1 = require("./user/ModalAuth");
 var Footer_1 = require("./Footer");
+var userContext_1 = require("../context/userContext");
 exports.Layout = function (_a) {
     var children = _a.children;
     var _b = react_2.useDisclosure(), isOpen = _b.isOpen, onClose = _b.onClose, onOpen = _b.onOpen;
     var _c = react_1.useState(), authView = _c[0], setauthView = _c[1];
+    var _d = react_1.useContext(userContext_1.UserContext), openModalLogin = _d.openModalLogin, setOpenModalLogin = _d.setOpenModalLogin;
+    var handleOnClose = function () {
+        onClose();
+        setOpenModalLogin(false);
+    };
     var handleAuthModal = function (view) {
         setauthView(view);
         onOpen();
     };
     return (<>
-      {authView && <ModalAuth_1.ModalAuth isOpen={isOpen} onClose={onClose} onOpen={onOpen} view={authView}/>}
+      
+      <ModalAuth_1.ModalAuth isOpen={(isOpen || openModalLogin)} onClose={handleOnClose} onOpen={onOpen} view={authView}/>
       <Header_1.default handleAuthModal={handleAuthModal}/>
       
       <react_2.Box>

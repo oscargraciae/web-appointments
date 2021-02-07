@@ -41,12 +41,21 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
   const { businessAddress, businessCategory, hours, id } = business;
 
   // context
-  const { user, isLogged } = useContext(UserContext);
+  const { user, isLogged, setOpenModalLogin, openModalLogin } = useContext(UserContext);
 
   // hooks
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const handleBooking = () => onOpen();
+  const handleBooking = () => {
+    if (isLogged) {
+      onOpen();
+    } else {
+      console.log('No logeado', openModalLogin);
+      
+      setOpenModalLogin(true);
+    }
+    
+  };
 
   return (
     <BookingProvider>

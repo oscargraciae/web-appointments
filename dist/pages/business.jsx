@@ -99,10 +99,18 @@ var Business = function (_a) {
     var business = _a.business;
     var businessAddress = business.businessAddress, businessCategory = business.businessCategory, hours = business.hours, id = business.id;
     // context
-    var _b = react_1.useContext(userContext_1.UserContext), user = _b.user, isLogged = _b.isLogged;
+    var _b = react_1.useContext(userContext_1.UserContext), user = _b.user, isLogged = _b.isLogged, setOpenModalLogin = _b.setOpenModalLogin, openModalLogin = _b.openModalLogin;
     // hooks
     var _c = react_2.useDisclosure(), isOpen = _c.isOpen, onOpen = _c.onOpen, onClose = _c.onClose;
-    var handleBooking = function () { return onOpen(); };
+    var handleBooking = function () {
+        if (isLogged) {
+            onOpen();
+        }
+        else {
+            console.log('No logeado', openModalLogin);
+            setOpenModalLogin(true);
+        }
+    };
     return (<bookingContext_1.BookingProvider>
       <MetaBusiness_1.MetaBusiness business={business}/>
       <ModalBooking_1.ModalBooking business={business} isOpen={isOpen} onClose={onClose}/>

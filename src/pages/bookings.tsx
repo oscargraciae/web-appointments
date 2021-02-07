@@ -15,7 +15,7 @@ const Bookings: React.FC = ({}) => {
     <Wrapper>
       <Box>
         <Heading>Mis reservaciones</Heading>
-        <Box bg='surface' borderBottomWidth={1} borderColor='borders' py={3}>
+        <Box bg='surface' borderBottomWidth={1} borderColor='borders' py={3} minH='80vh'>
           <Box>
             <HStack mt={4} borderBottomWidth={1} borderColor='borders' p={3}>
               <MenuLink title='Proximas' onClick={() => setTab(1)} isActive={tab === 1} />

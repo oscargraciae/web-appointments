@@ -10,6 +10,7 @@ export const UserProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<IUser>()
   const [isLogged, setIsLogged] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [openModalLogin, setOpenModalLogin] = useState(false);
 
   const fetchMeUser = async () => {
     const response = await new UserService().getMe();
@@ -44,6 +45,8 @@ export const UserProvider: React.FC = ({ children }) => {
       isLogged,
       reloadUser,
       logout,
+      setOpenModalLogin,
+      openModalLogin,
     }}>
       { children }
     </UserContext.Provider>

@@ -34,7 +34,7 @@ var Bookings = function (_a) {
     return (<Wrapper_1.Wrapper>
       <react_2.Box>
         <react_2.Heading>Mis reservaciones</react_2.Heading>
-        <react_2.Box bg='surface' borderBottomWidth={1} borderColor='borders' py={3}>
+        <react_2.Box bg='surface' borderBottomWidth={1} borderColor='borders' py={3} minH='80vh'>
           <react_2.Box>
             <react_2.HStack mt={4} borderBottomWidth={1} borderColor='borders' p={3}>
               <MenuLink title='Proximas' onClick={function () { return setTab(1); }} isActive={tab === 1}/>

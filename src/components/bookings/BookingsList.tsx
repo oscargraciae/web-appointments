@@ -42,6 +42,7 @@ export const BookingsList: React.FC<{ tab: number }> = ({ tab }) => {
             <Th>Fecha de servicio</Th>
             <Th>Tiempo de servicio*</Th>
             <Th>Costo</Th>
+            <Th>Fecha de solicitud</Th>
             <Th />
           </Tr>
         </Thead>
@@ -52,6 +53,8 @@ export const BookingsList: React.FC<{ tab: number }> = ({ tab }) => {
               <Td>{item.bookingDate ? formatDate(item.bookingDate) : ''}</Td>
               <Td>{item.totalTime ? minutesToHour(item.totalTime) : ''}</Td>
               <Td>${item.totalPrice}MXN</Td>
+              <Td>{item.createdAt ? formatDate(item.createdAt) : ''}</Td>
+              <Td color={item.bookingStatusId === 1 ? 'yellow.500' : 'primary'} >{item.bookingStatusId === 1 ? 'Por confirmar' : 'Agendada'}</Td>
             </Tr>
           )) }
         </Tbody>

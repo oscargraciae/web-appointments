@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/d1AUnf19ArH5WDhCUswjE/_buildManifest.js",
-    "static/d1AUnf19ArH5WDhCUswjE/_ssgManifest.js"
+    "static/A9djzqJlM1BZvOQUdMlSc/_buildManifest.js",
+    "static/A9djzqJlM1BZvOQUdMlSc/_ssgManifest.js"
   ],
   "pages": {
     "/": [
@@ -42,10 +42,10 @@
       "static/chunks/75cb59e3c762e31222de352e1614202c2a3b4302.27d6618d55670fd6a8e4.js",
       "static/chunks/a3e503e9b59120dda88e3fd9269e235936bfc5c1.f15c56a56501cbd09a52.js",
       "static/chunks/89a2dd6e865ded3d07d4a3e6c65e554fd499e973.a4974a3fb55b4012e6ea.js",
-      "static/chunks/ee284aba08cf562d68287c1582492ed70c2aa405.f28fafec8bfaaa9130a2.js",
+      "static/chunks/ee284aba08cf562d68287c1582492ed70c2aa405.ca8d883b6a190f756723.js",
       "static/chunks/1bc3d993314ece1bd2ec55519e050eeef42a5063.1a642606c50accff254b.js",
       "static/css/047de4f852bfe6a0d44e.css",
-      "static/chunks/pages/_app-f8c24191224215c16359.js"
+      "static/chunks/pages/_app-9561a589e243203fa75b.js"
     ],
     "/_error": [
       "static/chunks/main-848faa0ea01ae88da261.js",
@@ -62,7 +62,7 @@
       "static/chunks/5cbb54fb17041aa198545d8f37c1928543afd95d.e5ebd9a9dc48937a5931.js",
       "static/chunks/108a03fa1e62b54a21d9feb66931877c1b915c29.8ae02cc039e6290fa413.js",
       "static/chunks/7bc48bea4c249339c4cbaab0607f47f7f7c79588.a1251f16d83b69b4babb.js",
-      "static/chunks/pages/bookings-dba37ab26d60ebe5c57c.js"
+      "static/chunks/pages/bookings-d3f17effe2002fa80c25.js"
     ],
     "/business": [
       "static/chunks/main-848faa0ea01ae88da261.js",
@@ -80,8 +80,8 @@
       "static/chunks/75cb59e3c762e31222de352e1614202c2a3b4302.27d6618d55670fd6a8e4.js",
       "static/chunks/a3e503e9b59120dda88e3fd9269e235936bfc5c1.f15c56a56501cbd09a52.js",
       "static/chunks/7bc48bea4c249339c4cbaab0607f47f7f7c79588.a1251f16d83b69b4babb.js",
-      "static/chunks/ee284aba08cf562d68287c1582492ed70c2aa405.f28fafec8bfaaa9130a2.js",
-      "static/chunks/pages/business-f760ca7e586180875d50.js"
+      "static/chunks/ee284aba08cf562d68287c1582492ed70c2aa405.ca8d883b6a190f756723.js",
+      "static/chunks/pages/business-69d214758bf80fc37f24.js"
     ],
     "/business-landing": [
       "static/chunks/main-848faa0ea01ae88da261.js",
@@ -120,7 +120,7 @@
       "static/chunks/a3e503e9b59120dda88e3fd9269e235936bfc5c1.f15c56a56501cbd09a52.js",
       "static/chunks/dda9856ec510651f15d884291a87b5f8ea700401.56404c048f222f3058e3.js",
       "static/chunks/1bc3d993314ece1bd2ec55519e050eeef42a5063.1a642606c50accff254b.js",
-      "static/chunks/pages/explore-389f4d1ce63d58007a1a.js"
+      "static/chunks/pages/explore-79cbab8654b1985cd88e.js"
     ],
     "/privacy": [
       "static/chunks/main-848faa0ea01ae88da261.js",

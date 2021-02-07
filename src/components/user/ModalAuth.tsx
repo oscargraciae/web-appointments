@@ -12,7 +12,7 @@ interface ModalAuthProps {
   isOpen: boolean
   onClose: any
   onOpen: any
-  view: number
+  view?: number
 }
 
 const VIEWS = {
@@ -23,10 +23,10 @@ const VIEWS = {
 
 export const ModalAuth: React.FC<ModalAuthProps> = ({ isOpen, onClose, onOpen, view }) => {
   // state
-  const [tab, setTab] = useState(view);
+  const [tab, setTab] = useState(view || 1);
 
   useEffect(() => {
-    setTab(view);
+    setTab(view || 1);
   }, [view])
   
   return (

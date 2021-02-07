@@ -264,6 +264,10 @@ const UserProvider = ({
     0: isLoading,
     1: setIsLoading
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true);
+  const {
+    0: openModalLogin,
+    1: setOpenModalLogin
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
 
   const fetchMeUser = async () => {
     const response = await new _services_userService__WEBPACK_IMPORTED_MODULE_2__[/* UserService */ "a"]().getMe();
@@ -299,7 +303,9 @@ const UserProvider = ({
       user,
       isLogged,
       reloadUser,
-      logout
+      logout,
+      setOpenModalLogin,
+      openModalLogin
     }
   }, children);
 };
@@ -872,9 +878,9 @@ const ModalAuth = ({
   const {
     0: tab,
     1: setTab
-  } = Object(external_react_["useState"])(view);
+  } = Object(external_react_["useState"])(view || 1);
   Object(external_react_["useEffect"])(() => {
-    setTab(view);
+    setTab(view || 1);
   }, [view]);
   return ModalAuth_jsx(react_["Modal"], {
     isOpen: isOpen,
@@ -949,6 +955,7 @@ var Layout_jsx = external_react_default.a.createElement;
 
 
 
+
 const Layout = ({
   children
 }) => {
@@ -961,15 +968,24 @@ const Layout = ({
     0: authView,
     1: setauthView
   } = Object(external_react_["useState"])();
+  const {
+    openModalLogin,
+    setOpenModalLogin
+  } = Object(external_react_["useContext"])(userContext["a" /* UserContext */]);
+
+  const handleOnClose = () => {
+    onClose();
+    setOpenModalLogin(false);
+  };
 
   const handleAuthModal = view => {
     setauthView(view);
     onOpen();
   };
 
-  return Layout_jsx(external_react_default.a.Fragment, null, authView && Layout_jsx(ModalAuth, {
-    isOpen: isOpen,
-    onClose: onClose,
+  return Layout_jsx(external_react_default.a.Fragment, null, Layout_jsx(ModalAuth, {
+    isOpen: isOpen || openModalLogin,
+    onClose: handleOnClose,
     onOpen: onOpen,
     view: authView
   }), Layout_jsx(components_Header, {
