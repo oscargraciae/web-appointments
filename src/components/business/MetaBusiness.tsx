@@ -19,6 +19,9 @@ export const MetaBusiness: React.FC<MetaBusinessProps> = ({ business }) => {
       <meta property="og:title"              content={business.name} />
       <meta property="og:description"        content={`Reserva con ${business.name} en ${business.businessAddress?.addressMap} ¡en minutos!`} />
       <meta property="og:image"              content={business.cover} />
+      <meta property="og:image"              content={business.cover} />
+      <meta property="og:image:width"        content="720" />
+      <meta property="og:image:height"        content="480" />
     </Head>
   );
 }

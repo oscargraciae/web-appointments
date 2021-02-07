@@ -873,6 +873,15 @@ const MetaBusiness = ({
   }), MetaBusiness_jsx("meta", {
     property: "og:image",
     content: business.cover
+  }), MetaBusiness_jsx("meta", {
+    property: "og:image",
+    content: business.cover
+  }), MetaBusiness_jsx("meta", {
+    property: "og:image:width",
+    content: "720"
+  }), MetaBusiness_jsx("meta", {
+    property: "og:image:height",
+    content: "480"
   }));
 };
 // CONCATENATED MODULE: ./src/components/business/BusinessPhotos.tsx
