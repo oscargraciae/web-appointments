@@ -11,7 +11,7 @@ ngrok
 /coverage
 
 # next.js
-/.next
+# /.next
 /.next/cache
 /out/
 
