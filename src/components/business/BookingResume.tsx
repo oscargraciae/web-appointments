@@ -44,7 +44,7 @@ export const BookingResume: React.FC<BookingResumeProps> = ({}) => {
           <Text>{time}</Text>
         </Flex>
         <Divider my={6} bg='tomato' />
-        <Text fontSize='lg' fontWeight='bold' mb={3}>Servicios</Text>
+        <Text fontSize='lg' fontWeight='bold' mb={3}>Servicios a reservar</Text>
         { services.map((service :IService) => (
           <Flex justify='space-between'>
             <Text isTruncated fontWeight='semibold' fontSize='sm' w='70%'>{service.name}</Text>

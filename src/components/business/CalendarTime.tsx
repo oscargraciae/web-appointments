@@ -30,14 +30,17 @@ export const CalendarTime: React.FC<CaledarTimeProps> = ({ hours }) => {
   }, [])
 
   useEffect(() => {
+    console.log('use effect');;
+    
     if (hoursState.length > 0) {
       const indexSelected = hoursState.indexOf(time);
       if (indexSelected >= 0)  {
-        let nums = [];
-        for (let x = indexSelected; x < (indexSelected + numElements); x++) {
-          nums.push(x)
-        }
-        setServicesSelected(nums);
+        // let nums = [];
+        // for (let x = indexSelected; x < (indexSelected + numElements); x++) {
+        //   nums.push(x)
+        // }
+        // setServicesSelected(nums);
+        setServicesSelected([indexSelected]);
       } 
     }
   }, [time, hoursState]);
@@ -57,12 +60,13 @@ export const CalendarTime: React.FC<CaledarTimeProps> = ({ hours }) => {
   }
 
   const handleSelect = (index :number) => {
-    let nums = [];
-    for (let x = index; x < (index + numElements); x++) {
-      nums.push(x)
-    }
+    // let nums = [];
+    // for (let x = index; x < (index + numElements); x++) {
+    //   nums.push(x)
+    // }
     
-    setHighlightDate([index, ...nums]);
+    // setHighlightDate([index, ...nums]);
+    setHighlightDate([index]);
   }
 
   const isSelected = (index :number) => {
@@ -81,11 +85,14 @@ export const CalendarTime: React.FC<CaledarTimeProps> = ({ hours }) => {
     if (isAvailable) {
       // setSelectedTime(item);
       setTime(item);
-      let nums = [];
-      for (let x = index; x < (index + numElements); x++) {
-        nums.push(x)
-      }
-      setServicesSelected(nums);
+      // let nums = [];
+      // for (let x = index; x < (index + numElements); x++) {
+      //   nums.push(x)
+      // }
+      // setServicesSelected(nums);
+      console.log('index a cguardar', index);
+      
+      setServicesSelected([index]);
     } else {
       console.log('NO DISPONIBLE');
     }

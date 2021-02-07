@@ -18,7 +18,7 @@ export const BookingsList: React.FC<{ tab: number }> = ({ tab }) => {
       if (tab === 1) {
         params = { endDate: moment(new Date()).toISOString() };
       } else {
-        params = { startDate: moment(new Date()).toISOString() };
+        params = { startDate: moment(new Date()).toISOString(), statuses: [2, 3] };
       }
 
       const { bookings } = await new BookingService().getAll(params);
@@ -38,6 +38,7 @@ export const BookingsList: React.FC<{ tab: number }> = ({ tab }) => {
     <Table variant="simple" size="md">
         <Thead>
           <Tr>
+            <Th>#</Th>
             <Th>Negocio</Th>
             <Th>Fecha de servicio</Th>
             <Th>Tiempo de servicio*</Th>
@@ -49,6 +50,7 @@ export const BookingsList: React.FC<{ tab: number }> = ({ tab }) => {
         <Tbody>
           { bookings.map((item: IBooking) => (
             <Tr fontSize='14px'>
+              <Td>{item.id}</Td>
               <Td>{item.business?.name}</Td>
               <Td>{item.bookingDate ? formatDate(item.bookingDate) : ''}</Td>
               <Td>{item.totalTime ? minutesToHour(item.totalTime) : ''}</Td>
