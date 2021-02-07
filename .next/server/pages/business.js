@@ -881,7 +881,7 @@ const MetaBusiness = ({
     content: "720"
   }), MetaBusiness_jsx("meta", {
     property: "og:image:height",
-    content: "480"
+    content: "423"
   }));
 };
 // CONCATENATED MODULE: ./src/components/business/BusinessPhotos.tsx

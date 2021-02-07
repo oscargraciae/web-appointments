@@ -21,7 +21,7 @@ export const MetaBusiness: React.FC<MetaBusinessProps> = ({ business }) => {
       <meta property="og:image"              content={business.cover} />
       <meta property="og:image"              content={business.cover} />
       <meta property="og:image:width"        content="720" />
-      <meta property="og:image:height"        content="480" />
+      <meta property="og:image:height"        content="423" />
     </Head>
   );
 }
