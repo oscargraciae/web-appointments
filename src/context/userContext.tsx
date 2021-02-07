@@ -15,6 +15,8 @@ export const UserProvider: React.FC = ({ children }) => {
   const fetchMeUser = async () => {
     const response = await new UserService().getMe();
     if (response.success && response.user) {
+      console.log('Usuario cargado', response);
+      
       setUser(response.user);
       setIsLogged(true);
     }
@@ -35,9 +37,9 @@ export const UserProvider: React.FC = ({ children }) => {
     location.href = '/';
   }
 
-  if(isLoading) {
-    return <LoadingView />
-  }
+  // if(isLoading) {
+  //   return <LoadingView />
+  // }
 
   return (
     <UserContext.Provider value={{

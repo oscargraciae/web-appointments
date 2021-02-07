@@ -845,7 +845,7 @@ const BusinessItem = ({
     _hover: {
       textDecor: 'none'
     }
-  }, __jsx(react_["Box"], {
+  }, __jsx(react_["Flex"], {
     mb: 3,
     py: 2,
     pl: 2,
@@ -854,20 +854,26 @@ const BusinessItem = ({
       bg: 'primaryLight',
       cursor: 'pointer'
     }
-  }, __jsx(react_["Stack"], {
-    isInline: true,
+  }, __jsx(react_["Flex"], {
     justify: "flex-start",
-    align: "center"
+    align: "center",
+    flex: 1,
+    isTruncated: true
+  }, __jsx(react_["Box"], {
+    w: "180px"
   }, __jsx(react_["Image"], {
     borderRadius: "md",
     src: business.cover,
-    boxSize: "120px",
     w: "180px",
+    h: "120px",
+    htmlWidth: "180px",
+    htmlHeight: "120px",
     objectFit: "cover",
     fallback: __jsx(react_["Progress"], null),
     loading: "lazy"
-  }), __jsx(react_["Box"], {
-    pl: 3
+  })), __jsx(react_["Box"], {
+    pl: 3,
+    w: "calc(100% - 180px)"
   }, __jsx(react_["Text"], {
     mt: 2,
     fontSize: "xl",
@@ -881,7 +887,8 @@ const BusinessItem = ({
     color: "primary"
   }, (_business$businessCat = business.businessCategory) === null || _business$businessCat === void 0 ? void 0 : _business$businessCat.name), __jsx(react_["Text"], {
     fontSize: "xs",
-    color: "grey"
+    color: "grey",
+    isTruncated: true
   }, (_business$businessAdd = business.businessAddress) === null || _business$businessAdd === void 0 ? void 0 : _business$businessAdd.addressMap))))));
 };
 // EXTERNAL MODULE: external "react-places-autocomplete"
@@ -1222,31 +1229,31 @@ const ExploreMap = ({}) => {
   Object(external_react_["useEffect"])(() => {
     changeLocation(centerMapCoords);
   }, [centerMapCoords]);
-  return ExploreMap_jsx(react_["Box"], {
-    h: "100vh",
-    w: "100%",
-    pos: "sticky",
-    top: "0px",
-    right: "0px",
-    mt: "-60px",
-    pt: "60px"
-  }, ExploreMap_jsx(react_["Box"], {
-    ref: refContainer,
-    h: "100%",
-    w: "100%"
-  }), ExploreMap_jsx(react_["Box"], {
-    bg: "surface",
-    px: 2,
-    py: 1,
-    zIndex: 4,
-    pos: "absolute",
-    top: "80px",
-    right: "20px",
-    boxShadow: "rgba(0, 0, 0, 0.12) 0px 6px 16px !important"
-  }, ExploreMap_jsx(react_["Text"], {
-    fontSize: "sm",
-    fontWeight: "600"
-  }, "Desplaza el mapa para buscar en otra zona")));
+  return (// <Box h='100vh' w='100%' pos='sticky' top='0px' right='0px' mt='-60px' pt='60px' >
+    ExploreMap_jsx(react_["Box"], {
+      h: "100vh",
+      w: "100%",
+      pos: "sticky",
+      top: "0px",
+      right: "0px"
+    }, ExploreMap_jsx(react_["Box"], {
+      ref: refContainer,
+      h: "100%",
+      w: "100%"
+    }), ExploreMap_jsx(react_["Box"], {
+      bg: "surface",
+      px: 2,
+      py: 1,
+      zIndex: 4,
+      pos: "absolute",
+      top: "80px",
+      right: "20px",
+      boxShadow: "rgba(0, 0, 0, 0.12) 0px 6px 16px !important"
+    }, ExploreMap_jsx(react_["Text"], {
+      fontSize: "sm",
+      fontWeight: "600"
+    }, "Desplaza el mapa para buscar en otra zona")))
+  );
 };
 // EXTERNAL MODULE: external "react-icons/bi"
 var bi_ = __webpack_require__("eRny");
@@ -1451,7 +1458,7 @@ const Explore = ({
   }, explore_jsx(react_["Box"], {
     w: {
       base: '100%',
-      md: '840px'
+      md: '45%'
     }
   }, explore_jsx(ExploreForm, null), explore_jsx(explore_BusinessList, null)), explore_jsx(react_["Box"], {
     w: "55%",

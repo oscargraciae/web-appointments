@@ -57,7 +57,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserProvider = exports.UserContext = void 0;
 var react_1 = __importStar(require("react"));
-var LoadingView_1 = require("../components/general/LoadingView");
 var userService_1 = require("../services/userService");
 exports.UserContext = react_1.default.createContext(null);
 exports.UserProvider = function (_a) {
@@ -75,6 +74,7 @@ exports.UserProvider = function (_a) {
                 case 1:
                     response = _a.sent();
                     if (response.success && response.user) {
+                        console.log('Usuario cargado', response);
                         setUser(response.user);
                         setIsLogged(true);
                     }
@@ -101,9 +101,9 @@ exports.UserProvider = function (_a) {
             }
         });
     }); };
-    if (isLoading) {
-        return <LoadingView_1.LoadingView />;
-    }
+    // if(isLoading) {
+    //   return <LoadingView />
+    // }
     return (<exports.UserContext.Provider value={{
         user: user,
         isLogged: isLogged,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, HStack, Image, Link, Progress, Stack, Text } from '@chakra-ui/react';
+import { Box, HStack, Image, Link, Progress, Stack, Text, Flex } from '@chakra-ui/react';
 import NextLink from 'next/link'
 import { AiFillStar } from 'react-icons/ai';
 
@@ -15,10 +15,12 @@ export const BusinessItem: React.FC<BusinessItemProps> = ({ business }) => {
   return (
     <NextLink href={`/b/${generateName(business.name)}/${business.id}`} passHref>
       <Link _hover={{ textDecor: 'none' }} >
-        <Box mb={3} py={2} pl={2} w='100%' _hover={{ bg: 'primaryLight', cursor: 'pointer' }}>
-          <Stack isInline justify='flex-start' align='center'>
-            <Image borderRadius="md" src={business.cover} boxSize='120px' w='180px' objectFit="cover" fallback={<Progress />} loading='lazy' />
-            <Box pl={3}>
+        <Flex mb={3} py={2} pl={2} w='100%' _hover={{ bg: 'primaryLight', cursor: 'pointer' }}>
+          <Flex justify='flex-start' align='center' flex={1} isTruncated>
+            <Box w='180px'>
+              <Image borderRadius="md" src={business.cover} w='180px' h='120px' htmlWidth='180px' htmlHeight='120px' objectFit="cover" fallback={<Progress />} loading='lazy' />
+            </Box>
+            <Box pl={3} w='calc(100% - 180px)'>
               <Text mt={2} fontSize="xl" fontWeight="semibold" lineHeight="short">
                 {business.name}
               </Text>
@@ -31,7 +33,7 @@ export const BusinessItem: React.FC<BusinessItemProps> = ({ business }) => {
               >
               {business.businessCategory?.name}
               </Text>
-              <Text fontSize="xs" color='grey'>{business.businessAddress?.addressMap}</Text>
+              <Text fontSize="xs" color='grey' isTruncated>{business.businessAddress?.addressMap}</Text>
               {/* <HStack pt={2} spacing={1}>
                 <AiFillStar color='gold' />
                 <AiFillStar color='gold' />
@@ -40,8 +42,8 @@ export const BusinessItem: React.FC<BusinessItemProps> = ({ business }) => {
                 <AiFillStar color='gold' />
               </HStack> */}
             </Box>
-          </Stack>
-        </Box>
+          </Flex>
+        </Flex>
       </Link>
     </NextLink>
   );

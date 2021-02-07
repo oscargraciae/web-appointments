@@ -991,6 +991,7 @@ var business_jsx = external_react_default.a.createElement;
 
 
 
+
 const getServerSideProps = async ({
   query
 }) => {
@@ -1013,6 +1014,8 @@ const getServerSideProps = async ({
 const Business = ({
   business
 }) => {
+  var _business$businessAdd, _business$businessAdd2;
+
   const {
     businessAddress,
     businessCategory,
@@ -1042,7 +1045,10 @@ const Business = ({
     }
   };
 
-  return business_jsx(BookingProvider, null, business_jsx(MetaBusiness, {
+  return business_jsx(BookingProvider, null, business_jsx(head_default.a, null, business_jsx("title", null, business.name, " en ", (_business$businessAdd = business.businessAddress) === null || _business$businessAdd === void 0 ? void 0 : _business$businessAdd.addressMap, " - Reserly"), business_jsx("meta", {
+    name: "description",
+    content: `Reserva con ${business.name} en ${(_business$businessAdd2 = business.businessAddress) === null || _business$businessAdd2 === void 0 ? void 0 : _business$businessAdd2.addressMap} ¡en minutos!`
+  })), business_jsx(MetaBusiness, {
     business: business
   }), business_jsx(ModalBooking, {
     business: business,
@@ -1418,10 +1424,8 @@ const generateName = name => {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return UserProvider; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_general_LoadingView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("eyCa");
-/* harmony import */ var _services_userService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("bQ0D");
+/* harmony import */ var _services_userService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("bQ0D");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
 
 
 const UserContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(null);
@@ -1447,9 +1451,10 @@ const UserProvider = ({
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
 
   const fetchMeUser = async () => {
-    const response = await new _services_userService__WEBPACK_IMPORTED_MODULE_2__[/* UserService */ "a"]().getMe();
+    const response = await new _services_userService__WEBPACK_IMPORTED_MODULE_1__[/* UserService */ "a"]().getMe();
 
     if (response.success && response.user) {
+      console.log('Usuario cargado', response);
       setUser(response.user);
       setIsLogged(true);
     }
@@ -1466,14 +1471,13 @@ const UserProvider = ({
   };
 
   const logout = async () => {
-    await new _services_userService__WEBPACK_IMPORTED_MODULE_2__[/* UserService */ "a"]().logout();
+    await new _services_userService__WEBPACK_IMPORTED_MODULE_1__[/* UserService */ "a"]().logout();
     fetchMeUser();
     location.href = '/';
-  };
+  }; // if(isLoading) {
+  //   return <LoadingView />
+  // }
 
-  if (isLoading) {
-    return __jsx(_components_general_LoadingView__WEBPACK_IMPORTED_MODULE_1__[/* LoadingView */ "a"], null);
-  }
 
   return __jsx(UserContext.Provider, {
     value: {
@@ -1485,34 +1489,6 @@ const UserProvider = ({
       openModalLogin
     }
   }, children);
-};
-
-/***/ }),
-
-/***/ "eyCa":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoadingView; });
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("LZ34");
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
-
-
-const LoadingView = () => {
-  return __jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_0__["Flex"], {
-    direction: "column",
-    justify: "center",
-    align: "center",
-    flex: 1,
-    w: "100%",
-    height: "100vh"
-  }, __jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_0__["Spinner"], {
-    size: "md",
-    color: "primary"
-  }));
 };
 
 /***/ }),

@@ -17,7 +17,6 @@ function MyApp(_a) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
         <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"/>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4dAUayOWy12OKwc4WUnJNPfZsJnPgyIw&libraries=places"></script>
-        
       </head_1.default>
       <react_1.CSSReset />
       <userContext_1.UserProvider>

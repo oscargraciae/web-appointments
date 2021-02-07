@@ -61,7 +61,7 @@ const Index = ({ address, geo } : any) => {
 
         <Wrap spacing={4} mt={4} justify='center'>
           { categories.map((item :any) => (
-            <WrapItem>
+            <WrapItem key={item.id}>
               <Link
                 borderRadius={3}
                 w="144px"

@@ -16,7 +16,6 @@ function MyApp({ Component, pageProps }: any) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4dAUayOWy12OKwc4WUnJNPfZsJnPgyIw&libraries=places"></script>
-        {/* <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v<YOUR_MAPBOX_VERSION>/mapbox-gl.css' rel='stylesheet' /> */}
       </Head>
       <CSSReset />
       <UserProvider>

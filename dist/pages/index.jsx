@@ -121,7 +121,7 @@ var Index = function (_a) {
         <InputSearch_1.InputSearch />
 
         <react_2.Wrap spacing={4} mt={4} justify='center'>
-          {categories.map(function (item) { return (<react_2.WrapItem>
+          {categories.map(function (item) { return (<react_2.WrapItem key={item.id}>
               <react_2.Link borderRadius={3} w="144px" textAlign='center' py={2} bg="secondary" color='#FFF' href={"/explore/" + item.name + "/" + stringToUrl_1.stringToUrl(address)}>
                 {item.name}
               </react_2.Link>

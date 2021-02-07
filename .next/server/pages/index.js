@@ -384,7 +384,9 @@ const Index = ({
     spacing: 4,
     mt: 4,
     justify: "center"
-  }, categories.map(item => pages_jsx(react_["WrapItem"], null, pages_jsx(react_["Link"], {
+  }, categories.map(item => pages_jsx(react_["WrapItem"], {
+    key: item.id
+  }, pages_jsx(react_["Link"], {
     borderRadius: 3,
     w: "144px",
     textAlign: "center",

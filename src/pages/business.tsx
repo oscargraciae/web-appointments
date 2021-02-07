@@ -18,6 +18,7 @@ import { UserContext } from '../context/userContext';
 import { MetaBusiness } from '../components/business/MetaBusiness';
 import { BusinessPhotos } from '../components/business/BusinessPhotos';
 import { BookingBoxMobile } from '../components/business/BookingBoxMobile';
+import Head from 'next/head';
 
 interface BusinessProps {
   business: IBusiness
@@ -59,6 +60,10 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
 
   return (
     <BookingProvider>
+      <Head>
+        <title>{business.name} en {business.businessAddress?.addressMap} - Reserly</title>
+        <meta name="description" content={`Reserva con ${business.name} en ${business.businessAddress?.addressMap} ¡en minutos!`}></meta>
+      </Head>
       <MetaBusiness business={business} />
       <ModalBooking business={business} isOpen={isOpen} onClose={onClose} />
       <Wrapper>
