@@ -18,13 +18,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -50,14 +43,17 @@ exports.CalendarTime = function (_a) {
         getHours();
     }, []);
     react_1.useEffect(function () {
+        console.log('use effect');
+        ;
         if (hoursState.length > 0) {
             var indexSelected = hoursState.indexOf(time);
             if (indexSelected >= 0) {
-                var nums = [];
-                for (var x = indexSelected; x < (indexSelected + numElements); x++) {
-                    nums.push(x);
-                }
-                setServicesSelected(nums);
+                // let nums = [];
+                // for (let x = indexSelected; x < (indexSelected + numElements); x++) {
+                //   nums.push(x)
+                // }
+                // setServicesSelected(nums);
+                setServicesSelected([indexSelected]);
             }
         }
     }, [time, hoursState]);
@@ -73,11 +69,12 @@ exports.CalendarTime = function (_a) {
         setHoursState(arr);
     };
     var handleSelect = function (index) {
-        var nums = [];
-        for (var x = index; x < (index + numElements); x++) {
-            nums.push(x);
-        }
-        setHighlightDate(__spreadArrays([index], nums));
+        // let nums = [];
+        // for (let x = index; x < (index + numElements); x++) {
+        //   nums.push(x)
+        // }
+        // setHighlightDate([index, ...nums]);
+        setHighlightDate([index]);
     };
     var isSelected = function (index) {
         var isActive = highlightDate.filter(function (e) { return e === index; })[0];
@@ -92,11 +89,13 @@ exports.CalendarTime = function (_a) {
         if (isAvailable) {
             // setSelectedTime(item);
             setTime(item);
-            var nums = [];
-            for (var x = index; x < (index + numElements); x++) {
-                nums.push(x);
-            }
-            setServicesSelected(nums);
+            // let nums = [];
+            // for (let x = index; x < (index + numElements); x++) {
+            //   nums.push(x)
+            // }
+            // setServicesSelected(nums);
+            console.log('index a cguardar', index);
+            setServicesSelected([index]);
         }
         else {
             console.log('NO DISPONIBLE');

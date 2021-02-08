@@ -5,5 +5,5 @@ export const formatTime = (time :string) => {
 }
 
 export const formatDate = (date: Date) => {
-  return moment(date).format('DD MMMM YYYY');
+  return moment(date).format('DD MMMM YYYY HH:mm');
 }

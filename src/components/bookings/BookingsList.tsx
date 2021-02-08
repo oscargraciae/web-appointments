@@ -34,6 +34,21 @@ export const BookingsList: React.FC<{ tab: number }> = ({ tab }) => {
     return <LoadingView />
   }
 
+  const statusColor = (id?: number) : string => {
+    if (!id) return 'primary';
+
+    switch (id) {
+      case 1:
+        return 'yellow.500'
+      case 2:
+        return 'primary'
+      case 3:
+        return 'red.500'
+      default:
+        return 'primary'
+    }
+  }
+
   return (
     <Table variant="simple" size="md">
         <Thead>
@@ -56,7 +71,7 @@ export const BookingsList: React.FC<{ tab: number }> = ({ tab }) => {
               <Td>{item.totalTime ? minutesToHour(item.totalTime) : ''}</Td>
               <Td>${item.totalPrice}MXN</Td>
               <Td>{item.createdAt ? formatDate(item.createdAt) : ''}</Td>
-              <Td color={item.bookingStatusId === 1 ? 'yellow.500' : 'primary'} >{item.bookingStatusId === 1 ? 'Por confirmar' : 'Agendada'}</Td>
+              <Td color={statusColor(item.bookingStatus?.id)} fontWeight='bold'>{item.bookingStatus?.name}</Td>
             </Tr>
           )) }
         </Tbody>

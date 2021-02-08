@@ -1,7 +1,14 @@
 {
+  "/404": "pages/404.html",
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/bookings": "pages/bookings.js",
-  "/explore": "pages/explore.js"
+  "/bookings": "pages/bookings.html",
+  "/business-landing": "pages/business-landing.html",
+  "/business": "pages/business.js",
+  "/changePassword": "pages/changePassword.js",
+  "/explore": "pages/explore.js",
+  "/": "pages/index.js",
+  "/privacy": "pages/privacy.html",
+  "/terms": "pages/terms.html",
+  "/_document": "pages/_document.js"
 }

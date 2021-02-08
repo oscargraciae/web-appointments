@@ -2,6 +2,7 @@ import { IBusiness } from "./IBusiness";
 import { IService } from "./IService";
 
 export interface IBooking {
+  id?: number
   bookingDate?: Date
   bookingTime?: string
   message?: string
@@ -12,4 +13,10 @@ export interface IBooking {
   business?: IBusiness
   createdAt?: Date
   bookingStatusId?: number
+  bookingStatus?: IBookingStatus
+}
+
+interface IBookingStatus {
+  id: number
+  name: string
 }

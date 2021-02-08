@@ -24,7 +24,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const handleAuthModal = (view :number) => {
     setauthView(view);
-    onOpen();    
+    onOpen();
   }
 
   return (

@@ -81,7 +81,7 @@ exports.BookingsList = function (_a) {
                             params = { endDate: moment_1.default(new Date()).toISOString() };
                         }
                         else {
-                            params = { startDate: moment_1.default(new Date()).toISOString() };
+                            params = { startDate: moment_1.default(new Date()).toISOString(), statuses: [2, 3] };
                         }
                         return [4 /*yield*/, new bookingService_1.BookingService().getAll(params)];
                     case 1:
@@ -98,9 +98,24 @@ exports.BookingsList = function (_a) {
     if (isLoading) {
         return <LoadingView_1.LoadingView />;
     }
+    var statusColor = function (id) {
+        if (!id)
+            return 'primary';
+        switch (id) {
+            case 1:
+                return 'yellow.500';
+            case 2:
+                return 'primary';
+            case 3:
+                return 'red.500';
+            default:
+                return 'primary';
+        }
+    };
     return (<react_2.Table variant="simple" size="md">
         <react_2.Thead>
           <react_2.Tr>
+            <react_2.Th>#</react_2.Th>
             <react_2.Th>Negocio</react_2.Th>
             <react_2.Th>Fecha de servicio</react_2.Th>
             <react_2.Th>Tiempo de servicio*</react_2.Th>
@@ -111,14 +126,15 @@ exports.BookingsList = function (_a) {
         </react_2.Thead>
         <react_2.Tbody>
           {bookings.map(function (item) {
-        var _a;
+        var _a, _b, _c;
         return (<react_2.Tr fontSize='14px'>
+              <react_2.Td>{item.id}</react_2.Td>
               <react_2.Td>{(_a = item.business) === null || _a === void 0 ? void 0 : _a.name}</react_2.Td>
               <react_2.Td>{item.bookingDate ? formatDate_1.formatDate(item.bookingDate) : ''}</react_2.Td>
               <react_2.Td>{item.totalTime ? formatTime_1.minutesToHour(item.totalTime) : ''}</react_2.Td>
               <react_2.Td>${item.totalPrice}MXN</react_2.Td>
               <react_2.Td>{item.createdAt ? formatDate_1.formatDate(item.createdAt) : ''}</react_2.Td>
-              <react_2.Td color={item.bookingStatusId === 1 ? 'yellow.500' : 'primary'}>{item.bookingStatusId === 1 ? 'Por confirmar' : 'Agendada'}</react_2.Td>
+              <react_2.Td color={statusColor((_b = item.bookingStatus) === null || _b === void 0 ? void 0 : _b.id)} fontWeight='bold'>{(_c = item.bookingStatus) === null || _c === void 0 ? void 0 : _c.name}</react_2.Td>
             </react_2.Tr>);
     })}
         </react_2.Tbody>

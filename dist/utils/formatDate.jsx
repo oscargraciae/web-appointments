@@ -9,5 +9,5 @@ exports.formatTime = function (time) {
     return moment_1.default(time, [moment_1.default.ISO_8601, 'HH:mm']).format('H:mm a');
 };
 exports.formatDate = function (date) {
-    return moment_1.default(date).format('DD MMMM YYYY');
+    return moment_1.default(date).format('DD MMMM YYYY HH:mm');
 };

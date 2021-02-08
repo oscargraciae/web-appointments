@@ -57,7 +57,7 @@ exports.BookingResume = function (_a) {
           <react_2.Text>{time}</react_2.Text>
         </react_2.Flex>
         <react_2.Divider my={6} bg='tomato'/>
-        <react_2.Text fontSize='lg' fontWeight='bold' mb={3}>Servicios</react_2.Text>
+        <react_2.Text fontSize='lg' fontWeight='bold' mb={3}>Servicios a reservar</react_2.Text>
         {services.map(function (service) { return (<react_2.Flex justify='space-between'>
             <react_2.Text isTruncated fontWeight='semibold' fontSize='sm' w='70%'>{service.name}</react_2.Text>
             <react_2.Text fontSize='xs' w='30%'>{service.time ? formatTime_1.minutesToHour(service.time) : 0} / ${service.price}MXN</react_2.Text>
