@@ -4,10 +4,10 @@ export const minutesToHour = (minutes :number) => {
   const min = (hour % 1) * 60;
 
   if (min === 0) {
-    return `${Math.trunc(hour)} hrs`;
+    return `${Math.trunc(hour)}h`;
   } else if(hour < 1) {
-    return `${min} mins`;
+    return `${min}m`;
   } else {
-    return `${Math.trunc(hour)}:${min} hrs`;
+    return `${Math.trunc(hour)}:${min}h`;
   } 
 }

@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { SimpleGrid, Box, Heading, Text, Flex, Button, Spacer } from '@chakra-ui/react';
 import { IService } from '../../types/IService';
+import { TiPlus } from 'react-icons/ti';
+
 import { minutesToHour } from '../../utils/formatTime';
 import { BookingContext } from '../../context/bookingContext';
 
@@ -27,15 +29,18 @@ export const BusinessServices: React.FC<BusinessServicesProps> = ({ businessServ
       <Heading as="h2" fontSize="24px" mb={6}>Servicios</Heading>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={2}>
       { businessServices.map((item :IService, index :number) => (
-        <Box px={5} py={4} borderWidth={1} borderColor='borders' borderRadius={3}>
-          <Text noOfLines={2} fontWeight='bold' mb={2} h='48px'>{item.name}</Text>
+        <Box px={3} py={3} borderWidth={1} borderColor='borders' borderRadius={3} bg='surface'>
           {/* <Text h='50px' noOfLines={2} fontSize='sm' color='subtext' mb={2}>{item.description}</Text> */}
-          <Flex alignItems='flex-end'>
-            <Text color='subtext' fontSize='sm' fontWeight='500' mr={4}>${item.price}MXN</Text>
-            <Text color='subtext' fontSize='sm' fontWeight='500'>{ item.time ? minutesToHour(item.time) : 0}</Text>
+          <Flex alignItems='flex-start' justifyContent='flex-start'>
+            <Text noOfLines={2} fontSize='sm' fontWeight='bold' w='210px' pr={3}>{item.name}</Text>
+            <Box>
+              <Text color='subtext' fontSize='sm' fontWeight='600'>${item.price}</Text>
+              <Text color='subtext' fontSize='xs' fontWeight='500'>{ item.time ? minutesToHour(item.time) : 0}</Text>
+            </Box>
+            
             <Spacer />
-            <Button variant='primary-outline' size='sm' onClick={() => handleSelectService(item, index)}>
-              Reservar
+            <Button variant='accent-outline' size='sm' onClick={() => handleSelectService(item, index)}>
+              <TiPlus />
             </Button>
           </Flex>
         </Box>

@@ -74,7 +74,6 @@ exports.UserProvider = function (_a) {
                 case 1:
                     response = _a.sent();
                     if (response.success && response.user) {
-                        console.log('Usuario cargado', response);
                         setUser(response.user);
                         setIsLogged(true);
                     }
@@ -111,6 +110,7 @@ exports.UserProvider = function (_a) {
         logout: logout,
         setOpenModalLogin: setOpenModalLogin,
         openModalLogin: openModalLogin,
+        isLoading: isLoading,
     }}>
       {children}
     </exports.UserContext.Provider>);

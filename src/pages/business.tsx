@@ -60,10 +60,10 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
 
   return (
     <BookingProvider>
-      <Head>
+      {/* <Head>
         <title>{business.name} en {business.businessAddress?.addressMap} - Reserly</title>
         <meta name="description" content={`Reserva con ${business.name} en ${business.businessAddress?.addressMap} ¡en minutos!`}></meta>
-      </Head>
+      </Head> */}
       <MetaBusiness business={business} />
       <ModalBooking business={business} isOpen={isOpen} onClose={onClose} />
       <Wrapper>
@@ -75,7 +75,7 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
               textTransform="uppercase"
               fontSize="sm"
               fontWeight="bold"
-              color="primary"
+              color="accent"
             >
             {businessCategory?.name}
             </Text>

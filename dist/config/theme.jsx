@@ -12,21 +12,31 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("@chakra-ui/react");
-var fonts = __assign(__assign({}, react_1.theme.fonts), { mono: "'Menlo', monospace" });
+// const fonts = { ...chakraTheme.fonts, mono: `'Menlo', monospace` }
 // const breakpoints = ['40em', '52em', '64em']
-var theme = react_1.extendTheme(__assign(__assign({}, react_1.theme), { styles: {
+var theme = react_1.extendTheme(__assign(__assign({}, react_1.theme), { fonts: {
+        heading: "Nunito",
+        body: "Nunito",
+    }, styles: {
         global: {
             body: {
-                bg: "#F6F7F9",
+                bg: "#FFFFFF",
+                fontFamily: 'Nunito',
                 // color: "#333333",
                 color: '#020621',
             },
+            p: {
+                fontWeight: '600',
+            }
         },
-    }, colors: __assign(__assign({}, react_1.theme.colors), { black: '#16161D', primary: '#25CB67', _primary: '#05AF3C', secondary: '#020621', _secondary: '#161e2c', error: '#B00020', background: '#F6F7F9', surface: '#FFFFFF', 
+    }, colors: __assign(__assign({}, react_1.theme.colors), { black: '#16161D', primary: '#25CB67', _primary: '#05AF3C', secondary: '#020621', _secondary: '#161e2c', accent: '#3722d3', error: '#B00020', 
+        // background: '#F6F7F9',
+        background: '#FFFFFF', surface: '#FFFFFF', 
         // borders: 'rgb(246, 246, 248)',
         borders: '#d9e3eb', primaryLight: '#E9F9EF', 
         // subtext: 'rgb(151, 156, 166)',
-        subtext: '#5c6b85' }), fonts: fonts, 
+        subtext: '#5c6b85' }), 
+    // fonts,
     // breakpoints,
     components: {
         Divider: {
@@ -94,6 +104,16 @@ var theme = react_1.extendTheme(__assign(__assign({}, react_1.theme), { styles: 
                     color: 'primary',
                     _hover: {
                         bg: "_primary",
+                        color: '#FFFFFF',
+                    },
+                },
+                "accent-outline": {
+                    bg: "transparent",
+                    borderColor: "accent",
+                    borderWidth: 1,
+                    color: 'accent',
+                    _hover: {
+                        bg: "accent",
                         color: '#FFFFFF',
                     },
                 },

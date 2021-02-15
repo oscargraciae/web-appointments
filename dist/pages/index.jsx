@@ -112,7 +112,7 @@ var Index = function (_a) {
     }, []);
     return (<react_2.Flex justify="center" align="center" w="100%" bgSize="cover" direction='column' mb={16}>
       <react_2.Flex w='100%' h='340px' alignItems='center' bg='linear-gradient(90deg,rgba(47,45,65,.7),rgba(47,45,65,.7)),url(/bg-main.jpg);' bgSize='cover' bgRepeat='no-repeat'>
-        <react_2.Text mx='auto' pt={10} width={{ base: '90%', md: '800px' }} mt={2} fontSize={{ base: 'xl', md: '4xl' }} fontWeight="semibold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
+        <react_2.Text fontFamily='Nunito' mx='auto' pt={10} width={{ base: '90%', md: '800px' }} mt={2} fontSize={{ base: 'xl', md: '4xl' }} fontWeight="bold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
           Encuentra servicios profesionales cerca de ti y reserva fácil, rápido y seguro.
         </react_2.Text>
       </react_2.Flex>
@@ -120,9 +120,9 @@ var Index = function (_a) {
       <react_2.Box width={{ base: '90%', md: '700px' }} bg="transparent" p="16px" rounded="sm" zIndex={10} mt='-50px'>
         <InputSearch_1.InputSearch />
 
-        <react_2.Wrap spacing={4} mt={4} justify='center'>
+        <react_2.Wrap spacing={4} mt={6} justify='center'>
           {categories.map(function (item) { return (<react_2.WrapItem key={item.id}>
-              <react_2.Link borderRadius={3} w="144px" textAlign='center' py={2} bg="secondary" color='#FFF' href={"/explore/" + item.name + "/" + stringToUrl_1.stringToUrl(address)}>
+              <react_2.Link borderRadius={3} w="144px" textAlign='center' fontWeight='600' py={2} bg="accent" color='#FFF' href={"/explore/" + item.name + "/" + stringToUrl_1.stringToUrl(address)}>
                 {item.name}
               </react_2.Link>
             </react_2.WrapItem>); })}
@@ -130,7 +130,7 @@ var Index = function (_a) {
       </react_2.Box>
 
       <Wrapper_1.Wrapper>
-        <react_2.Flex zIndex={10}>
+        <react_2.Flex zIndex={10} my={10}>
           <react_2.Flex justify='space-between' alignItems='center' direction={{ base: 'column', md: 'row' }}>
             <react_2.Box w={{ base: '80%', md: '32%' }} my={4}>
               <react_2.HStack alignItems='center'>

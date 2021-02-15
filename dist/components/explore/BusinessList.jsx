@@ -35,7 +35,7 @@ var BusinessList = function (_a) {
         <react_1.Text fontSize='sm'>Lo sentimos, estamos trabajando para traer más negocios.</react_1.Text>
       </react_1.Box>);
     }
-    return (<react_1.Box py={4} minH='100vh'>
+    return (<react_1.Box py={4} minH='100vh' bg='surface' mt={3}>
       {businesses.map(function (business) { return (<BusinessItem_1.BusinessItem key={business.id} business={business}/>); })}      
     </react_1.Box>);
 };

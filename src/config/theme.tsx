@@ -1,19 +1,27 @@
 
 import { extendTheme, theme as chakraTheme } from '@chakra-ui/react';
+import { Fonts } from '../config/theme.fonts';
 
-const fonts = { ...chakraTheme.fonts, mono: `'Menlo', monospace` }
+// const fonts = { ...chakraTheme.fonts, mono: `'Menlo', monospace` }
 
 // const breakpoints = ['40em', '52em', '64em']
-
 const theme = extendTheme({
   ...chakraTheme,
+  fonts: {
+    heading: "Nunito",
+    body: "Nunito",
+  },
   styles: {
     global: {
       body: {
-        bg: "#F6F7F9",
+        bg: "#FFFFFF",
+        fontFamily: 'Nunito',
         // color: "#333333",
         color: '#020621',
       },
+      p: {
+        fontWeight: '600',
+      }
     },
   },
   colors: {
@@ -23,8 +31,10 @@ const theme = extendTheme({
     _primary: '#05AF3C', // Priamry variant 
     secondary: '#020621', // Secondanry
     _secondary: '#161e2c', // Secondanry variant
+    accent: '#3722d3',
     error: '#B00020',
-    background: '#F6F7F9',
+    // background: '#F6F7F9',
+    background: '#FFFFFF',
     surface: '#FFFFFF',
     // borders: 'rgb(246, 246, 248)',
     borders: '#d9e3eb',
@@ -32,7 +42,7 @@ const theme = extendTheme({
     // subtext: 'rgb(151, 156, 166)',
     subtext: '#5c6b85',
   },
-  fonts,
+  // fonts,
   // breakpoints,
   components: {
     Divider: {
@@ -100,6 +110,16 @@ const theme = extendTheme({
           color: 'primary',
           _hover: {
             bg: "_primary",
+            color: '#FFFFFF',
+          },
+        },
+        "accent-outline": {
+          bg: "transparent",
+          borderColor: "accent",
+          borderWidth: 1,
+          color: 'accent',
+          _hover: {
+            bg: "accent",
             color: '#FFFFFF',
           },
         },
@@ -265,3 +285,4 @@ const theme = extendTheme({
 })
 
 export default theme
+

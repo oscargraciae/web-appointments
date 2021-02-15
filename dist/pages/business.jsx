@@ -54,9 +54,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getServerSideProps = void 0;
 var react_1 = __importStar(require("react"));
@@ -75,7 +72,6 @@ var userContext_1 = require("../context/userContext");
 var MetaBusiness_1 = require("../components/business/MetaBusiness");
 var BusinessPhotos_1 = require("../components/business/BusinessPhotos");
 var BookingBoxMobile_1 = require("../components/business/BookingBoxMobile");
-var head_1 = __importDefault(require("next/head"));
 exports.getServerSideProps = function (_a) {
     var query = _a.query;
     return __awaiter(void 0, void 0, void 0, function () {
@@ -100,13 +96,12 @@ exports.getServerSideProps = function (_a) {
     });
 };
 var Business = function (_a) {
-    var _b, _c;
     var business = _a.business;
     var businessAddress = business.businessAddress, businessCategory = business.businessCategory, hours = business.hours, id = business.id;
     // context
-    var _d = react_1.useContext(userContext_1.UserContext), user = _d.user, isLogged = _d.isLogged, setOpenModalLogin = _d.setOpenModalLogin, openModalLogin = _d.openModalLogin;
+    var _b = react_1.useContext(userContext_1.UserContext), user = _b.user, isLogged = _b.isLogged, setOpenModalLogin = _b.setOpenModalLogin, openModalLogin = _b.openModalLogin;
     // hooks
-    var _e = react_2.useDisclosure(), isOpen = _e.isOpen, onOpen = _e.onOpen, onClose = _e.onClose;
+    var _c = react_2.useDisclosure(), isOpen = _c.isOpen, onOpen = _c.onOpen, onClose = _c.onClose;
     var handleBooking = function () {
         if (isLogged) {
             onOpen();
@@ -117,17 +112,14 @@ var Business = function (_a) {
         }
     };
     return (<bookingContext_1.BookingProvider>
-      <head_1.default>
-        <title>{business.name} en {(_b = business.businessAddress) === null || _b === void 0 ? void 0 : _b.addressMap} - Reserly</title>
-        <meta name="description" content={"Reserva con " + business.name + " en " + ((_c = business.businessAddress) === null || _c === void 0 ? void 0 : _c.addressMap) + " \u00A1en minutos!"}></meta>
-      </head_1.default>
+      
       <MetaBusiness_1.MetaBusiness business={business}/>
       <ModalBooking_1.ModalBooking business={business} isOpen={isOpen} onClose={onClose}/>
       <Wrapper_1.Wrapper>
         <react_2.Flex mb={6} pb={4} borderBottomWidth={2} borderColor='borders' justifyContent='space-between'>
           <react_2.Box pl={0} pr={{ base: 0, md: 24 }} w={{ base: '100%', md: '880px' }} textAlign={{ base: 'center', md: 'left' }}>
             <react_2.Heading mt={4} mb={4} fontSize='44px'>{business.name}</react_2.Heading>
-            <react_2.Text my={2} textTransform="uppercase" fontSize="sm" fontWeight="bold" color="primary">
+            <react_2.Text my={2} textTransform="uppercase" fontSize="sm" fontWeight="bold" color="accent">
             {businessCategory === null || businessCategory === void 0 ? void 0 : businessCategory.name}
             </react_2.Text>
             <react_2.Text fontSize="sm" color='grey' mb={2} display='flex' justifyContent={{ base: 'center', md: 'flex-start' }}>

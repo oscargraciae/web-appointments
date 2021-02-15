@@ -15,8 +15,6 @@ export const UserProvider: React.FC = ({ children }) => {
   const fetchMeUser = async () => {
     const response = await new UserService().getMe();
     if (response.success && response.user) {
-      console.log('Usuario cargado', response);
-      
       setUser(response.user);
       setIsLogged(true);
     }
@@ -49,6 +47,7 @@ export const UserProvider: React.FC = ({ children }) => {
       logout,
       setOpenModalLogin,
       openModalLogin,
+      isLoading,
     }}>
       { children }
     </UserContext.Provider>

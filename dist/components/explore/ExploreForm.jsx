@@ -130,7 +130,7 @@ exports.ExploreForm = function (_a) {
             {(function (_a) {
         var getInputProps = _a.getInputProps, suggestions = _a.suggestions, getSuggestionItemProps = _a.getSuggestionItemProps, loading = _a.loading;
         return (<react_2.Box w={{ base: '100%', md: '70%' }}>
-                  <react_2.Input {...getInputProps()} placeholder='Dirección ' color='primary' size='md' variant="flushed-app" my={4} borderBottomColor='#DDD' fontWeight='semibold' pt='3px' border='0px' _hover={{ borderBottomWidth: 4, cursor: 'pointer' }}/>
+                  <react_2.Input {...getInputProps()} placeholder='Dirección ' bg='transparent' color='primary' size='md' variant="flushed-app" my={4} borderBottomColor='#DDD' fontWeight='semibold' pt='3px' border='0px' _hover={{ borderBottomWidth: 4, cursor: 'pointer' }}/>
                   <react_2.Box shadow='md' background='#FFFFFF' zIndex={10} pos="absolute">
                     {loading && <react_2.Progress size="xs" isIndeterminate colorScheme='green'/>}
                     {suggestions.map(function (suggestion) {

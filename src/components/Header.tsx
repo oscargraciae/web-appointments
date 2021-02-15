@@ -16,7 +16,7 @@ const MenuItems = ({ children } : any) => (
 
 const Header = ({ handleAuthModal } : any) => {
   // context
-  const { user, isLogged, logout } = useContext(UserContext);
+  const { user, isLogged, logout, isLoading } = useContext(UserContext);
 
   // hooks
   const router = useRouter();
@@ -114,6 +114,10 @@ const Header = ({ handleAuthModal } : any) => {
     )
   };
 
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <Flex
       as="nav"
@@ -151,7 +155,7 @@ const Header = ({ handleAuthModal } : any) => {
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
         </svg>
       </Box>
-
+      
       { isLogged ? menuAuth() : menuGuest() }
 
     </Flex>

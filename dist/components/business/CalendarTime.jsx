@@ -109,6 +109,6 @@ exports.CalendarTime = function (_a) {
             <react_2.Text>{item}</react_2.Text>
           </react_2.Box>); })}
       </react_2.SimpleGrid>
-      <style>{"\n        .data-class:nth-child(5) ~ .data-class.apple ~ .data-class.apple {\n          background-color: #0ea;\n        }\n\n        .service-selected {\n          background-color: #25CB67;\n          color: #FFF;\n        }\n\n        .service-active {\n          background-color: #020621 !important;\n          color: #FFF;\n        }\n\n        .service:hover ~ .service:nth-child(1) {\n          background-color: red;\n        }\n      "}</style>
+      <style>{"\n        .data-class:nth-child(5) ~ .data-class.apple ~ .data-class.apple {\n          background-color: #0ea;\n        }\n\n        .service-selected {\n          background-color: #3722d3;\n          color: #FFF;\n        }\n\n        .service-active {\n          background-color: #020621 !important;\n          color: #FFF;\n        }\n\n        .service:hover ~ .service:nth-child(1) {\n          background-color: red;\n        }\n      "}</style>
     </react_2.Flex>);
 };

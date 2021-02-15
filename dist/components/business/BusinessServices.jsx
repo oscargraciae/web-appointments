@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BusinessServices = void 0;
 var react_1 = __importStar(require("react"));
 var react_2 = require("@chakra-ui/react");
+var ti_1 = require("react-icons/ti");
 var formatTime_1 = require("../../utils/formatTime");
 var bookingContext_1 = require("../../context/bookingContext");
 exports.BusinessServices = function (_a) {
@@ -44,15 +45,18 @@ exports.BusinessServices = function (_a) {
     return (<react_2.Box>
       <react_2.Heading as="h2" fontSize="24px" mb={6}>Servicios</react_2.Heading>
       <react_2.SimpleGrid columns={{ base: 1, md: 2 }} spacing={2}>
-      {businessServices.map(function (item, index) { return (<react_2.Box px={5} py={4} borderWidth={1} borderColor='borders' borderRadius={3}>
-          <react_2.Text noOfLines={2} fontWeight='bold' mb={2} h='48px'>{item.name}</react_2.Text>
+      {businessServices.map(function (item, index) { return (<react_2.Box px={3} py={3} borderWidth={1} borderColor='borders' borderRadius={3} bg='surface'>
           
-          <react_2.Flex alignItems='flex-end'>
-            <react_2.Text color='subtext' fontSize='sm' fontWeight='500' mr={4}>${item.price}MXN</react_2.Text>
-            <react_2.Text color='subtext' fontSize='sm' fontWeight='500'>{item.time ? formatTime_1.minutesToHour(item.time) : 0}</react_2.Text>
+          <react_2.Flex alignItems='flex-start' justifyContent='flex-start'>
+            <react_2.Text noOfLines={2} fontSize='sm' fontWeight='bold' w='210px' pr={3}>{item.name}</react_2.Text>
+            <react_2.Box>
+              <react_2.Text color='subtext' fontSize='sm' fontWeight='600'>${item.price}</react_2.Text>
+              <react_2.Text color='subtext' fontSize='xs' fontWeight='500'>{item.time ? formatTime_1.minutesToHour(item.time) : 0}</react_2.Text>
+            </react_2.Box>
+            
             <react_2.Spacer />
-            <react_2.Button variant='primary-outline' size='sm' onClick={function () { return handleSelectService(item, index); }}>
-              Reservar
+            <react_2.Button variant='accent-outline' size='sm' onClick={function () { return handleSelectService(item, index); }}>
+              <ti_1.TiPlus />
             </react_2.Button>
           </react_2.Flex>
         </react_2.Box>); })}

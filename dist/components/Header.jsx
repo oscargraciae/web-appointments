@@ -33,7 +33,7 @@ var MenuItems = function (_a) {
 var Header = function (_a) {
     var handleAuthModal = _a.handleAuthModal;
     // context
-    var _b = react_1.useContext(userContext_1.UserContext), user = _b.user, isLogged = _b.isLogged, logout = _b.logout;
+    var _b = react_1.useContext(userContext_1.UserContext), user = _b.user, isLogged = _b.isLogged, logout = _b.logout, isLoading = _b.isLoading;
     // hooks
     var router = router_1.useRouter();
     // state
@@ -102,6 +102,9 @@ var Header = function (_a) {
         </react_2.Flex>
       </>);
     };
+    if (isLoading) {
+        return null;
+    }
     return (<react_2.Flex as="nav" align="center" justify="space-between" wrap="wrap" 
     // padding="1.5rem"
     bg="#FFFFFF" color="#333" boxShadow="md" w='100%' h='66px' shadow="md" alignItems='center' borderBottomWidth={1} borderColor='borders' zIndex={99} 
@@ -119,7 +122,7 @@ var Header = function (_a) {
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
         </svg>
       </react_2.Box>
-
+      
       {isLogged ? menuAuth() : menuGuest()}
 
     </react_2.Flex>);

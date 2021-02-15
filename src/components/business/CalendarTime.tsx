@@ -126,7 +126,7 @@ export const CalendarTime: React.FC<CaledarTimeProps> = ({ hours }) => {
         }
 
         .service-selected {
-          background-color: #25CB67;
+          background-color: #3722d3;
           color: #FFF;
         }
 

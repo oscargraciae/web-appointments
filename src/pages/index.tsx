@@ -51,7 +51,7 @@ const Index = ({ address, geo } : any) => {
   return (
     <Flex justify="center" align="center" w="100%" bgSize="cover" direction='column' mb={16}>
       <Flex w='100%' h='340px' alignItems='center' bg='linear-gradient(90deg,rgba(47,45,65,.7),rgba(47,45,65,.7)),url(/bg-main.jpg);' bgSize='cover' bgRepeat='no-repeat'>
-        <Text mx='auto' pt={10} width={{ base: '90%', md: '800px' }} mt={2} fontSize={{ base: 'xl', md: '4xl' }} fontWeight="semibold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
+        <Text fontFamily='Nunito' mx='auto' pt={10} width={{ base: '90%', md: '800px' }} mt={2} fontSize={{ base: 'xl', md: '4xl' }} fontWeight="bold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
           Encuentra servicios profesionales cerca de ti y reserva fácil, rápido y seguro.
         </Text>
       </Flex>
@@ -59,15 +59,16 @@ const Index = ({ address, geo } : any) => {
       <Box width={{ base: '90%', md: '700px' }} bg="transparent" p="16px" rounded="sm" zIndex={10} mt='-50px'>
         <InputSearch />
 
-        <Wrap spacing={4} mt={4} justify='center'>
+        <Wrap spacing={4} mt={6} justify='center'>
           { categories.map((item :any) => (
             <WrapItem key={item.id}>
               <Link
                 borderRadius={3}
                 w="144px"
                 textAlign='center'
+                fontWeight='600'
                 py={2}
-                bg="secondary"
+                bg="accent"
                 color='#FFF'
                 href={`/explore/${item.name}/${stringToUrl(address)}`}
               >
@@ -79,7 +80,7 @@ const Index = ({ address, geo } : any) => {
       </Box>
 
       <Wrapper>
-        <Flex zIndex={10}>
+        <Flex zIndex={10} my={10}>
           <Flex justify='space-between' alignItems='center' direction={{ base: 'column', md: 'row' }}>
             <Box w={{ base: '80%', md: '32%' }} my={4}>
               <HStack alignItems='center'>
