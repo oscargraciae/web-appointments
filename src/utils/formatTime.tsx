@@ -7,7 +7,7 @@ export const minutesToHour = (minutes :number) => {
     return `${Math.trunc(hour)}h`;
   } else if(hour < 1) {
     return `${min}m`;
-  } else {
-    return `${Math.trunc(hour)}:${min}h`;
+  } else {    
+    return `${Math.trunc(hour)}:${Math.trunc(min)}h`;
   } 
 }

@@ -34,13 +34,15 @@ var formatTime_1 = require("../../utils/formatTime");
 var bookingContext_1 = require("../../context/bookingContext");
 exports.BusinessServices = function (_a) {
     var businessServices = _a.businessServices;
-    var _b = react_1.useContext(bookingContext_1.BookingContext), setServices = _b.setServices, setTotalTime = _b.setTotalTime, totalTime = _b.totalTime, services = _b.services;
+    var _b = react_1.useContext(bookingContext_1.BookingContext), setServices = _b.setServices, setTotalTime = _b.setTotalTime, setTotalPrice = _b.setTotalPrice, services = _b.services;
     var handleSelectService = function (item, index) {
         var servicesTmp = __spreadArrays(services);
         servicesTmp = __spreadArrays(services, [item]);
         setServices(servicesTmp);
         var totalT = servicesTmp.reduce(function (total, service) { return total + service.time; }, 0);
+        var totalPrice = servicesTmp.reduce(function (total, service) { return total + parseInt(service.price); }, 0);
         setTotalTime(totalT);
+        setTotalPrice(totalPrice);
     };
     return (<react_2.Box>
       <react_2.Heading as="h2" fontSize="24px" mb={6}>Servicios</react_2.Heading>

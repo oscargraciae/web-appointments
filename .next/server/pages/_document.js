@@ -88,15 +88,15 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 2:
+/***/ 12:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("mT+M");
+module.exports = __webpack_require__("VDXt");
 
 
 /***/ }),
@@ -105,14 +105,6 @@ module.exports = __webpack_require__("mT+M");
 /***/ (function(module, exports) {
 
 module.exports = require("styled-jsx/server");
-
-/***/ }),
-
-/***/ "8cZr":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("VDXt")
-
 
 /***/ }),
 
@@ -809,53 +801,6 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("next/dist/next-server/lib/utils.js");
-
-/***/ }),
-
-/***/ "mEKR":
-/***/ (function(module, exports) {
-
-module.exports = require("next-google-fonts");
-
-/***/ }),
-
-/***/ "mT+M":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_google_fonts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("mEKR");
-/* harmony import */ var next_google_fonts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_google_fonts__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("8cZr");
-/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_2__);
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-
-
-class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_2___default.a {
-  // static async getInitialProps(ctx) {
-  //   const initialProps = await Document.getInitialProps(ctx)
-  //   return { ...initialProps }
-  // }
-  static async getInitialProps(ctx) {
-    const initialProps = await next_document__WEBPACK_IMPORTED_MODULE_2___default.a.getInitialProps(ctx);
-    return initialProps;
-  }
-
-  render() {
-    return __jsx(next_document__WEBPACK_IMPORTED_MODULE_2__["Html"], null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_2__["Head"], null, __jsx(next_google_fonts__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;900&display=swap"
-    }), __jsx(next_google_fonts__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&display=swap"
-    })), __jsx("body", null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_2__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_2__["NextScript"], null)));
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (MyDocument);
 
 /***/ }),
 

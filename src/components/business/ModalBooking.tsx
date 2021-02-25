@@ -53,7 +53,7 @@ export const ModalBooking: React.FC<ModalBookingProps> = ({ business, isOpen, on
         <ModalBody>
           <Flex direction='column'>
             { step === 1 && <CalendarDate hours={business.hours} /> }
-            { step === 2 && <CalendarTime hours={business.hours} /> }
+            { step === 2 && <CalendarTime hours={business.hours} business={business} /> }
             { step === 3 && <BookingResume /> }
             { step === 4 && <BookingSuccess /> }
           </Flex>

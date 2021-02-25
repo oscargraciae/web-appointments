@@ -9,13 +9,19 @@ import { generateName } from '../../utils/generateName';
 
 interface BusinessItemProps {
   business: IBusiness
+  setItemSelected: any
 }
 
-export const BusinessItem: React.FC<BusinessItemProps> = ({ business }) => {
+export const BusinessItem: React.FC<BusinessItemProps> = ({ business, setItemSelected }) => {
+  const businessHover = () => {
+    console.log('Item seleccionado', business.id);
+    setItemSelected(business.id);
+    
+  }
   return (
     <NextLink href={`/b/${generateName(business.name)}/${business.id}`} passHref>
       <Link _hover={{ textDecor: 'none' }} >
-        <Flex mb={3} py={2} pl={2} w='100%' _hover={{ bg: 'primaryLight', cursor: 'pointer' }} bg='surface'>
+        <Flex mb={3} py={2} pl={2} w='100%' _hover={{ bg: 'primaryLight', cursor: 'pointer' }} bg='surface' onMouseEnter={businessHover}>
           <Flex justify='flex-start' align='center' flex={1} isTruncated>
             <Box w='180px'>
               <Image borderRadius="md" src={business.cover} w='180px' h='120px' htmlWidth='180px' htmlHeight='120px' objectFit="cover" fallback={<Progress />} loading='lazy' />

@@ -12,13 +12,20 @@ interface BookingBoxProps {
 }
 
 export const BookingBox: React.FC<BookingBoxProps> = ({ handleBooking }) => {
-  const { setServices, services, setTotalTime, totalTime } = useContext(BookingContext);
+  const { setServices, services, setTotalTime, setTotalPrice, totalTime } = useContext(BookingContext);
   
   const deleteService = (index :number) => {
-    setServices([
+    const newList = [
       ...services.slice(0, index),
       ...services.slice(index + 1)
-    ])
+    ];
+    setServices(newList)
+    const totalT = newList.reduce((total :number, service :any) => total + service.time, 0)
+    const totalPrice = newList.reduce((total :number, service :any) => total + service.price, 0)
+    console.log('Precio total', totalPrice);
+    
+    setTotalTime(totalT);
+    setTotalPrice(totalPrice);
   }
 
   return (

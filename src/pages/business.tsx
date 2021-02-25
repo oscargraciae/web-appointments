@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Box, Image, Heading, Text, Button, Divider, useDisclosure, Flex } from '@chakra-ui/react';
+import { Box, Image, Heading, Text, Button, Divider, useDisclosure, Flex, Alert, AlertTitle } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
 
 // local libraries
@@ -51,13 +51,13 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
     if (isLogged) {
       onOpen();
     } else {
-      console.log('No logeado', openModalLogin);
-      
       setOpenModalLogin(true);
     }
     
   };
 
+  console.log('business', business);
+  
   return (
     <BookingProvider>
       {/* <Head>
@@ -106,12 +106,23 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
             <Divider my={8} />
           </Box>
 
+          { business.isPublic &&
           <Box w='36.33%' ml='4.33%' px={4} display={{ base: 'none', md: 'block' }}>
             <Box pos='sticky' top='70px' right='0px' h='100vh'>
               {/* <Button size='lg' isFullWidth variant='outline' colorScheme='gray' onClick={handleContact}>Contactar al negocio</Button> */}
               <BookingBox handleBooking={handleBooking} />
             </Box>
           </Box>
+          }
+
+          { !business.isPublic &&
+          <Box w='36.33%' ml='4.33%' px={4} display={{ base: 'none', md: 'block' }}>
+            <Alert status='warning'>
+              <AlertTitle>Este negocio se encuentra cerrado por el momento.</AlertTitle>
+            </Alert>
+          </Box>
+          }
+
         </Flex>
           
         <BookingBoxMobile handleBooking={handleBooking} />

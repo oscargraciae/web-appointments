@@ -107,7 +107,7 @@ exports.ModalBooking = function (_a) {
         <react_2.ModalBody>
           <react_2.Flex direction='column'>
             {step === 1 && <CalendarDate_1.CalendarDate hours={business.hours}/>}
-            {step === 2 && <CalendarTime_1.CalendarTime hours={business.hours}/>}
+            {step === 2 && <CalendarTime_1.CalendarTime hours={business.hours} business={business}/>}
             {step === 3 && <BookingResume_1.BookingResume />}
             {step === 4 && <BookingSuccess_1.BookingSuccess />}
           </react_2.Flex>

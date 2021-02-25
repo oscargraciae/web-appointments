@@ -12,7 +12,7 @@ interface BusinessServicesProps {
 
 export const BusinessServices: React.FC<BusinessServicesProps> = ({ businessServices }) => {
   
-  const { setServices, setTotalTime, totalTime, services } = useContext(BookingContext);
+  const { setServices, setTotalTime, setTotalPrice, services } = useContext(BookingContext);
 
   const handleSelectService = (item: IService, index :number) => {
     let servicesTmp = [...services];
@@ -20,8 +20,10 @@ export const BusinessServices: React.FC<BusinessServicesProps> = ({ businessServ
     setServices(servicesTmp)
     
     const totalT = servicesTmp.reduce((total :number, service :any) => total + service.time, 0)
+    const totalPrice = servicesTmp.reduce((total :number, service :any) => total +  parseInt(service.price), 0)
     
     setTotalTime(totalT);
+    setTotalPrice(totalPrice);
   }
 
   return (

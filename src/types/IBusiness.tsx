@@ -10,6 +10,8 @@ export interface IBusiness {
   phone?: string
   isActive?: boolean
   isCompleted?: boolean
+  isPublic?: boolean
+  hasParallelBookings?: boolean
   businessCategoryId?: number
   businessAddress?: IBusinessAddress
   businessCategory?: IBusinessCategory

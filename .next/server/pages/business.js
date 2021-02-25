@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -169,6 +169,10 @@ const BookingProvider = ({
     1: setTotalTime
   } = Object(external_react_["useState"])(0);
   const {
+    0: totalPrice,
+    1: setTotalPrice
+  } = Object(external_react_["useState"])(0);
+  const {
     0: message,
     1: setMessage
   } = Object(external_react_["useState"])('');
@@ -182,6 +186,8 @@ const BookingProvider = ({
       setServices,
       totalTime,
       setTotalTime,
+      totalPrice,
+      setTotalPrice,
       time,
       setTime,
       message,
@@ -245,6 +251,12 @@ const CalendarDate = ({
 // EXTERNAL MODULE: ./src/utils/formatTime.tsx
 var formatTime = __webpack_require__("4Co3");
 
+// EXTERNAL MODULE: ./src/components/general/LoadingView.tsx
+var LoadingView = __webpack_require__("eyCa");
+
+// EXTERNAL MODULE: ./src/utils/formatDate.tsx
+var formatDate = __webpack_require__("5gGA");
+
 // CONCATENATED MODULE: ./src/components/business/CalendarTime.tsx
 var CalendarTime_jsx = external_react_default.a.createElement;
 
@@ -252,8 +264,12 @@ var CalendarTime_jsx = external_react_default.a.createElement;
 
 
 
+
+
+
 const CalendarTime = ({
-  hours
+  hours,
+  business
 }) => {
   // context
   const {
@@ -262,6 +278,7 @@ const CalendarTime = ({
     setTime,
     time
   } = Object(external_react_["useContext"])(BookingContext);
+  const toast = Object(react_["useToast"])();
   const numElements = totalTime / 15; // states
 
   const {
@@ -276,24 +293,48 @@ const CalendarTime = ({
     0: servicesSelected,
     1: setServicesSelected
   } = Object(external_react_["useState"])([]);
-  const daySelected = hours.filter(e => e.dayOfWeek === new Date(date).getDay())[0]; // const [selectedTime, setSelectedTime] = useState('');
-
+  const {
+    0: bookings,
+    1: setBookings
+  } = Object(external_react_["useState"])(null);
+  const daySelected = hours.filter(e => e.dayOfWeek === new Date(date).getDay())[0];
   Object(external_react_["useEffect"])(() => {
-    getHours();
+    const fetchTime = async () => {
+      if (business.id) {
+        const startTime = new Date(`${external_moment_default()(date).format('YYYY-MM-DD')} 00:00:00`).toISOString();
+        const endTime = external_moment_default()(new Date(`${external_moment_default()(date).format('YYYY-MM-DD')} 00:00:00`)).add(1, 'day').toISOString();
+        const response = await new businessService["a" /* BusinessService */]().getTime(business.id, {
+          startTime,
+          endTime
+        });
+        setBookings(response.bookings);
+        console.log('tiempo', response);
+      }
+    };
+
+    if (!business.hasParallelBookings) {
+      fetchTime();
+    } else {
+      setBookings([]);
+    }
   }, []);
   Object(external_react_["useEffect"])(() => {
-    console.log('use effect');
-    ;
-
+    if (bookings) {
+      getHours();
+    }
+  }, [bookings]);
+  Object(external_react_["useEffect"])(() => {
     if (hoursState.length > 0) {
       const indexSelected = hoursState.indexOf(time);
 
       if (indexSelected >= 0) {
-        // let nums = [];
-        // for (let x = indexSelected; x < (indexSelected + numElements); x++) {
-        //   nums.push(x)
-        // }
-        // setServicesSelected(nums);
+        let nums = [];
+
+        for (let x = indexSelected; x < indexSelected + numElements; x++) {
+          nums.push(x);
+        }
+
+        setServicesSelected(nums);
         setServicesSelected([indexSelected]);
       }
     }
@@ -306,25 +347,45 @@ const CalendarTime = ({
         i,
         j;
 
-    for (i = timeFrom; i < timeTill; i++) {
-      for (j = 0; j < 4; j++) {
-        arr.push(i + ":" + (j === 0 ? "00" : 15 * j));
+    if (bookings) {
+      for (i = timeFrom; i < timeTill; i++) {
+        for (j = 0; j < 4; j++) {
+          const time = i + ":" + (j === 0 ? "00" : 15 * j);
+          const booking = bookings.filter(item => {
+            const startTime = external_moment_default()(item.bookingDate, [external_moment_default.a.ISO_8601, 'HH:mm']).format('HH:mm');
+            const endTime = external_moment_default()(item.bookingDate, [external_moment_default.a.ISO_8601, 'HH:mm']).add(item.totalTime, 'minutes').format('HH:mm');
+            return time >= startTime && time < endTime;
+          });
+
+          if (booking.length > 0) {
+            arr.push({
+              time,
+              available: false
+            });
+          } else {
+            arr.push({
+              time,
+              available: true
+            });
+          }
+        }
       }
     }
 
     setHoursState(arr);
   };
 
-  const handleSelect = index => {
-    // let nums = [];
-    // for (let x = index; x < (index + numElements); x++) {
-    //   nums.push(x)
-    // }
-    // setHighlightDate([index, ...nums]);
-    setHighlightDate([index]);
+  const handleHover = index => {
+    let nums = [];
+
+    for (let x = index; x < index + numElements; x++) {
+      nums.push(x);
+    }
+
+    setHighlightDate([index, ...nums]); // setHighlightDate([index]);
   };
 
-  const isSelected = index => {
+  const isHover = index => {
     const isActive = highlightDate.filter(e => e === index)[0];
     return isActive !== undefined;
   };
@@ -336,22 +397,36 @@ const CalendarTime = ({
 
   const handleSelectedTime = (item, index) => {
     const isAvailable = hoursState[index + (numElements - 1)];
+    console.log('hoursState', isAvailable);
 
-    if (isAvailable) {
+    if (isAvailable && isAvailable.available) {
       // setSelectedTime(item);
-      setTime(item); // let nums = [];
-      // for (let x = index; x < (index + numElements); x++) {
-      //   nums.push(x)
-      // }
-      // setServicesSelected(nums);
+      setTime(item);
+      let nums = [];
 
-      console.log('index a cguardar', index);
-      setServicesSelected([index]);
+      for (let x = index; x < index + numElements; x++) {
+        nums.push(x);
+      }
+
+      setServicesSelected(nums); // setServicesSelected([index]);
     } else {
       console.log('NO DISPONIBLE');
+      toast({
+        status: 'warning',
+        title: 'Horario no disponible.',
+        description: `Verifica que no haya horarios ocupados entre la hora que seleccionaste.`,
+        position: 'top'
+      });
     }
   };
 
+  if (hoursState.length === 0) return CalendarTime_jsx(react_["Flex"], {
+    alignItems: "center",
+    justify: "center",
+    direction: "column",
+    w: "100%",
+    h: "200px"
+  }, CalendarTime_jsx(LoadingView["a" /* LoadingView */], null));
   return CalendarTime_jsx(react_["Flex"], {
     alignItems: "center",
     justify: "center",
@@ -361,32 +436,68 @@ const CalendarTime = ({
     fontSize: "lg",
     fontWeight: "bold",
     py: 2
-  }, "Selecciona la hora"), CalendarTime_jsx(react_["Text"], null, "Tiempo de servicio aproximado ", Object(formatTime["a" /* minutesToHour */])(totalTime)), CalendarTime_jsx(react_["SimpleGrid"], {
+  }, "Selecciona la hora"), CalendarTime_jsx(react_["Text"], {
+    fontSize: "xs",
+    color: "subtext",
+    mb: 1
+  }, "Tiempo de servicio ", Object(formatTime["a" /* minutesToHour */])(totalTime)), time && CalendarTime_jsx(react_["Text"], {
+    fontSize: "xs",
+    color: "subtext",
+    mb: 2
+  }, "Horario de servicio ", Object(formatDate["c" /* formatTime */])(time), " - ", Object(formatDate["d" /* formatTimeAdd */])(time, totalTime)), CalendarTime_jsx(react_["SimpleGrid"], {
     columns: 4,
     spacing: 1,
     w: "100%"
-  }, hoursState.map((item, index) => CalendarTime_jsx(react_["Box"], {
-    key: index,
-    p: 2,
-    textAlign: "center",
-    borderWidth: 1,
-    borderColor: "borders",
-    cursor: "pointer",
-    onClick: () => handleSelectedTime(item, index),
-    onMouseEnter: e => handleSelect(index),
-    className: `${isSelected(index) ? 'service-selected' : ''} ${isActive(index) ? 'service-active' : ''}`
-  }, CalendarTime_jsx(react_["Text"], null, item)))), CalendarTime_jsx("style", null, `
+  }, hoursState.map((item, index) => {
+    if (item.available) {
+      return CalendarTime_jsx(react_["Box"], {
+        key: index,
+        p: 2,
+        textAlign: "center",
+        borderWidth: 1,
+        borderColor: "borders",
+        cursor: "pointer",
+        onClick: () => handleSelectedTime(item.time, index),
+        onMouseEnter: e => handleHover(index),
+        _hover: {
+          bg: '#E9F9EF',
+          opacity: 1
+        },
+        className: `${isHover(index) ? 'service-selected' : ''} ${isActive(index) ? 'service-active' : ''}`
+      }, CalendarTime_jsx(react_["Text"], null, item.time));
+    } else {
+      return CalendarTime_jsx(react_["Tooltip"], {
+        label: "Reservada",
+        "aria-label": "Reservada"
+      }, CalendarTime_jsx(react_["Box"], {
+        key: index,
+        p: 2,
+        textAlign: "center",
+        borderWidth: 1,
+        borderColor: "borders",
+        cursor: "pointer",
+        bg: "gray.300",
+        backgroundImage: "repeating-linear-gradient(60deg,transparent,transparent 2px,#eee 0,#eee 7px)",
+        onMouseEnter: e => handleHover(index),
+        className: `${isHover(index) ? 'service-selected' : ''} ${isActive(index) ? 'service-active' : ''}`
+      }, CalendarTime_jsx(react_["Text"], null, item.time)));
+    }
+  })), CalendarTime_jsx("style", null, `
         .data-class:nth-child(5) ~ .data-class.apple ~ .data-class.apple {
           background-color: #0ea;
         }
 
         .service-selected {
-          background-color: #3722d3;
-          color: #FFF;
+          /* background-color: #3722d3; */
+          background-color: #E9F9EF;
+          border-color: #25CB67;
+          opacity: 0.6;
+          
         }
 
         .service-active {
-          background-color: #020621 !important;
+          /* background-color: #020621 !important; */
+          background-color: #25CB67;
           color: #FFF;
         }
 
@@ -395,9 +506,6 @@ const CalendarTime = ({
         }
       `));
 };
-// EXTERNAL MODULE: ./src/utils/formatDate.tsx
-var formatDate = __webpack_require__("5gGA");
-
 // CONCATENATED MODULE: ./src/components/business/BookingResume.tsx
 var BookingResume_jsx = external_react_default.a.createElement;
 
@@ -428,6 +536,7 @@ const BookingResume = ({}) => {
     time,
     services,
     totalTime,
+    totalPrice,
     setMessage,
     message
   } = Object(external_react_["useContext"])(BookingContext);
@@ -451,11 +560,11 @@ const BookingResume = ({}) => {
     mb: 1
   }, BookingResume_jsx(react_["Text"], {
     fontWeight: "semibold"
-  }, "Fecha "), BookingResume_jsx(react_["Text"], null, Object(formatDate["a" /* formatDate */])(date))), BookingResume_jsx(react_["Flex"], {
+  }, "Fecha "), BookingResume_jsx(react_["Text"], null, Object(formatDate["b" /* formatOnlyDate */])(date))), BookingResume_jsx(react_["Flex"], {
     justify: "space-between"
   }, BookingResume_jsx(react_["Text"], {
     fontWeight: "semibold"
-  }, "Hora "), BookingResume_jsx(react_["Text"], null, time)), BookingResume_jsx(react_["Divider"], {
+  }, "Hora "), BookingResume_jsx(react_["Text"], null, Object(formatDate["c" /* formatTime */])(time), " - ", Object(formatDate["d" /* formatTimeAdd */])(time, totalTime))), BookingResume_jsx(react_["Divider"], {
     my: 6,
     bg: "tomato"
   }), BookingResume_jsx(react_["Text"], {
@@ -471,7 +580,8 @@ const BookingResume = ({}) => {
     w: "70%"
   }, service.name), BookingResume_jsx(react_["Text"], {
     fontSize: "xs",
-    w: "30%"
+    w: "30%",
+    textAlign: "right"
   }, service.time ? Object(formatTime["a" /* minutesToHour */])(service.time) : 0, " / $", service.price, "MXN"))), BookingResume_jsx(react_["Flex"], {
     justify: "flex-end",
     alignItems: "flex-end"
@@ -479,8 +589,14 @@ const BookingResume = ({}) => {
     fontWeight: "semibold",
     fontSize: "sm",
     my: 3,
+    textAlign: "right",
+    mr: 4
+  }, "Tiempo: ", Object(formatTime["a" /* minutesToHour */])(totalTime), " "), BookingResume_jsx(react_["Text"], {
+    fontWeight: "semibold",
+    fontSize: "sm",
+    my: 3,
     textAlign: "right"
-  }, "Aproximado total: ", Object(formatTime["a" /* minutesToHour */])(totalTime), " ")), BookingResume_jsx(react_["Divider"], {
+  }, "Costo: $", totalPrice, "MXN ")), BookingResume_jsx(react_["Divider"], {
     my: 6,
     bg: "tomato"
   }), BookingResume_jsx(react_["Box"], null, BookingResume_jsx(react_["Text"], {
@@ -606,7 +722,8 @@ const ModalBooking = ({
   }, step === 1 && ModalBooking_jsx(CalendarDate, {
     hours: business.hours
   }), step === 2 && ModalBooking_jsx(CalendarTime, {
-    hours: business.hours
+    hours: business.hours,
+    business: business
   }), step === 3 && ModalBooking_jsx(BookingResume, null), step === 4 && ModalBooking_jsx(BookingSuccess, null))), ModalBooking_jsx(react_["ModalFooter"], null, ModalBooking_jsx(react_["Flex"], {
     justify: "space-between",
     w: "100%"
@@ -671,11 +788,18 @@ const BookingBox = ({
     setServices,
     services,
     setTotalTime,
+    setTotalPrice,
     totalTime
   } = Object(external_react_["useContext"])(BookingContext);
 
   const deleteService = index => {
-    setServices([...services.slice(0, index), ...services.slice(index + 1)]);
+    const newList = [...services.slice(0, index), ...services.slice(index + 1)];
+    setServices(newList);
+    const totalT = newList.reduce((total, service) => total + service.time, 0);
+    const totalPrice = newList.reduce((total, service) => total + service.price, 0);
+    console.log('Precio total', totalPrice);
+    setTotalTime(totalT);
+    setTotalPrice(totalPrice);
   };
 
   return BookingBox_jsx(external_react_default.a.Fragment, null, BookingBox_jsx(react_["Box"], null, BookingBox_jsx(react_["Box"], {
@@ -771,7 +895,7 @@ const BusinessHours = ({
       fontSize: "sm"
     }, nameDays[item.dayOfWeek]), BusinessHours_jsx(react_["Text"], {
       fontSize: "sm"
-    }, Object(formatDate["b" /* formatTime */])(item.openFrom), " - ", Object(formatDate["b" /* formatTime */])(item.openTill)));
+    }, Object(formatDate["c" /* formatTime */])(item.openFrom), " - ", Object(formatDate["c" /* formatTime */])(item.openTill)));
   })));
 };
 // CONCATENATED MODULE: ./src/components/business/BusinessServices.tsx
@@ -787,7 +911,7 @@ const BusinessServices = ({
   const {
     setServices,
     setTotalTime,
-    totalTime,
+    setTotalPrice,
     services
   } = Object(external_react_["useContext"])(BookingContext);
 
@@ -796,7 +920,9 @@ const BusinessServices = ({
     servicesTmp = [...services, item];
     setServices(servicesTmp);
     const totalT = servicesTmp.reduce((total, service) => total + service.time, 0);
+    const totalPrice = servicesTmp.reduce((total, service) => total + parseInt(service.price), 0);
     setTotalTime(totalT);
+    setTotalPrice(totalPrice);
   };
 
   return BusinessServices_jsx(react_["Box"], null, BusinessServices_jsx(react_["Heading"], {
@@ -1050,11 +1176,11 @@ const Business = ({
     if (isLogged) {
       onOpen();
     } else {
-      console.log('No logeado', openModalLogin);
       setOpenModalLogin(true);
     }
   };
 
+  console.log('business', business);
   return business_jsx(BookingProvider, null, business_jsx(MetaBusiness, {
     business: business
   }), business_jsx(ModalBooking, {
@@ -1164,7 +1290,7 @@ const Business = ({
     hours: hours
   }), business_jsx(react_["Divider"], {
     my: 8
-  })), business_jsx(react_["Box"], {
+  })), business.isPublic && business_jsx(react_["Box"], {
     w: "36.33%",
     ml: "4.33%",
     px: 4,
@@ -1179,7 +1305,17 @@ const Business = ({
     h: "100vh"
   }, business_jsx(BookingBox, {
     handleBooking: handleBooking
-  })))), business_jsx(BookingBoxMobile, {
+  }))), !business.isPublic && business_jsx(react_["Box"], {
+    w: "36.33%",
+    ml: "4.33%",
+    px: 4,
+    display: {
+      base: 'none',
+      md: 'block'
+    }
+  }, business_jsx(react_["Alert"], {
+    status: "warning"
+  }, business_jsx(react_["AlertTitle"], null, "Este negocio se encuentra cerrado por el momento.")))), business_jsx(BookingBoxMobile, {
     handleBooking: handleBooking
   })));
 };
@@ -1209,7 +1345,7 @@ const minutesToHour = minutes => {
   } else if (hour < 1) {
     return `${min}m`;
   } else {
-    return `${Math.trunc(hour)}:${min}h`;
+    return `${Math.trunc(hour)}:${Math.trunc(min)}h`;
   }
 };
 
@@ -1222,29 +1358,37 @@ module.exports = require("next/router");
 
 /***/ }),
 
+/***/ 5:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("/mjN");
+
+
+/***/ }),
+
 /***/ "5gGA":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return formatTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return formatTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return formatTimeAdd; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return formatDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return formatOnlyDate; });
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("wy2R");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 
 const formatTime = time => {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(time, [moment__WEBPACK_IMPORTED_MODULE_0___default.a.ISO_8601, 'HH:mm']).format('H:mm a');
 };
+const formatTimeAdd = (time, minutes) => {
+  return moment__WEBPACK_IMPORTED_MODULE_0___default()(time, [moment__WEBPACK_IMPORTED_MODULE_0___default.a.ISO_8601, 'HH:mm']).add(minutes, 'minutes').format('H:mm a');
+};
 const formatDate = date => {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('DD MMMM YYYY HH:mm');
 };
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("/mjN");
-
+const formatOnlyDate = date => {
+  return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('DD MMMM YYYY');
+};
 
 /***/ }),
 
@@ -1312,6 +1456,8 @@ class BusinessService extends _HttpClient__WEBPACK_IMPORTED_MODULE_2__[/* defaul
     _defineProperty(this, "get", params => this.instance.get(`/businesses?${Object(_utils_propsToParams__WEBPACK_IMPORTED_MODULE_1__[/* propsToParams */ "a"])(params)}`));
 
     _defineProperty(this, "getById", id => this.instance.get(`/businesses/${id}`));
+
+    _defineProperty(this, "getTime", (id, params) => this.instance.get(`/businesses/${id}/time?${Object(_utils_propsToParams__WEBPACK_IMPORTED_MODULE_1__[/* propsToParams */ "a"])(params)}`));
 
     _defineProperty(this, "getPhotos", id => this.instance.get(`/businesses/${id}/photos`));
   }
@@ -1496,6 +1642,34 @@ const UserProvider = ({
       isLoading
     }
   }, children);
+};
+
+/***/ }),
+
+/***/ "eyCa":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoadingView; });
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("LZ34");
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+const LoadingView = () => {
+  return __jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_0__["Flex"], {
+    direction: "column",
+    justify: "center",
+    align: "center",
+    flex: 1,
+    w: "100%",
+    height: "100vh"
+  }, __jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_0__["Spinner"], {
+    size: "md",
+    color: "primary"
+  }));
 };
 
 /***/ }),

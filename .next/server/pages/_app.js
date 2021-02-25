@@ -453,21 +453,7 @@ const Header = ({
         base: 'none',
         md: 'flex'
       }
-    }, __jsx(react_["Menu"], {
-      variant: "primary"
-    }, __jsx(react_["MenuButton"], {
-      as: react_["Button"],
-      rightIcon: __jsx(fi_["FiChevronDown"], null),
-      mx: 3,
-      variant: "ghost"
-    }, "Mi cuenta"), __jsx(react_["MenuList"], {
-      zIndex: 3,
-      borderColor: "#DDD"
-    }, __jsx(react_["MenuItem"], {
-      onClick: () => router.push('/bookings')
-    }, "Mis reservas"), __jsx(react_["MenuItem"], {
-      onClick: logout
-    }, "Cerrar sesi\xF3n"), __jsx(react_["MenuDivider"], null), user.businessUser ? __jsx(react_["Link"], {
+    }, user.businessUser ? __jsx(react_["Link"], {
       mt: {
         base: 4,
         md: 0
@@ -485,7 +471,21 @@ const Header = ({
       display: "block",
       variant: "primary-btn",
       href: "/negocios"
-    }, "Publica tu negocio")))));
+    }, "Publica tu negocio"), __jsx(react_["Menu"], {
+      variant: "primary"
+    }, __jsx(react_["MenuButton"], {
+      as: react_["Button"],
+      rightIcon: __jsx(fi_["FiChevronDown"], null),
+      mx: 3,
+      variant: "ghost"
+    }, "Mi cuenta"), __jsx(react_["MenuList"], {
+      zIndex: 3,
+      borderColor: "#DDD"
+    }, __jsx(react_["MenuItem"], {
+      onClick: () => router.push('/bookings')
+    }, "Mis reservas"), __jsx(react_["MenuDivider"], null), __jsx(react_["MenuItem"], {
+      onClick: logout
+    }, "Cerrar sesi\xF3n"), __jsx(react_["MenuDivider"], null)))));
   };
 
   if (isLoading) {
@@ -975,19 +975,15 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-
+ // import { Fonts } from '../config/theme.fonts';
 // const fonts = { ...chakraTheme.fonts, mono: `'Menlo', monospace` }
 // const breakpoints = ['40em', '52em', '64em']
+
 const theme = Object(react_["extendTheme"])(_objectSpread(_objectSpread({}, react_["theme"]), {}, {
-  fonts: {
-    heading: "Nunito",
-    body: "Nunito"
-  },
   styles: {
     global: {
       body: {
         bg: "#FFFFFF",
-        fontFamily: 'Nunito',
         // color: "#333333",
         color: '#020621'
       },

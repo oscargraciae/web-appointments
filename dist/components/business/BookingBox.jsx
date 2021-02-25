@@ -33,9 +33,15 @@ var ai_1 = require("react-icons/ai");
 var bookingContext_1 = require("../../context/bookingContext");
 exports.BookingBox = function (_a) {
     var handleBooking = _a.handleBooking;
-    var _b = react_1.useContext(bookingContext_1.BookingContext), setServices = _b.setServices, services = _b.services, setTotalTime = _b.setTotalTime, totalTime = _b.totalTime;
+    var _b = react_1.useContext(bookingContext_1.BookingContext), setServices = _b.setServices, services = _b.services, setTotalTime = _b.setTotalTime, setTotalPrice = _b.setTotalPrice, totalTime = _b.totalTime;
     var deleteService = function (index) {
-        setServices(__spreadArrays(services.slice(0, index), services.slice(index + 1)));
+        var newList = __spreadArrays(services.slice(0, index), services.slice(index + 1));
+        setServices(newList);
+        var totalT = newList.reduce(function (total, service) { return total + service.time; }, 0);
+        var totalPrice = newList.reduce(function (total, service) { return total + service.price; }, 0);
+        console.log('Precio total', totalPrice);
+        setTotalTime(totalT);
+        setTotalPrice(totalPrice);
     };
     return (<>
       <react_2.Box>

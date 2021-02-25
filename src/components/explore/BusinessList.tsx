@@ -11,7 +11,7 @@ interface BusinessListProps {
 }
 
 const BusinessList: React.FC<BusinessListProps> = ({  }) => {
-  const { businesses, isLoading } = useContext(ExploreContext);
+  const { businesses, isLoading, setItemSelected } = useContext(ExploreContext);
   
   if(isLoading) {
     return <LoadingView />
@@ -29,7 +29,7 @@ const BusinessList: React.FC<BusinessListProps> = ({  }) => {
   return (
     <Box py={4} minH='100vh' bg='surface' mt={3}>
       { businesses.map((business : IBusiness) => (
-        <BusinessItem key={business.id} business={business} />
+        <BusinessItem key={business.id} business={business} setItemSelected={setItemSelected} />
       )) }      
     </Box>
   );

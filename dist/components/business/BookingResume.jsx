@@ -42,7 +42,7 @@ var formatTime_1 = require("../../utils/formatTime");
   Confirmación-
 */
 exports.BookingResume = function (_a) {
-    var _b = react_1.useContext(bookingContext_1.BookingContext), date = _b.date, time = _b.time, services = _b.services, totalTime = _b.totalTime, setMessage = _b.setMessage, message = _b.message;
+    var _b = react_1.useContext(bookingContext_1.BookingContext), date = _b.date, time = _b.time, services = _b.services, totalTime = _b.totalTime, totalPrice = _b.totalPrice, setMessage = _b.setMessage, message = _b.message;
     return (<react_2.Flex alignItems='center' justify='center' flex={1} direction='column'>
       <react_2.Text fontSize='lg' fontWeight='bold' py={2}>Confirmación</react_2.Text>
 
@@ -50,20 +50,21 @@ exports.BookingResume = function (_a) {
         <react_2.Text fontSize='lg' fontWeight='bold' mb={3}>Día y hora</react_2.Text>
         <react_2.Flex justify='space-between' mb={1}>
           <react_2.Text fontWeight='semibold'>Fecha </react_2.Text>
-          <react_2.Text>{formatDate_1.formatDate(date)}</react_2.Text>
+          <react_2.Text>{formatDate_1.formatOnlyDate(date)}</react_2.Text>
         </react_2.Flex>
         <react_2.Flex justify='space-between'>
           <react_2.Text fontWeight='semibold'>Hora </react_2.Text>
-          <react_2.Text>{time}</react_2.Text>
+          <react_2.Text>{formatDate_1.formatTime(time)} - {formatDate_1.formatTimeAdd(time, totalTime)}</react_2.Text>
         </react_2.Flex>
         <react_2.Divider my={6} bg='tomato'/>
         <react_2.Text fontSize='lg' fontWeight='bold' mb={3}>Servicios a reservar</react_2.Text>
         {services.map(function (service) { return (<react_2.Flex justify='space-between'>
             <react_2.Text isTruncated fontWeight='semibold' fontSize='sm' w='70%'>{service.name}</react_2.Text>
-            <react_2.Text fontSize='xs' w='30%'>{service.time ? formatTime_1.minutesToHour(service.time) : 0} / ${service.price}MXN</react_2.Text>
+            <react_2.Text fontSize='xs' w='30%' textAlign='right'>{service.time ? formatTime_1.minutesToHour(service.time) : 0} / ${service.price}MXN</react_2.Text>
           </react_2.Flex>); })}
         <react_2.Flex justify='flex-end' alignItems='flex-end'>
-          <react_2.Text fontWeight='semibold' fontSize='sm' my={3} textAlign='right'>Aproximado total: {formatTime_1.minutesToHour(totalTime)} </react_2.Text>
+          <react_2.Text fontWeight='semibold' fontSize='sm' my={3} textAlign='right' mr={4}>Tiempo: {formatTime_1.minutesToHour(totalTime)} </react_2.Text>
+          <react_2.Text fontWeight='semibold' fontSize='sm' my={3} textAlign='right'>Costo: ${totalPrice}MXN </react_2.Text>
         </react_2.Flex>
         
         <react_2.Divider my={6} bg='tomato'/>

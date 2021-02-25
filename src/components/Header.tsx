@@ -95,18 +95,23 @@ const Header = ({ handleAuthModal } : any) => {
 
         {/* WEB */}
         <Flex flex={1} justify="flex-end" align="center" display={{ base: 'none', md: 'flex' }}>
+          { user.businessUser 
+            ? <Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href={`${process.env.NEXT_PUBLIC_MANAGER_URL}`}>Administrar mi negocio</Link>
+            : <Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href='/negocios' >Publica tu negocio</Link>
+          }
           <Menu variant='primary'>
             <MenuButton as={Button} rightIcon={<FiChevronDown />} mx={3} variant='ghost'>
               Mi cuenta
             </MenuButton>
             <MenuList zIndex={3} borderColor="#DDD">
               <MenuItem onClick={() => router.push('/bookings')}>Mis reservas</MenuItem>
+              <MenuDivider />
               <MenuItem onClick={logout}>Cerrar sesión</MenuItem>
               <MenuDivider />
-                { user.businessUser 
+                {/* { user.businessUser 
                   ? <Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href={`${process.env.NEXT_PUBLIC_MANAGER_URL}`}>Administrar mi negocio</Link>
                   : <Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href='/negocios' >Publica tu negocio</Link>
-                }
+                } */}
             </MenuList>
           </Menu>
         </Flex>

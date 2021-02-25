@@ -107,10 +107,10 @@ var Business = function (_a) {
             onOpen();
         }
         else {
-            console.log('No logeado', openModalLogin);
             setOpenModalLogin(true);
         }
     };
+    console.log('business', business);
     return (<bookingContext_1.BookingProvider>
       
       <MetaBusiness_1.MetaBusiness business={business}/>
@@ -147,12 +147,21 @@ var Business = function (_a) {
             <react_2.Divider my={8}/>
           </react_2.Box>
 
-          <react_2.Box w='36.33%' ml='4.33%' px={4} display={{ base: 'none', md: 'block' }}>
+          {business.isPublic &&
+        <react_2.Box w='36.33%' ml='4.33%' px={4} display={{ base: 'none', md: 'block' }}>
             <react_2.Box pos='sticky' top='70px' right='0px' h='100vh'>
               
               <BookingBox_1.BookingBox handleBooking={handleBooking}/>
             </react_2.Box>
-          </react_2.Box>
+          </react_2.Box>}
+
+          {!business.isPublic &&
+        <react_2.Box w='36.33%' ml='4.33%' px={4} display={{ base: 'none', md: 'block' }}>
+            <react_2.Alert status='warning'>
+              <react_2.AlertTitle>Este negocio se encuentra cerrado por el momento.</react_2.AlertTitle>
+            </react_2.Alert>
+          </react_2.Box>}
+
         </react_2.Flex>
           
         <BookingBoxMobile_1.BookingBoxMobile handleBooking={handleBooking}/>

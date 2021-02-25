@@ -11,6 +11,6 @@ exports.minutesToHour = function (minutes) {
         return min + "m";
     }
     else {
-        return Math.trunc(hour) + ":" + min + "h";
+        return Math.trunc(hour) + ":" + Math.trunc(min) + "h";
     }
 };

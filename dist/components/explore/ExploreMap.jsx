@@ -25,17 +25,22 @@ var react_2 = require("@chakra-ui/react");
 var useGoogleMaps_1 = require("../../hooks/useGoogleMaps");
 var exploreContext_1 = require("../../context/exploreContext");
 exports.ExploreMap = function (_a) {
-    var _b = react_1.useContext(exploreContext_1.ExploreContext), businesses = _b.businesses, coords = _b.coords, setCoords = _b.setCoords, centerMapCoords = _b.centerMapCoords;
+    var _b = react_1.useContext(exploreContext_1.ExploreContext), businesses = _b.businesses, coords = _b.coords, setCoords = _b.setCoords, centerMapCoords = _b.centerMapCoords, setZoom = _b.setZoom, itemSelected = _b.itemSelected;
     console.log('Coords explore map', coords);
-    var _c = useGoogleMaps_1.useGoogleMaps({ coords: coords, setCoords: setCoords }), refContainer = _c.refContainer, addMarker = _c.addMarker, changeLocation = _c.changeLocation;
+    var _c = useGoogleMaps_1.useGoogleMaps({ coords: coords, setCoords: setCoords, setZoom: setZoom }), refContainer = _c.refContainer, addMarker = _c.addMarker, changeLocation = _c.changeLocation, handleIconMarket = _c.handleIconMarket;
     react_1.useEffect(function () {
         businesses.map(function (business) {
-            addMarker(business.businessAddress);
+            addMarker(business.businessAddress, business.id);
         });
     }, [businesses]);
     react_1.useEffect(function () {
         changeLocation(centerMapCoords);
     }, [centerMapCoords]);
+    react_1.useEffect(function () {
+        console.log('itemSelected shdsjdgjsds', itemSelected);
+        handleIconMarket(itemSelected, true);
+        return function () { return handleIconMarket(itemSelected, false); };
+    }, [itemSelected]);
     return (
     // <Box h='100vh' w='100%' pos='sticky' top='0px' right='0px' mt='-60px' pt='60px' >
     <react_2.Box h='100vh' w='100%' pos='sticky' top='0px' right='0px'>

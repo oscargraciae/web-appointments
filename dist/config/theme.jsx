@@ -12,16 +12,13 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("@chakra-ui/react");
+// import { Fonts } from '../config/theme.fonts';
 // const fonts = { ...chakraTheme.fonts, mono: `'Menlo', monospace` }
 // const breakpoints = ['40em', '52em', '64em']
-var theme = react_1.extendTheme(__assign(__assign({}, react_1.theme), { fonts: {
-        heading: "Nunito",
-        body: "Nunito",
-    }, styles: {
+var theme = react_1.extendTheme(__assign(__assign({}, react_1.theme), { styles: {
         global: {
             body: {
                 bg: "#FFFFFF",
-                fontFamily: 'Nunito',
                 // color: "#333333",
                 color: '#020621',
             },

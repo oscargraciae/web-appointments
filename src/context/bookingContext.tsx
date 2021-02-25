@@ -9,6 +9,7 @@ export const BookingProvider: React.FC = ({ children }) => {
   const [step, setStep] = useState<number>(1);
   const [services, setServices] = useState<IService[]>([]);
   const [totalTime, setTotalTime] = useState<number>(0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const [message, setMessage] = useState('');
 
   return (
@@ -21,6 +22,8 @@ export const BookingProvider: React.FC = ({ children }) => {
       setServices,
       totalTime,
       setTotalTime,
+      totalPrice,
+      setTotalPrice,
       time,
       setTime,
       message,

@@ -354,7 +354,6 @@ const Index = ({
     bgSize: "cover",
     bgRepeat: "no-repeat"
   }, pages_jsx(react_["Text"], {
-    fontFamily: "Nunito",
     mx: "auto",
     pt: 10,
     width: {
@@ -393,7 +392,7 @@ const Index = ({
     textAlign: "center",
     fontWeight: "600",
     py: 2,
-    bg: "accent",
+    bg: "secondary",
     color: "#FFF",
     href: `/explore/${item.name}/${Object(stringToUrl["a" /* stringToUrl */])(address)}`
   }, item.name))))), pages_jsx(Wrapper["a" /* Wrapper */], null, pages_jsx(react_["Flex"], {

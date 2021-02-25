@@ -1,21 +1,16 @@
 
 import { extendTheme, theme as chakraTheme } from '@chakra-ui/react';
-import { Fonts } from '../config/theme.fonts';
+// import { Fonts } from '../config/theme.fonts';
 
 // const fonts = { ...chakraTheme.fonts, mono: `'Menlo', monospace` }
 
 // const breakpoints = ['40em', '52em', '64em']
 const theme = extendTheme({
   ...chakraTheme,
-  fonts: {
-    heading: "Nunito",
-    body: "Nunito",
-  },
   styles: {
     global: {
       body: {
         bg: "#FFFFFF",
-        fontFamily: 'Nunito',
         // color: "#333333",
         color: '#020621',
       },

@@ -51,7 +51,7 @@ const Index = ({ address, geo } : any) => {
   return (
     <Flex justify="center" align="center" w="100%" bgSize="cover" direction='column' mb={16}>
       <Flex w='100%' h='340px' alignItems='center' bg='linear-gradient(90deg,rgba(47,45,65,.7),rgba(47,45,65,.7)),url(/bg-main.jpg);' bgSize='cover' bgRepeat='no-repeat'>
-        <Text fontFamily='Nunito' mx='auto' pt={10} width={{ base: '90%', md: '800px' }} mt={2} fontSize={{ base: 'xl', md: '4xl' }} fontWeight="bold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
+        <Text mx='auto' pt={10} width={{ base: '90%', md: '800px' }} mt={2} fontSize={{ base: 'xl', md: '4xl' }} fontWeight="bold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
           Encuentra servicios profesionales cerca de ti y reserva fácil, rápido y seguro.
         </Text>
       </Flex>
@@ -68,7 +68,7 @@ const Index = ({ address, geo } : any) => {
                 textAlign='center'
                 fontWeight='600'
                 py={2}
-                bg="accent"
+                bg="secondary"
                 color='#FFF'
                 href={`/explore/${item.name}/${stringToUrl(address)}`}
               >

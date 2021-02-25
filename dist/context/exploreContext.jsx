@@ -79,10 +79,12 @@ exports.ExploreProvider = function (_a) {
     // states
     var _b = react_1.useState([]), businesses = _b[0], setBusinesses = _b[1];
     var _c = react_1.useState(null), coords = _c[0], setCoords = _c[1];
-    var _d = react_1.useState(null), centerMapCoords = _d[0], setCenterMapCoords = _d[1];
-    var _e = react_1.useState(), addressMap = _e[0], setAddressMap = _e[1];
-    var _f = react_1.useState(true), isLoading = _f[0], setIsLoading = _f[1];
-    var _g = react_1.useState(), categoryId = _g[0], setCategoryId = _g[1];
+    var _d = react_1.useState(14), zoom = _d[0], setZoom = _d[1];
+    var _e = react_1.useState(null), centerMapCoords = _e[0], setCenterMapCoords = _e[1];
+    var _f = react_1.useState(), addressMap = _f[0], setAddressMap = _f[1];
+    var _g = react_1.useState(true), isLoading = _g[0], setIsLoading = _g[1];
+    var _h = react_1.useState(), categoryId = _h[0], setCategoryId = _h[1];
+    var _j = react_1.useState(null), itemSelected = _j[0], setItemSelected = _j[1];
     var getCoords = function () { return __awaiter(void 0, void 0, void 0, function () {
         var results, latLng, newAddress, latLng;
         return __generator(this, function (_a) {
@@ -147,7 +149,7 @@ exports.ExploreProvider = function (_a) {
             switch (_b.label) {
                 case 0:
                     if (!coords) return [3 /*break*/, 2];
-                    return [4 /*yield*/, new businessService_1.BusinessService().get(__assign(__assign({}, coords), { categoryId: categoryId }))];
+                    return [4 /*yield*/, new businessService_1.BusinessService().get(__assign(__assign({}, coords), { categoryId: categoryId, zoom: zoom }))];
                 case 1:
                     _a = _b.sent(), success = _a.success, business = _a.business;
                     if (success && business) {
@@ -182,6 +184,10 @@ exports.ExploreProvider = function (_a) {
         addressMap: addressMap,
         setCategoryId: setCategoryId,
         categoryId: categoryId,
+        setZoom: setZoom,
+        zoom: zoom,
+        itemSelected: itemSelected,
+        setItemSelected: setItemSelected,
     };
     return (<exports.ExploreContext.Provider value={initialState}>
       {children}

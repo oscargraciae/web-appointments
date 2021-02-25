@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CSSReset, ThemeProvider, ChakraProvider } from '@chakra-ui/react';
 import Head from 'next/head'
-import GoogleFonts from "next-google-fonts";
 
 import { Layout } from '../components/Layout';
 import theme from '../config/theme';

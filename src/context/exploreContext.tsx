@@ -21,10 +21,12 @@ export const ExploreProvider: React.FC<ExploreProviderProps> = ({ children, plac
   // states
   const [businesses, setBusinesses] = useState<IBusiness[]>([]);
   const [coords, setCoords] = useState<any>(null);
+  const [zoom, setZoom] = useState(14);
   const [centerMapCoords, setCenterMapCoords] = useState<any>(null);
   const [addressMap, setAddressMap] = useState<string>();
   const [isLoading, setIsLoading] = useState(true);
   const [categoryId, setCategoryId] = useState();
+  const [itemSelected, setItemSelected] = useState(null);
 
   const getCoords = async () => {    
     if (placeId) {
@@ -69,7 +71,7 @@ export const ExploreProvider: React.FC<ExploreProviderProps> = ({ children, plac
 
   const fetch = async () => {
     if (coords) {
-      const { success, business } = await new BusinessService().get({...coords, categoryId});
+      const { success, business } = await new BusinessService().get({...coords, categoryId, zoom});
       if (success && business) {
         setBusinesses(business);  
       }
@@ -104,6 +106,10 @@ export const ExploreProvider: React.FC<ExploreProviderProps> = ({ children, plac
     addressMap,
     setCategoryId,
     categoryId,
+    setZoom,
+    zoom,
+    itemSelected,
+    setItemSelected,
   }
 
   return (

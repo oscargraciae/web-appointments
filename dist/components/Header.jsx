@@ -86,17 +86,19 @@ var Header = function (_a) {
 
         
         <react_2.Flex flex={1} justify="flex-end" align="center" display={{ base: 'none', md: 'flex' }}>
+          {user.businessUser
+            ? <react_2.Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href={"" + process.env.NEXT_PUBLIC_MANAGER_URL}>Administrar mi negocio</react_2.Link>
+            : <react_2.Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href='/negocios'>Publica tu negocio</react_2.Link>}
           <react_2.Menu variant='primary'>
             <react_2.MenuButton as={react_2.Button} rightIcon={<fi_1.FiChevronDown />} mx={3} variant='ghost'>
               Mi cuenta
             </react_2.MenuButton>
             <react_2.MenuList zIndex={3} borderColor="#DDD">
               <react_2.MenuItem onClick={function () { return router.push('/bookings'); }}>Mis reservas</react_2.MenuItem>
+              <react_2.MenuDivider />
               <react_2.MenuItem onClick={logout}>Cerrar sesión</react_2.MenuItem>
               <react_2.MenuDivider />
-                {user.businessUser
-            ? <react_2.Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href={"" + process.env.NEXT_PUBLIC_MANAGER_URL}>Administrar mi negocio</react_2.Link>
-            : <react_2.Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href='/negocios'>Publica tu negocio</react_2.Link>}
+                
             </react_2.MenuList>
           </react_2.Menu>
         </react_2.Flex>

@@ -10,6 +10,7 @@ export class BusinessService extends HttpClient {
 
   get = (params :any) => this.instance.get<IBusinessesResponse>(`/businesses?${propsToParams(params)}`);
   getById = (id:number) => this.instance.get<IBusinessResponse>(`/businesses/${id}`);
+  getTime = (id:number, params ?:any) => this.instance.get(`/businesses/${id}/time?${propsToParams(params)}`);
 
   getPhotos = (id :number) => this.instance.get(`/businesses/${id}/photos`);
 

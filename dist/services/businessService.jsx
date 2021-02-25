@@ -26,6 +26,7 @@ var BusinessService = /** @class */ (function (_super) {
         var _this = _super.call(this, constants_1.URL_API) || this;
         _this.get = function (params) { return _this.instance.get("/businesses?" + propsToParams_1.propsToParams(params)); };
         _this.getById = function (id) { return _this.instance.get("/businesses/" + id); };
+        _this.getTime = function (id, params) { return _this.instance.get("/businesses/" + id + "/time?" + propsToParams_1.propsToParams(params)); };
         _this.getPhotos = function (id) { return _this.instance.get("/businesses/" + id + "/photos"); };
         return _this;
     }

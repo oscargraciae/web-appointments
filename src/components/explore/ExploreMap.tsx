@@ -7,21 +7,28 @@ import { ExploreContext } from '../../context/exploreContext';
 interface ExploreMapProps {}
 
 export const ExploreMap: React.FC<ExploreMapProps> = ({}) => {
-  const { businesses, coords, setCoords, centerMapCoords } = useContext(ExploreContext);
+  const { businesses, coords, setCoords, centerMapCoords, setZoom, itemSelected } = useContext(ExploreContext);
   console.log('Coords explore map', coords);
   
-  const { refContainer, addMarker, changeLocation } = useGoogleMaps({ coords, setCoords });
+  const { refContainer, addMarker, changeLocation, handleIconMarket } = useGoogleMaps({ coords, setCoords, setZoom });
   
 
   useEffect(() => {
     businesses.map((business : IBusiness) => {
-      addMarker(business.businessAddress);
+      addMarker(business.businessAddress, business.id);
     })
   }, [businesses]);
 
   useEffect(() => {
     changeLocation(centerMapCoords);
   }, [centerMapCoords])
+  
+  useEffect(() => {
+    console.log('itemSelected shdsjdgjsds', itemSelected);
+    handleIconMarket(itemSelected, true);
+
+    return () => handleIconMarket(itemSelected, false);
+  }, [itemSelected]);
 
   return (
     // <Box h='100vh' w='100%' pos='sticky' top='0px' right='0px' mt='-60px' pt='60px' >

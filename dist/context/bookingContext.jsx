@@ -29,7 +29,8 @@ exports.BookingProvider = function (_a) {
     var _d = react_1.useState(1), step = _d[0], setStep = _d[1];
     var _e = react_1.useState([]), services = _e[0], setServices = _e[1];
     var _f = react_1.useState(0), totalTime = _f[0], setTotalTime = _f[1];
-    var _g = react_1.useState(''), message = _g[0], setMessage = _g[1];
+    var _g = react_1.useState(0), totalPrice = _g[0], setTotalPrice = _g[1];
+    var _h = react_1.useState(''), message = _h[0], setMessage = _h[1];
     return (<exports.BookingContext.Provider value={{
         date: date,
         setDate: setDate,
@@ -39,6 +40,8 @@ exports.BookingProvider = function (_a) {
         setServices: setServices,
         totalTime: totalTime,
         setTotalTime: setTotalTime,
+        totalPrice: totalPrice,
+        setTotalPrice: setTotalPrice,
         time: time,
         setTime: setTime,
         message: message,

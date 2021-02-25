@@ -495,6 +495,8 @@ class BusinessService extends _HttpClient__WEBPACK_IMPORTED_MODULE_2__[/* defaul
 
     _defineProperty(this, "getById", id => this.instance.get(`/businesses/${id}`));
 
+    _defineProperty(this, "getTime", (id, params) => this.instance.get(`/businesses/${id}/time?${Object(_utils_propsToParams__WEBPACK_IMPORTED_MODULE_1__[/* propsToParams */ "a"])(params)}`));
+
     _defineProperty(this, "getPhotos", id => this.instance.get(`/businesses/${id}/photos`));
   }
 
@@ -834,9 +836,15 @@ var __jsx = external_react_default.a.createElement;
 
 
 const BusinessItem = ({
-  business
+  business,
+  setItemSelected
 }) => {
   var _business$businessCat, _business$businessAdd;
+
+  const businessHover = () => {
+    console.log('Item seleccionado', business.id);
+    setItemSelected(business.id);
+  };
 
   return __jsx(link_default.a, {
     href: `/b/${Object(generateName["a" /* generateName */])(business.name)}/${business.id}`,
@@ -854,7 +862,8 @@ const BusinessItem = ({
       bg: 'primaryLight',
       cursor: 'pointer'
     },
-    bg: "surface"
+    bg: "surface",
+    onMouseEnter: businessHover
   }, __jsx(react_["Flex"], {
     justify: "flex-start",
     align: "center",
@@ -940,6 +949,10 @@ const ExploreProvider = ({
     1: setCoords
   } = Object(external_react_["useState"])(null);
   const {
+    0: zoom,
+    1: setZoom
+  } = Object(external_react_["useState"])(14);
+  const {
     0: centerMapCoords,
     1: setCenterMapCoords
   } = Object(external_react_["useState"])(null);
@@ -955,6 +968,10 @@ const ExploreProvider = ({
     0: categoryId,
     1: setCategoryId
   } = Object(external_react_["useState"])();
+  const {
+    0: itemSelected,
+    1: setItemSelected
+  } = Object(external_react_["useState"])(null);
 
   const getCoords = async () => {
     if (placeId) {
@@ -1007,7 +1024,8 @@ const ExploreProvider = ({
         success,
         business
       } = await new businessService["a" /* BusinessService */]().get(_objectSpread(_objectSpread({}, coords), {}, {
-        categoryId
+        categoryId,
+        zoom
       }));
 
       if (success && business) {
@@ -1042,7 +1060,11 @@ const ExploreProvider = ({
     setCenterMapCoords,
     addressMap,
     setCategoryId,
-    categoryId
+    categoryId,
+    setZoom,
+    zoom,
+    itemSelected,
+    setItemSelected
   };
   return exploreContext_jsx(ExploreContext.Provider, {
     value: initialState
@@ -1059,7 +1081,8 @@ var BusinessList_jsx = external_react_default.a.createElement;
 const BusinessList = ({}) => {
   const {
     businesses,
-    isLoading
+    isLoading,
+    setItemSelected
   } = Object(external_react_["useContext"])(ExploreContext);
 
   if (isLoading) {
@@ -1086,7 +1109,8 @@ const BusinessList = ({}) => {
     mt: 3
   }, businesses.map(business => BusinessList_jsx(BusinessItem, {
     key: business.id,
-    business: business
+    business: business,
+    setItemSelected: setItemSelected
   })));
 };
 
@@ -1105,10 +1129,27 @@ const icon = {
   strokeColor: "#FFF",
   strokeWeight: 3
 };
+const icon2 = {
+  path: // "M17.657 5.304c-3.124-3.073-8.189-3.073-11.313 0-3.124 3.074-3.124 8.057 0 11.13l5.656 5.565 5.657-5.565c3.124-3.073 3.124-8.056 0-11.13zm-5.657 8.195c-.668 0-1.295-.26-1.768-.732-.975-.975-.975-2.561 0-3.536.472-.472 1.1-.732 1.768-.732s1.296.26 1.768.732c.975.975.975 2.562 0 3.536-.472.472-1.1.732-1.768.732z",
+  'M24 12.4286C24 19.2927 12 29 12 29C12 29 0 19.2927 0 12.4286C0 5.56446 5.37258 0 12 0C18.6274 0 24 5.56446 24 12.4286Z',
+  // fillColor: "#003580",
+  fillColor: '#25CB67',
+  // fillColor: '#020621',
+  fillOpacity: 1,
+  scale: 1,
+  strokeColor: "#FFF",
+  strokeWeight: 3
+};
 const useGoogleMaps = ({
   coords,
-  setCoords
+  setCoords,
+  setZoom
 }) => {
+  const {
+    0: marketsState,
+    1: setMarketsState
+  } = Object(external_react_["useState"])([]);
+  var markers = [];
   const refContainer = Object(external_react_["useRef"])();
   const refMap = Object(external_react_["useRef"])();
   Object(external_react_["useEffect"])(() => {
@@ -1128,24 +1169,20 @@ const useGoogleMaps = ({
       zoomControlOptions: {
         position: google.maps.ControlPosition.TOP_LEFT
       }
-    }); // const cityCircle = new google.maps.Circle({
-    //   strokeColor: "#FF0000",
-    //   strokeOpacity: 0.8,
-    //   strokeWeight: 2,
-    //   fillColor: "#FF0000",
-    //   fillOpacity: 0.35,
-    //   map,
-    //   center: uluru,
-    //   radius: 4000,
-    //   // radius: Math.sqrt(citymap[city].population) * 100,
-    // });
+    });
+    refMap.current = map; // 40000 / 2**14 * 2
 
-    refMap.current = map; // const marker = new google.maps.Marker({
-    //   position: uluru,
-    //   map: map,
-    //   icon,
-    // });
-
+    map.addListener('zoom_changed', () => {
+      setZoom(map.getZoom());
+      const {
+        lat,
+        lng
+      } = map.getCenter();
+      setCoords({
+        lat: lat(),
+        lng: lng()
+      });
+    });
     map.addListener('dragend', () => {
       const {
         lat,
@@ -1178,9 +1215,10 @@ const useGoogleMaps = ({
   const addMarker = ({
     lat,
     lng
-  }) => {
+  }, id) => {
     if (refMap.current) {
-      new google.maps.Marker({
+      console.log('nuevo marcador');
+      const mrk = new google.maps.Marker({
         position: {
           lat,
           lng
@@ -1188,11 +1226,34 @@ const useGoogleMaps = ({
         map: refMap.current,
         icon
       });
+      markers.push({
+        id,
+        mrk
+      });
+      setMarketsState(markers);
+    }
+  };
+
+  const handleIconMarket = (id, isHover) => {
+    if (marketsState.length > 0) {
+      const {
+        mrk
+      } = marketsState.filter(item => item.id == id)[0];
+
+      if (isHover) {
+        mrk.setIcon(icon2);
+      } else {
+        console.log('Eliminando');
+        mrk.setIcon(icon);
+      }
     }
   };
 
   const changeLocation = coords => {
+    console.log('Marcadfores', markers);
+
     if (refMap.current) {
+      console.log('coords', coords);
       refMap.current.setCenter(coords);
     }
   };
@@ -1200,7 +1261,8 @@ const useGoogleMaps = ({
   return {
     refContainer,
     addMarker,
-    changeLocation
+    changeLocation,
+    handleIconMarket
   };
 };
 // CONCATENATED MODULE: ./src/components/explore/ExploreMap.tsx
@@ -1214,25 +1276,34 @@ const ExploreMap = ({}) => {
     businesses,
     coords,
     setCoords,
-    centerMapCoords
+    centerMapCoords,
+    setZoom,
+    itemSelected
   } = Object(external_react_["useContext"])(ExploreContext);
   console.log('Coords explore map', coords);
   const {
     refContainer,
     addMarker,
-    changeLocation
+    changeLocation,
+    handleIconMarket
   } = useGoogleMaps({
     coords,
-    setCoords
+    setCoords,
+    setZoom
   });
   Object(external_react_["useEffect"])(() => {
     businesses.map(business => {
-      addMarker(business.businessAddress);
+      addMarker(business.businessAddress, business.id);
     });
   }, [businesses]);
   Object(external_react_["useEffect"])(() => {
     changeLocation(centerMapCoords);
   }, [centerMapCoords]);
+  Object(external_react_["useEffect"])(() => {
+    console.log('itemSelected shdsjdgjsds', itemSelected);
+    handleIconMarket(itemSelected, true);
+    return () => handleIconMarket(itemSelected, false);
+  }, [itemSelected]);
   return (// <Box h='100vh' w='100%' pos='sticky' top='0px' right='0px' mt='-60px' pt='60px' >
     ExploreMap_jsx(react_["Box"], {
       h: "100vh",
