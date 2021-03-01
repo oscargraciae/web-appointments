@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/oxiNXlH_6S9lOQIg__raH/_buildManifest.js",
-    "static/oxiNXlH_6S9lOQIg__raH/_ssgManifest.js"
+    "static/qQFP0XSWqguQ3f-a1prRN/_buildManifest.js",
+    "static/qQFP0XSWqguQ3f-a1prRN/_ssgManifest.js"
   ],
   "pages": {
     "/": [
@@ -44,7 +44,7 @@
       "static/chunks/ee284aba08cf562d68287c1582492ed70c2aa405.ba009f4a867c30c76318.js",
       "static/chunks/1bc3d993314ece1bd2ec55519e050eeef42a5063.ae7a46b14f5d0f678b69.js",
       "static/css/047de4f852bfe6a0d44e.css",
-      "static/chunks/pages/_app-fbfb0b36b218c9b91288.js"
+      "static/chunks/pages/_app-d599640e59024944cb75.js"
     ],
     "/_error": [
       "static/chunks/main-59cbb052e6b4ade459f3.js",
@@ -88,7 +88,7 @@
       "static/chunks/webpack-50bee04d1dc61f8adf5b.js",
       "static/chunks/framework.080854805d791296516e.js",
       "static/chunks/11cab2c0ce3f44a4165f9a69b1d239fad06464fc.32aae9434cedce338435.js",
-      "static/chunks/pages/business-landing-8a2220618ece22e7b322.js"
+      "static/chunks/pages/business-landing-fe8458f99c64389deeac.js"
     ],
     "/changePassword": [
       "static/chunks/main-59cbb052e6b4ade459f3.js",

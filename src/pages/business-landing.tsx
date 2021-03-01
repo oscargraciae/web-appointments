@@ -9,10 +9,10 @@ const BusinessLanding = ({  } : any) => {
   return (
     <Flex justify="center" align="center" w="100%" bgSize="cover" direction='column'>
       <Flex direction='column' w='100%' h='340px' alignItems='center' justifyContent='center' bg='linear-gradient(90deg,rgba(47,45,65,.7),rgba(47,45,65,.7)),url(/bg-negocios.jpg);' bgSize='cover' bgRepeat='no-repeat'>
-        <Text mx='auto' width="800px" mt={2} fontSize="4xl" fontWeight="bold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
+        <Text mx='auto' width={{ base: '90%', md: '800px' }} mt={2} fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
           Recibe reservaciones online y gestiona la agenda de tu negocio.
         </Text>
-        <Text mx='auto' pt={3} width="800px" fontWeight='semibold' fontSize="sm" textAlign='center' color='#FFF' zIndex={20}>
+        <Text mx='auto' pt={3} width={{ base: '90%', md: '800px' }} fontWeight='semibold' fontSize="sm" textAlign='center' color='#FFF' zIndex={20}>
           Gratis. Disponible las 24 horas. Más clientes. Menos distracciones.
         </Text>
         <Link variant='primary-solid' mt={6} href={`${process.env.NEXT_PUBLIC_MANAGER_URL}/`}>
@@ -30,8 +30,8 @@ const BusinessLanding = ({  } : any) => {
 
         <Divider my={20} />
 
-        <Flex direction='row' justifyContent='space-between' mb={20}>
-          <SimpleGrid columns={2} spacing={6} ml={6} w='42%'>
+        <Flex direction={{ base: 'column', md: 'row' }} justifyContent='space-between' mb={20}>
+          <SimpleGrid columns={2} spacing={6} ml={6} w={{ base: '91%', md: '42%' }}>
             <Box>
               <HStack alignItems='center'>
                 <Text fontWeight='bold' fontSize='lg'>Calendario</Text>
@@ -59,11 +59,11 @@ const BusinessLanding = ({  } : any) => {
               <Text color='subtext'>Con la aplicación móvil de Reserly podras ver y controlar las reservaciones de tu negocio las 24 horas del día.</Text>
             </Box>
           </SimpleGrid>
-          <Image src='/agenda-landing.png' w='53%' />
+          <Image src='/agenda-landing.png' w='53%' display={{ base: 'none', md: 'block' }} />
         </Flex>
 
-        <Flex direction='column' justifyContent='center' alignItems='center' maxW='50%' mx='auto' my={12} bg='primaryLight' p={10} borderRadius={3}>
-          <Text fontWeight='bold' fontSize='2xl' color='secondary'>Comienza ahora creando tu cuenta gratis.</Text>
+        <Flex direction='column' justifyContent='center' alignItems='center' maxW={{ base: '95%', md: '50%' }} mx='auto' my={12} bg='primaryLight' p={10} borderRadius={3}>
+          <Text textAlign='center' fontWeight='bold' fontSize='2xl' color='secondary'>Comienza ahora creando tu cuenta gratis.</Text>
           <Link variant='primary-solid' mt={6} href={`${process.env.NEXT_PUBLIC_MANAGER_URL}/`}>
             ÚNETE A RESERLY
           </Link>

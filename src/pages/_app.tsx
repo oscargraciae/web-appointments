@@ -1,15 +1,27 @@
-import { useEffect, useState } from 'react';
-import { CSSReset, ThemeProvider, ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import Head from 'next/head'
+import ReactGA from 'react-ga';
+import { useRouter } from 'next/router'
 
 import { Layout } from '../components/Layout';
 import theme from '../config/theme';
-import { SocketProvider } from '../context/socketContext';
 import { UserProvider } from '../context/userContext';
 
 import "react-datepicker/dist/react-datepicker.css";
+import { useEffect } from 'react';
+
+
 
 function MyApp({ Component, pageProps }: any) {
+  
+  const router = useRouter()
+    useEffect(() => {
+      console.log('Google A');
+      
+      ReactGA.initialize('G-JK7QQ52ER9');
+      ReactGA.pageview(window.location.pathname + window.location.search);
+  }, [router.events]);
+
   return (
     <ChakraProvider theme={theme} resetCSS >
       <Head>

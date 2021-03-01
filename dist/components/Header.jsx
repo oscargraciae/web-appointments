@@ -68,19 +68,20 @@ var Header = function (_a) {
         
         <react_2.Box display={{ base: show ? 'block' : 'none', md: 'none' }} width={{ base: '100%', sm: 'full', md: 'auto' }} alignItems="center" flexGrow={1}>
           <MenuItems>
-            <react_2.Link href="/orders">
-              Mis compras
+            <react_2.Link href="/bookings">
+              Mis reservas
             </react_2.Link>
           </MenuItems>
           <MenuItems>
             <react_2.Link onClick={logout}>
-              Salir
+              Cerrar sesión
             </react_2.Link>
           </MenuItems>
 
           <react_2.Box display={{ base: show ? 'block' : 'none', md: 'block' }} mt={{ base: 4, md: 0 }}>
-            {isLogged ? <react_2.Link href='/' size="sm" variant="link" ml={4}>Administrar mi tienda</react_2.Link>
-            : <react_2.Button size="sm" variant="link" ml={4}>Publica tu tienda</react_2.Button>}
+            {user.businessUser
+            ? <react_2.Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href={"" + process.env.NEXT_PUBLIC_MANAGER_URL}>Administrar mi negocio</react_2.Link>
+            : <react_2.Link mt={{ base: 4, md: 0 }} mx={3} display="block" variant='primary-btn' href='/negocios'>Publica tu negocio</react_2.Link>}
           </react_2.Box>
         </react_2.Box>
 
@@ -109,9 +110,11 @@ var Header = function (_a) {
     }
     return (<react_2.Flex as="nav" align="center" justify="space-between" wrap="wrap" 
     // padding="1.5rem"
-    bg="#FFFFFF" color="#333" boxShadow="md" w='100%' h='66px' shadow="md" alignItems='center' borderBottomWidth={1} borderColor='borders' zIndex={99} 
+    bg="#FFFFFF" color="#333" boxShadow="md" w='100%' 
+    // h='66px'
+    shadow="md" alignItems='center' borderBottomWidth={1} borderColor='borders' zIndex={99} 
     // pos='absolute' 
-    px={6}>
+    px={6} py={4}>
       <react_2.Flex align='center'>
         <react_2.Link href="/">
           <img src="/logo-reserly-2.png" alt="uorder" width="120" height="90"/>

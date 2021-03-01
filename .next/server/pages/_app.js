@@ -328,6 +328,10 @@ var react_ = __webpack_require__("LZ34");
 var head_ = __webpack_require__("xnum");
 var head_default = /*#__PURE__*/__webpack_require__.n(head_);
 
+// EXTERNAL MODULE: external "react-ga"
+var external_react_ga_ = __webpack_require__("lJcc");
+var external_react_ga_default = /*#__PURE__*/__webpack_require__.n(external_react_ga_);
+
 // EXTERNAL MODULE: external "next/router"
 var router_ = __webpack_require__("4Q3z");
 
@@ -424,10 +428,10 @@ const Header = ({
       alignItems: "center",
       flexGrow: 1
     }, __jsx(MenuItems, null, __jsx(react_["Link"], {
-      href: "/orders"
-    }, "Mis compras")), __jsx(MenuItems, null, __jsx(react_["Link"], {
+      href: "/bookings"
+    }, "Mis reservas")), __jsx(MenuItems, null, __jsx(react_["Link"], {
       onClick: logout
-    }, "Salir")), __jsx(react_["Box"], {
+    }, "Cerrar sesi\xF3n")), __jsx(react_["Box"], {
       display: {
         base: show ? 'block' : 'none',
         md: 'block'
@@ -436,16 +440,25 @@ const Header = ({
         base: 4,
         md: 0
       }
-    }, isLogged ? __jsx(react_["Link"], {
-      href: "/",
-      size: "sm",
-      variant: "link",
-      ml: 4
-    }, "Administrar mi tienda") : __jsx(react_["Button"], {
-      size: "sm",
-      variant: "link",
-      ml: 4
-    }, "Publica tu tienda"))), __jsx(react_["Flex"], {
+    }, user.businessUser ? __jsx(react_["Link"], {
+      mt: {
+        base: 4,
+        md: 0
+      },
+      mx: 3,
+      display: "block",
+      variant: "primary-btn",
+      href: `${"https://reserly.mx/manager"}`
+    }, "Administrar mi negocio") : __jsx(react_["Link"], {
+      mt: {
+        base: 4,
+        md: 0
+      },
+      mx: 3,
+      display: "block",
+      variant: "primary-btn",
+      href: "/negocios"
+    }, "Publica tu negocio"))), __jsx(react_["Flex"], {
       flex: 1,
       justify: "flex-end",
       align: "center",
@@ -501,15 +514,16 @@ const Header = ({
     bg: "#FFFFFF",
     color: "#333",
     boxShadow: "md",
-    w: "100%",
-    h: "66px",
+    w: "100%" // h='66px'
+    ,
     shadow: "md",
     alignItems: "center",
     borderBottomWidth: 1,
     borderColor: "borders",
     zIndex: 99 // pos='absolute' 
     ,
-    px: 6
+    px: 6,
+    py: 4
   }, __jsx(react_["Flex"], {
     align: "center"
   }, __jsx(react_["Link"], {
@@ -1264,10 +1278,19 @@ var _app_jsx = external_react_default.a.createElement;
 
 
 
+
+
+
 function MyApp({
   Component,
   pageProps
 }) {
+  const router = Object(router_["useRouter"])();
+  Object(external_react_["useEffect"])(() => {
+    console.log('Google A');
+    external_react_ga_default.a.initialize('G-JK7QQ52ER9');
+    external_react_ga_default.a.pageview(window.location.pathname + window.location.search);
+  }, [router.events]);
   return _app_jsx(react_["ChakraProvider"], {
     theme: config_theme,
     resetCSS: true
@@ -1285,6 +1308,13 @@ function MyApp({
 }
 
 /* harmony default export */ var _app = __webpack_exports__["default"] = (MyApp);
+
+/***/ }),
+
+/***/ "lJcc":
+/***/ (function(module, exports) {
+
+module.exports = require("react-ga");
 
 /***/ }),
 
