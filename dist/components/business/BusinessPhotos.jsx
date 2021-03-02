@@ -72,9 +72,7 @@ exports.BusinessPhotos = function (_a) {
                     case 0: return [4 /*yield*/, new businessService_1.BusinessService().getPhotos(businessId)];
                     case 1:
                         response = _a.sent();
-                        console.log('Respuestas', response);
                         if (response.success) {
-                            console.log('response.photos', response.photos);
                             setPhotos(response.photos);
                         }
                         return [2 /*return*/];

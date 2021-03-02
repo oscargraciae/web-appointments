@@ -864,7 +864,6 @@ const ModalAuth = ({
   view
 }) => {
   // state
-  console.log('View', view);
   const {
     0: tab,
     1: setTab
@@ -1287,9 +1286,18 @@ function MyApp({
 }) {
   const router = Object(router_["useRouter"])();
   Object(external_react_["useEffect"])(() => {
-    console.log('Google A');
-    external_react_ga_default.a.initialize('G-JK7QQ52ER9');
-    external_react_ga_default.a.pageview(window.location.pathname + window.location.search);
+    console.log('Google analytics 1');
+
+    const handleRouteChange = url => {
+      console.log('Google analytics');
+      external_react_ga_default.a.initialize('G-JK7QQ52ER9');
+      external_react_ga_default.a.pageview(window.location.pathname + window.location.search);
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
   }, [router.events]);
   return _app_jsx(react_["ChakraProvider"], {
     theme: config_theme,

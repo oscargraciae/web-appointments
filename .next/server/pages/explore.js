@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -466,14 +466,6 @@ const TOKEN_MAPBOX = 'pk.eyJ1Ijoib2dyYWNpYSIsImEiOiJfdmpwaktNIn0.h9MNtUvMtDA2UxW
 
 /***/ }),
 
-/***/ 8:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("Ruyg");
-
-
-/***/ }),
-
 /***/ "8vme":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -501,6 +493,14 @@ class BusinessService extends _HttpClient__WEBPACK_IMPORTED_MODULE_2__[/* defaul
   }
 
 }
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("Ruyg");
+
 
 /***/ }),
 
@@ -842,7 +842,6 @@ const BusinessItem = ({
   var _business$businessCat, _business$businessAdd;
 
   const businessHover = () => {
-    console.log('Item seleccionado', business.id);
     setItemSelected(business.id);
   };
 
@@ -1007,7 +1006,6 @@ const ExploreProvider = ({
 
       if (category) {
         const currCategory = categories.filter(item => item.name === category)[0];
-        console.log('currCategory', currCategory);
 
         if (currCategory) {
           setCategoryId(currCategory.id);
@@ -1217,7 +1215,6 @@ const useGoogleMaps = ({
     lng
   }, id) => {
     if (refMap.current) {
-      console.log('nuevo marcador');
       const mrk = new google.maps.Marker({
         position: {
           lat,
@@ -1250,10 +1247,7 @@ const useGoogleMaps = ({
   };
 
   const changeLocation = coords => {
-    console.log('Marcadfores', markers);
-
     if (refMap.current) {
-      console.log('coords', coords);
       refMap.current.setCenter(coords);
     }
   };
@@ -1300,7 +1294,6 @@ const ExploreMap = ({}) => {
     changeLocation(centerMapCoords);
   }, [centerMapCoords]);
   Object(external_react_["useEffect"])(() => {
-    console.log('itemSelected shdsjdgjsds', itemSelected);
     handleIconMarket(itemSelected, true);
     return () => handleIconMarket(itemSelected, false);
   }, [itemSelected]);

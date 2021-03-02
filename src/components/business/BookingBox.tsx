@@ -22,7 +22,6 @@ export const BookingBox: React.FC<BookingBoxProps> = ({ handleBooking }) => {
     setServices(newList)
     const totalT = newList.reduce((total :number, service :any) => total + service.time, 0)
     const totalPrice = newList.reduce((total :number, service :any) => total + service.price, 0)
-    console.log('Precio total', totalPrice);
     
     setTotalTime(totalT);
     setTotalPrice(totalPrice);

@@ -23,8 +23,6 @@ const VIEWS = {
 
 export const ModalAuth: React.FC<ModalAuthProps> = ({ isOpen, onClose, onOpen, view }) => {
   // state
-  console.log('View', view);
-  
   const [tab, setTab] = useState(view || 1);
 
   useEffect(() => {

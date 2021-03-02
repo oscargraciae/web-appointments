@@ -175,7 +175,6 @@ exports.CalendarTime = function (_a) {
     };
     var handleSelectedTime = function (item, index) {
         var isAvailable = hoursState[index + (numElements - 1)];
-        console.log('hoursState', isAvailable);
         if (isAvailable && isAvailable.available) {
             // setSelectedTime(item);
             setTime(item);
@@ -187,7 +186,6 @@ exports.CalendarTime = function (_a) {
             // setServicesSelected([index]);
         }
         else {
-            console.log('NO DISPONIBLE');
             toast({
                 status: 'warning',
                 title: 'Horario no disponible.',

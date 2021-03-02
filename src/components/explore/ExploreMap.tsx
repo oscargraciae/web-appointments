@@ -24,7 +24,6 @@ export const ExploreMap: React.FC<ExploreMapProps> = ({}) => {
   }, [centerMapCoords])
   
   useEffect(() => {
-    console.log('itemSelected shdsjdgjsds', itemSelected);
     handleIconMarket(itemSelected, true);
 
     return () => handleIconMarket(itemSelected, false);

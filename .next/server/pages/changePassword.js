@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -133,7 +133,7 @@ module.exports = require("next/router");
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("ODVH");
@@ -248,8 +248,6 @@ const ChangePassword = ({
 }) => {
   const router = Object(router_["useRouter"])();
   const toast = Object(react_["useToast"])();
-  console.log('Roputer', router);
-  console.log('Token', token);
   const {
     0: error,
     1: setError

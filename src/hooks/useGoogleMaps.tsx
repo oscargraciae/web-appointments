@@ -92,8 +92,6 @@ export const useGoogleMaps = ({ coords, setCoords, setZoom } : any) : any => {
 
   const addMarker = ({ lat, lng } : any, id: number) => {
     if (refMap.current) {
-      console.log('nuevo marcador');
-      
       const mrk = new google.maps.Marker({ position: { lat, lng }, map: refMap.current, icon })
       markers.push({ id, mrk });
       setMarketsState(markers);
@@ -114,11 +112,7 @@ export const useGoogleMaps = ({ coords, setCoords, setZoom } : any) : any => {
   }
 
   const changeLocation = (coords :any) => {
-    console.log('Marcadfores', markers);
-    
     if (refMap.current) {
-      console.log('coords', coords);
-      
       refMap.current.setCenter(coords);
     }
   }

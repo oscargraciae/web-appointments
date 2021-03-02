@@ -132,7 +132,6 @@ exports.ExploreProvider = function (_a) {
                         categories = (_a.sent()).categories;
                         if (category) {
                             currCategory = categories.filter(function (item) { return item.name === category; })[0];
-                            console.log('currCategory', currCategory);
                             if (currCategory) {
                                 setCategoryId(currCategory.id);
                             }

@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/qQFP0XSWqguQ3f-a1prRN/_buildManifest.js",
-    "static/qQFP0XSWqguQ3f-a1prRN/_ssgManifest.js"
+    "static/8iFzCmbZG3zKGXTdywCF7/_buildManifest.js",
+    "static/8iFzCmbZG3zKGXTdywCF7/_ssgManifest.js"
   ],
   "pages": {
     "/": [
@@ -44,7 +44,7 @@
       "static/chunks/ee284aba08cf562d68287c1582492ed70c2aa405.ba009f4a867c30c76318.js",
       "static/chunks/1bc3d993314ece1bd2ec55519e050eeef42a5063.ae7a46b14f5d0f678b69.js",
       "static/css/047de4f852bfe6a0d44e.css",
-      "static/chunks/pages/_app-d599640e59024944cb75.js"
+      "static/chunks/pages/_app-18dfd29a4de49c442926.js"
     ],
     "/_error": [
       "static/chunks/main-59cbb052e6b4ade459f3.js",
@@ -81,7 +81,7 @@
       "static/chunks/7bc48bea4c249339c4cbaab0607f47f7f7c79588.e41d7494681b2fd7801c.js",
       "static/chunks/ee284aba08cf562d68287c1582492ed70c2aa405.ba009f4a867c30c76318.js",
       "static/chunks/d485e0754598c73aa183d485a14409565dee4bff.d58f78593198da18d420.js",
-      "static/chunks/pages/business-399b129a9ed0574c8f5e.js"
+      "static/chunks/pages/business-53213f7e2d35048cb14c.js"
     ],
     "/business-landing": [
       "static/chunks/main-59cbb052e6b4ade459f3.js",
@@ -104,7 +104,7 @@
       "static/chunks/b4fdfed945b87cfc5be5d3a5af9a828041e35b45.846189d9707100920ea7.js",
       "static/chunks/89a2dd6e865ded3d07d4a3e6c65e554fd499e973.a58b962108a1774b85cd.js",
       "static/chunks/d485e0754598c73aa183d485a14409565dee4bff.d58f78593198da18d420.js",
-      "static/chunks/pages/changePassword-dd9a06902cd9e09137a9.js"
+      "static/chunks/pages/changePassword-9707afefb59f078ac4bd.js"
     ],
     "/document": [
       "static/chunks/main-59cbb052e6b4ade459f3.js",
@@ -127,7 +127,7 @@
       "static/chunks/a3e503e9b59120dda88e3fd9269e235936bfc5c1.e196a8e8454b2c9e4836.js",
       "static/chunks/dda9856ec510651f15d884291a87b5f8ea700401.fcea2df748f418bb623c.js",
       "static/chunks/1bc3d993314ece1bd2ec55519e050eeef42a5063.ae7a46b14f5d0f678b69.js",
-      "static/chunks/pages/explore-d85f4f3de5766c39e9e1.js"
+      "static/chunks/pages/explore-a41d38e2ed16b624b419.js"
     ],
     "/privacy": [
       "static/chunks/main-59cbb052e6b4ade459f3.js",

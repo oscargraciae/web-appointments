@@ -56,8 +56,6 @@ const Business: React.FC<BusinessProps> = ({ business }) => {
     
   };
 
-  console.log('business', business);
-  
   return (
     <BookingProvider>
       {/* <Head>

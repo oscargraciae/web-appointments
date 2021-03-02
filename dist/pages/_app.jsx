@@ -16,9 +16,16 @@ function MyApp(_a) {
     var Component = _a.Component, pageProps = _a.pageProps;
     var router = router_1.useRouter();
     react_2.useEffect(function () {
-        console.log('Google A');
-        react_ga_1.default.initialize('G-JK7QQ52ER9');
-        react_ga_1.default.pageview(window.location.pathname + window.location.search);
+        console.log('Google analytics 1');
+        var handleRouteChange = function (url) {
+            console.log('Google analytics');
+            react_ga_1.default.initialize('G-JK7QQ52ER9');
+            react_ga_1.default.pageview(window.location.pathname + window.location.search);
+        };
+        router.events.on('routeChangeComplete', handleRouteChange);
+        return function () {
+            router.events.off('routeChangeComplete', handleRouteChange);
+        };
     }, [router.events]);
     return (<react_1.ChakraProvider theme={theme_1.default} resetCSS>
       <head_1.default>

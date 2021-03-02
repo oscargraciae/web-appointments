@@ -25,9 +25,6 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ token }) => {
   const router = useRouter()
   const toast = useToast();
 
-  console.log('Roputer', router);
-  console.log('Token', token);
-
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   // const [isLoading, setIsLoading] = useState(false);

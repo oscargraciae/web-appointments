@@ -16,10 +16,7 @@ export const BusinessPhotos: React.FC<BusinessPhotosProps> = ({ businessId }) =>
   useEffect(() => {
     const fetch = async () => {
       const response = await new BusinessService().getPhotos(businessId)
-      console.log('Respuestas', response);
       if (response.success) {
-        console.log('response.photos', response.photos);
-        
         setPhotos(response.photos);
       }
       

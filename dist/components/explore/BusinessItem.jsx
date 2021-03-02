@@ -12,7 +12,6 @@ exports.BusinessItem = function (_a) {
     var _b, _c;
     var business = _a.business, setItemSelected = _a.setItemSelected;
     var businessHover = function () {
-        console.log('Item seleccionado', business.id);
         setItemSelected(business.id);
     };
     return (<link_1.default href={"/b/" + generateName_1.generateName(business.name) + "/" + business.id} passHref>

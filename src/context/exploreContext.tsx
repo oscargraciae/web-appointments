@@ -58,8 +58,6 @@ export const ExploreProvider: React.FC<ExploreProviderProps> = ({ children, plac
       const { categories } = await new CategoryService().getAll();
       if (category) {
         const currCategory = categories.filter((item : any) => item.name === category)[0];
-        console.log('currCategory', currCategory);
-        
         if (currCategory) {
           setCategoryId(currCategory.id);
         }

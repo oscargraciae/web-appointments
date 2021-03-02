@@ -88,15 +88,15 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 12:
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("VDXt");
+module.exports = __webpack_require__("mT+M");
 
 
 /***/ }),
@@ -105,6 +105,14 @@ module.exports = __webpack_require__("VDXt");
 /***/ (function(module, exports) {
 
 module.exports = require("styled-jsx/server");
+
+/***/ }),
+
+/***/ "8cZr":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("VDXt")
+
 
 /***/ }),
 
@@ -801,6 +809,43 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("next/dist/next-server/lib/utils.js");
+
+/***/ }),
+
+/***/ "mT+M":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MyDocument; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("8cZr");
+/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_1__);
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_1___default.a {
+  render() {
+    const GA_TRACKING_ID = 'G-JK7QQ52ER9';
+    return __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["Html"], null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["Head"], null, __jsx("script", {
+      async: true,
+      src: `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`
+    }), __jsx("script", {
+      dangerouslySetInnerHTML: {
+        __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });
+          `
+      }
+    })), __jsx("body", null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["NextScript"], null)));
+  }
+
+}
 
 /***/ }),
 

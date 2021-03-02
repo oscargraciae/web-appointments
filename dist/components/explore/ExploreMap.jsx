@@ -37,7 +37,6 @@ exports.ExploreMap = function (_a) {
         changeLocation(centerMapCoords);
     }, [centerMapCoords]);
     react_1.useEffect(function () {
-        console.log('itemSelected shdsjdgjsds', itemSelected);
         handleIconMarket(itemSelected, true);
         return function () { return handleIconMarket(itemSelected, false); };
     }, [itemSelected]);

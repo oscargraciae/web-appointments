@@ -88,10 +88,18 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ 10:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("QeBL");
+
+
+/***/ }),
 
 /***/ "2FnJ":
 /***/ (function(module, exports) {
@@ -122,14 +130,6 @@ const API_DOMAIN = "https://api.reserly.mx" || false; // export const API_DOMAIN
 const URL_API = `${API_DOMAIN}/api/v1`;
 const APP_NAME = 'Reserly';
 const TOKEN_MAPBOX = 'pk.eyJ1Ijoib2dyYWNpYSIsImEiOiJfdmpwaktNIn0.h9MNtUvMtDA2UxWbnMIh_g';
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("QeBL");
-
 
 /***/ }),
 

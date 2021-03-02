@@ -39,7 +39,6 @@ exports.BookingBox = function (_a) {
         setServices(newList);
         var totalT = newList.reduce(function (total, service) { return total + service.time; }, 0);
         var totalPrice = newList.reduce(function (total, service) { return total + service.price; }, 0);
-        console.log('Precio total', totalPrice);
         setTotalTime(totalT);
         setTotalPrice(totalPrice);
     };

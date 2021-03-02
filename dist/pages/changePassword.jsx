@@ -90,8 +90,6 @@ var ChangePassword = function (_a) {
     var token = _a.token;
     var router = router_1.useRouter();
     var toast = react_2.useToast();
-    console.log('Roputer', router);
-    console.log('Token', token);
     var _b = react_1.useState(''), error = _b[0], setError = _b[1];
     var _c = react_1.useState(false), success = _c[0], setSuccess = _c[1];
     // const [isLoading, setIsLoading] = useState(false);

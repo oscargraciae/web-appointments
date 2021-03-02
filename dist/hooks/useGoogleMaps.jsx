@@ -80,7 +80,6 @@ exports.useGoogleMaps = function (_a) {
     var addMarker = function (_a, id) {
         var lat = _a.lat, lng = _a.lng;
         if (refMap.current) {
-            console.log('nuevo marcador');
             var mrk = new google.maps.Marker({ position: { lat: lat, lng: lng }, map: refMap.current, icon: icon });
             markers.push({ id: id, mrk: mrk });
             setMarketsState(markers);
@@ -99,9 +98,7 @@ exports.useGoogleMaps = function (_a) {
         }
     };
     var changeLocation = function (coords) {
-        console.log('Marcadfores', markers);
         if (refMap.current) {
-            console.log('coords', coords);
             refMap.current.setCenter(coords);
         }
     };

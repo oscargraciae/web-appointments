@@ -110,7 +110,6 @@ var Business = function (_a) {
             setOpenModalLogin(true);
         }
     };
-    console.log('business', business);
     return (<bookingContext_1.BookingProvider>
       
       <MetaBusiness_1.MetaBusiness business={business}/>

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -397,7 +397,6 @@ const CalendarTime = ({
 
   const handleSelectedTime = (item, index) => {
     const isAvailable = hoursState[index + (numElements - 1)];
-    console.log('hoursState', isAvailable);
 
     if (isAvailable && isAvailable.available) {
       // setSelectedTime(item);
@@ -410,7 +409,6 @@ const CalendarTime = ({
 
       setServicesSelected(nums); // setServicesSelected([index]);
     } else {
-      console.log('NO DISPONIBLE');
       toast({
         status: 'warning',
         title: 'Horario no disponible.',
@@ -797,7 +795,6 @@ const BookingBox = ({
     setServices(newList);
     const totalT = newList.reduce((total, service) => total + service.time, 0);
     const totalPrice = newList.reduce((total, service) => total + service.price, 0);
-    console.log('Precio total', totalPrice);
     setTotalTime(totalT);
     setTotalPrice(totalPrice);
   };
@@ -1033,10 +1030,8 @@ const BusinessPhotos = ({
   Object(external_react_["useEffect"])(() => {
     const fetch = async () => {
       const response = await new businessService["a" /* BusinessService */]().getPhotos(businessId);
-      console.log('Respuestas', response);
 
       if (response.success) {
-        console.log('response.photos', response.photos);
         setPhotos(response.photos);
       }
     };
@@ -1180,7 +1175,6 @@ const Business = ({
     }
   };
 
-  console.log('business', business);
   return business_jsx(BookingProvider, null, business_jsx(MetaBusiness, {
     business: business
   }), business_jsx(ModalBooking, {
@@ -1358,14 +1352,6 @@ module.exports = require("next/router");
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("/mjN");
-
-
-/***/ }),
-
 /***/ "5gGA":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1389,6 +1375,14 @@ const formatDate = date => {
 const formatOnlyDate = date => {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(date).format('DD MMMM YYYY');
 };
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("/mjN");
+
 
 /***/ }),
 

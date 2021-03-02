@@ -14,7 +14,6 @@ interface BusinessItemProps {
 
 export const BusinessItem: React.FC<BusinessItemProps> = ({ business, setItemSelected }) => {
   const businessHover = () => {
-    console.log('Item seleccionado', business.id);
     setItemSelected(business.id);
     
   }

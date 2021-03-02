@@ -120,9 +120,7 @@ export const CalendarTime: React.FC<CaledarTimeProps> = ({ hours, business }) =>
 
   const handleSelectedTime = (item :string, index :number) => {
     const isAvailable = hoursState[index + (numElements - 1)]
-    console.log('hoursState', isAvailable);
     
-
     if (isAvailable && isAvailable.available) {
       // setSelectedTime(item);
       setTime(item);
@@ -134,7 +132,6 @@ export const CalendarTime: React.FC<CaledarTimeProps> = ({ hours, business }) =>
       
       // setServicesSelected([index]);
     } else {
-      console.log('NO DISPONIBLE');
       toast({
         status: 'warning',
         title: 'Horario no disponible.',
