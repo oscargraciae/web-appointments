@@ -86,7 +86,6 @@ exports.BookingsList = function (_a) {
                         return [4 /*yield*/, new bookingService_1.BookingService().getAll(params)];
                     case 1:
                         bookings = (_a.sent()).bookings;
-                        console.log('bookings', bookings);
                         setBookings(bookings);
                         setIsLoading(false);
                         return [2 /*return*/];
@@ -127,7 +126,7 @@ exports.BookingsList = function (_a) {
         <react_2.Tbody>
           {bookings.map(function (item) {
         var _a, _b, _c;
-        return (<react_2.Tr fontSize='14px'>
+        return (<react_2.Tr fontSize='14px' key={item.id}>
               <react_2.Td>{item.id}</react_2.Td>
               <react_2.Td>{(_a = item.business) === null || _a === void 0 ? void 0 : _a.name}</react_2.Td>
               <react_2.Td>{item.bookingDate ? formatDate_1.formatDate(item.bookingDate) : ''}</react_2.Td>

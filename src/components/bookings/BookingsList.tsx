@@ -22,7 +22,6 @@ export const BookingsList: React.FC<{ tab: number }> = ({ tab }) => {
       }
 
       const { bookings } = await new BookingService().getAll(params);
-      console.log('bookings', bookings);
       
       setBookings(bookings);
       setIsLoading(false);
@@ -64,7 +63,7 @@ export const BookingsList: React.FC<{ tab: number }> = ({ tab }) => {
         </Thead>
         <Tbody>
           { bookings.map((item: IBooking) => (
-            <Tr fontSize='14px'>
+            <Tr fontSize='14px' key={item.id}>
               <Td>{item.id}</Td>
               <Td>{item.business?.name}</Td>
               <Td>{item.bookingDate ? formatDate(item.bookingDate) : ''}</Td>

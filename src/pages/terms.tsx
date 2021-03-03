@@ -1,10 +1,14 @@
 import React from 'react'
+import NextHead from 'next/head';
 import { Flex, Heading, VStack, Text, Box } from '@chakra-ui/react';
 import { Wrapper } from '../components/Wrapper';
 
 const Terms: React.FC = () => {
   return (
     <Wrapper>
+      <NextHead>
+        <title>Reserly - Terminos y condiciones</title>
+      </NextHead>
       <Flex justify="center" align="center" w="960px" bgSize="cover" direction='column' mx='auto'>
         <Heading w='100%' textAlign='center' pb={14} mb={14} mt={4} borderBottomWidth={1} borderColor='borders'>Terminos y condiciones</Heading>
         <VStack alignItems='flex-start' spacing={10} mb={14}>

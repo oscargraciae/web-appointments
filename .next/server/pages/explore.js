@@ -822,6 +822,10 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 // EXTERNAL MODULE: external "@chakra-ui/react"
 var react_ = __webpack_require__("LZ34");
 
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
 // EXTERNAL MODULE: ./node_modules/next/link.js
 var next_link = __webpack_require__("YFqc");
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
@@ -1498,6 +1502,7 @@ function explore_objectSpread(target) { for (var i = 1; i < arguments.length; i+
 function explore_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+
  // components
 
 
@@ -1518,7 +1523,7 @@ const Explore = ({
   placeId,
   cat
 }) => {
-  return explore_jsx(ExploreProvider, {
+  return explore_jsx(external_react_default.a.Fragment, null, explore_jsx(head_default.a, null, explore_jsx("title", null, "Reserly - Explora y encuentra los mejores servicios profesionales.")), explore_jsx(ExploreProvider, {
     placeId: placeId,
     addressParam: location,
     category: category
@@ -1535,7 +1540,7 @@ const Explore = ({
       base: 'none',
       md: 'block'
     }
-  }, explore_jsx(ExploreMap, null))));
+  }, explore_jsx(ExploreMap, null)))));
 };
 
 /* harmony default export */ var explore = __webpack_exports__["default"] = (Explore);
@@ -3653,6 +3658,13 @@ function createObserver(options) {
 "use strict";
 exports.__esModule=true;exports.normalizePathSep=normalizePathSep;exports.denormalizePagePath=denormalizePagePath;function normalizePathSep(path){return path.replace(/\\/g,'/');}function denormalizePagePath(page){page=normalizePathSep(page);if(page.startsWith('/index/')){page=page.slice(6);}else if(page==='/index'){page='/';}return page;}
 //# sourceMappingURL=denormalize-page-path.js.map
+
+/***/ }),
+
+/***/ "xnum":
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
 
 /***/ }),
 

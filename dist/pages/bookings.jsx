@@ -18,8 +18,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
+var head_1 = __importDefault(require("next/head"));
 var react_2 = require("@chakra-ui/react");
 var BookingsList_1 = require("../components/bookings/BookingsList");
 var Wrapper_1 = require("../components/Wrapper");
@@ -32,6 +36,9 @@ var MenuLink = function (_a) {
 var Bookings = function (_a) {
     var _b = react_1.useState(1), tab = _b[0], setTab = _b[1];
     return (<Wrapper_1.Wrapper>
+      <head_1.default>
+        <title>Reserly - Mis reservaciones</title>
+      </head_1.default>
       <react_2.Box>
         <react_2.Heading>Mis reservaciones</react_2.Heading>
         <react_2.Box bg='surface' borderBottomWidth={1} borderColor='borders' py={3} minH='80vh'>

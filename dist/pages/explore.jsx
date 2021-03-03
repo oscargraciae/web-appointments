@@ -53,6 +53,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getServerSideProps = void 0;
 var react_1 = __importDefault(require("react"));
 var react_2 = require("@chakra-ui/react");
+var head_1 = __importDefault(require("next/head"));
 // components
 var BusinessList_1 = __importDefault(require("../components/explore/BusinessList"));
 var ExploreMap_1 = require("../components/explore/ExploreMap");
@@ -70,16 +71,21 @@ exports.getServerSideProps = function (_a) {
 };
 var Explore = function (_a) {
     var location = _a.location, category = _a.category, placeId = _a.placeId, cat = _a.cat;
-    return (<exploreContext_1.ExploreProvider placeId={placeId} addressParam={location} category={category}>
-      <react_2.Stack isInline>
-        <react_2.Box w={{ base: '100%', md: '45%' }}>
-          <ExploreForm_1.ExploreForm />
-          <BusinessList_1.default />
-        </react_2.Box>
-        <react_2.Box w='55%' display={{ base: 'none', md: 'block' }}>
-          <ExploreMap_1.ExploreMap />
-        </react_2.Box>
-      </react_2.Stack>
-    </exploreContext_1.ExploreProvider>);
+    return (<>
+      <head_1.default>
+        <title>Reserly - Explora y encuentra los mejores servicios profesionales.</title>
+      </head_1.default>
+      <exploreContext_1.ExploreProvider placeId={placeId} addressParam={location} category={category}>
+        <react_2.Stack isInline>
+          <react_2.Box w={{ base: '100%', md: '45%' }}>
+            <ExploreForm_1.ExploreForm />
+            <BusinessList_1.default />
+          </react_2.Box>
+          <react_2.Box w='55%' display={{ base: 'none', md: 'block' }}>
+            <ExploreMap_1.ExploreMap />
+          </react_2.Box>
+        </react_2.Stack>
+      </exploreContext_1.ExploreProvider>
+    </>);
 };
 exports.default = Explore;

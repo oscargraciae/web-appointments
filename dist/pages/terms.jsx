@@ -4,10 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
+var head_1 = __importDefault(require("next/head"));
 var react_2 = require("@chakra-ui/react");
 var Wrapper_1 = require("../components/Wrapper");
 var Terms = function () {
     return (<Wrapper_1.Wrapper>
+      <head_1.default>
+        <title>Reserly - Terminos y condiciones</title>
+      </head_1.default>
       <react_2.Flex justify="center" align="center" w="960px" bgSize="cover" direction='column' mx='auto'>
         <react_2.Heading w='100%' textAlign='center' pb={14} mb={14} mt={4} borderBottomWidth={1} borderColor='borders'>Terminos y condiciones</react_2.Heading>
         <react_2.VStack alignItems='flex-start' spacing={10} mb={14}>

@@ -105,7 +105,7 @@ exports.LoginForm = function (_a) {
               
               <InputField_1.InputField inputSize='lg' name='email' label='Correo eletrónico'/>
               <InputField_1.PasswordInputField inputSize='lg' name='password' label='Contraseña'/>
-              <react_2.Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Iniciar sesión</react_2.Button>
+              <react_2.Button id='btn-login' mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Iniciar sesión</react_2.Button>
               <react_2.Button alignSelf='flex-end' textAlign='right' size='sm' variant='link' onClick={function () { return setTab(3); }}>¿Olvidaste tu contraseña?</react_2.Button>
               {error && <AlertError_1.AlertError description={error}/>}
 

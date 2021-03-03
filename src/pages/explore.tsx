@@ -1,6 +1,6 @@
 import React, {  } from 'react'
 import { Box, Stack, Text } from '@chakra-ui/react'
-
+import NextHead from 'next/head';
 // components
 import BusinessList from '../components/explore/BusinessList'
 import { ExploreMap } from '../components/explore/ExploreMap'
@@ -27,17 +27,22 @@ interface ExploreProps {
 
 const Explore: React.FC<ExploreProps> = ({ location, category, placeId, cat }) => {
   return (
-    <ExploreProvider placeId={placeId} addressParam={location} category={category}>
-      <Stack isInline>
-        <Box w={{ base: '100%', md: '45%' }}>
-          <ExploreForm />
-          <BusinessList />
-        </Box>
-        <Box w='55%' display={{ base: 'none', md: 'block' }}>
-          <ExploreMap />
-        </Box>
-      </Stack>
-    </ExploreProvider>
+    <>
+      <NextHead>
+        <title>Reserly - Explora y encuentra los mejores servicios profesionales.</title>
+      </NextHead>
+      <ExploreProvider placeId={placeId} addressParam={location} category={category}>
+        <Stack isInline>
+          <Box w={{ base: '100%', md: '45%' }}>
+            <ExploreForm />
+            <BusinessList />
+          </Box>
+          <Box w='55%' display={{ base: 'none', md: 'block' }}>
+            <ExploreMap />
+          </Box>
+        </Stack>
+      </ExploreProvider>
+    </>
   );
 }
 

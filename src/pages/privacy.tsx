@@ -1,10 +1,14 @@
 import React from 'react'
+import NextHead from 'next/head';
 import { Flex, Heading, VStack, Text, Box, OrderedList, ListItem } from '@chakra-ui/react';
 import { Wrapper } from '../components/Wrapper';
 
 const Privacy: React.FC = () => {
   return (
     <Wrapper>
+      <NextHead>
+        <title>Reserly - Política de Privacidad</title>
+      </NextHead>
       <Flex justify="center" align="center" w="960px" bgSize="cover" direction='column' mx='auto'>
         <Heading w='100%' textAlign='center' pb={14} mb={14} mt={4} borderBottomWidth={1} borderColor='borders'>Política de Privacidad</Heading>
         <VStack alignItems='flex-start' spacing={10} mb={14}>

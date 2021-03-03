@@ -113,7 +113,7 @@ exports.SignupForm = function (_a) {
               <InputField_1.InputField name='email' label='Correo eletrónico'/>
               
               <InputField_1.PasswordInputField inputSize='lg' name='password' label='Contraseña'/>
-              <react_2.Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Regístrate</react_2.Button>
+              <react_2.Button id='btn-signup' mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Regístrate</react_2.Button>
               {error && <AlertError_1.AlertError description={error}/>}
 
               <react_2.Divider orientation='horizontal' my={4}/>

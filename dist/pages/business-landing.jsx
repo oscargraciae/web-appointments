@@ -4,10 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
+var head_1 = __importDefault(require("next/head"));
 var react_2 = require("@chakra-ui/react");
 var Wrapper_1 = require("../components/Wrapper");
 var BusinessLanding = function (_a) {
     return (<react_2.Flex justify="center" align="center" w="100%" bgSize="cover" direction='column'>
+      <head_1.default>
+        <title>Reserly Negocios - Recibe reservaciones online y gestiona la agenda de tu negocio.</title>
+      </head_1.default>
       <react_2.Flex direction='column' w='100%' h='340px' alignItems='center' justifyContent='center' bg='linear-gradient(90deg,rgba(47,45,65,.7),rgba(47,45,65,.7)),url(/bg-negocios.jpg);' bgSize='cover' bgRepeat='no-repeat'>
         <react_2.Text mx='auto' width={{ base: '90%', md: '800px' }} mt={2} fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" lineHeight="short" textAlign='center' color='#FFF' zIndex={20}>
           Recibe reservaciones online y gestiona la agenda de tu negocio.
@@ -15,7 +19,7 @@ var BusinessLanding = function (_a) {
         <react_2.Text mx='auto' pt={3} width={{ base: '90%', md: '800px' }} fontWeight='semibold' fontSize="sm" textAlign='center' color='#FFF' zIndex={20}>
           Gratis. Disponible las 24 horas. Más clientes. Menos distracciones.
         </react_2.Text>
-        <react_2.Link variant='primary-solid' mt={6} href={process.env.NEXT_PUBLIC_MANAGER_URL + "/"}>
+        <react_2.Link id='btn-add-business' variant='primary-solid' mt={6} href={process.env.NEXT_PUBLIC_MANAGER_URL + "/"}>
           REGISTRA TU NEGOCIO GRATIS
         </react_2.Link>
       </react_2.Flex>
@@ -64,7 +68,7 @@ var BusinessLanding = function (_a) {
 
         <react_2.Flex direction='column' justifyContent='center' alignItems='center' maxW={{ base: '95%', md: '50%' }} mx='auto' my={12} bg='primaryLight' p={10} borderRadius={3}>
           <react_2.Text textAlign='center' fontWeight='bold' fontSize='2xl' color='secondary'>Comienza ahora creando tu cuenta gratis.</react_2.Text>
-          <react_2.Link variant='primary-solid' mt={6} href={process.env.NEXT_PUBLIC_MANAGER_URL + "/"}>
+          <react_2.Link id='btn-add-business' variant='primary-solid' mt={6} href={process.env.NEXT_PUBLIC_MANAGER_URL + "/"}>
             ÚNETE A RESERLY
           </react_2.Link>
         </react_2.Flex>

@@ -15,19 +15,19 @@ import { useEffect } from 'react';
 function MyApp({ Component, pageProps }: any) {
   
   const router = useRouter()
-    useEffect(() => {
-      console.log('Google analytics 1');
-      const handleRouteChange = (url: any) => {
-        console.log('Google analytics');
+  //   useEffect(() => {
+  //     console.log('Google analytics 1');
+  //     const handleRouteChange = (url: any) => {
+  //       console.log('Google analytics');
         
-        ReactGA.initialize('G-JK7QQ52ER9');
-        ReactGA.pageview(window.location.pathname + window.location.search);
-      }
-      router.events.on('routeChangeComplete', handleRouteChange)
-      return () => {
-        router.events.off('routeChangeComplete', handleRouteChange)
-      }
-  }, [router.events])
+  //       ReactGA.initialize('G-JK7QQ52ER9');
+  //       ReactGA.pageview(window.location.pathname + window.location.search);
+  //     }
+  //     router.events.on('routeChangeComplete', handleRouteChange)
+  //     return () => {
+  //       router.events.off('routeChangeComplete', handleRouteChange)
+  //     }
+  // }, [router.events])
   return (
     <ChakraProvider theme={theme} resetCSS >
       <Head>

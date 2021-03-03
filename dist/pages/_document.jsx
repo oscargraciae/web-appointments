@@ -43,9 +43,12 @@ var MyDocument = /** @class */ (function (_super) {
         return (<document_1.Html>
         <document_1.Head>
           
-          <script async src={"https://www.googletagmanager.com/gtag/js?id=" + GA_TRACKING_ID}/>
+          
+          <script async src={"https://www.googletagmanager.com/ns.html?id=GTM-PF4Q9BG"}/>
+
+          
           <script dangerouslySetInnerHTML={{
-            __html: "\n              window.dataLayer = window.dataLayer || [];\n              function gtag(){dataLayer.push(arguments);}\n              gtag('js', new Date());\n              gtag('config', '" + GA_TRACKING_ID + "', {\n                page_path: window.location.pathname,\n              });\n          "
+            __html: "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\n              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\n              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n              })(window,document,'script','dataLayer','GTM-PF4Q9BG');"
         }}/>
         </document_1.Head>
         <body>

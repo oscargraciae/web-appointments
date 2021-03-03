@@ -55,7 +55,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ setTab, onClose }) => {
               <InputField name='email' label='Correo eletrónico' />
               
               <PasswordInputField inputSize='lg'  name='password' label='Contraseña' />
-              <Button mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Regístrate</Button>
+              <Button id='btn-signup' mt={40} isLoading={isSubmitting} type='submit' size='lg' variant='primary' isFullWidth>Regístrate</Button>
               { error && <AlertError description={error} /> }
 
               <Divider orientation='horizontal' my={4} />

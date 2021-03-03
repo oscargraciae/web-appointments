@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import NextHead from 'next/head';
 import { Box, Button, Heading, HStack, Text } from '@chakra-ui/react';
 import { BookingsList } from '../components/bookings/BookingsList';
 import { Wrapper } from '../components/Wrapper';
@@ -13,6 +14,9 @@ const Bookings: React.FC = ({}) => {
   const [tab, setTab] = useState(1);
   return (
     <Wrapper>
+      <NextHead>
+        <title>Reserly - Mis reservaciones</title>
+      </NextHead>
       <Box>
         <Heading>Mis reservaciones</Heading>
         <Box bg='surface' borderBottomWidth={1} borderColor='borders' py={3} minH='80vh'>

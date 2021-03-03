@@ -328,10 +328,6 @@ var react_ = __webpack_require__("LZ34");
 var head_ = __webpack_require__("xnum");
 var head_default = /*#__PURE__*/__webpack_require__.n(head_);
 
-// EXTERNAL MODULE: external "react-ga"
-var external_react_ga_ = __webpack_require__("lJcc");
-var external_react_ga_default = /*#__PURE__*/__webpack_require__.n(external_react_ga_);
-
 // EXTERNAL MODULE: external "next/router"
 var router_ = __webpack_require__("4Q3z");
 
@@ -631,6 +627,7 @@ const LoginForm = ({
     name: "password",
     label: "Contrase\xF1a"
   }), LoginForm_jsx(react_["Button"], {
+    id: "btn-login",
     mt: 40,
     isLoading: isSubmitting,
     type: "submit",
@@ -736,6 +733,7 @@ const SignupForm = ({
     name: "password",
     label: "Contrase\xF1a"
   }), SignupForm_jsx(react_["Button"], {
+    id: "btn-signup",
     mt: 40,
     isLoading: isSubmitting,
     type: "submit",
@@ -1278,27 +1276,23 @@ var _app_jsx = external_react_default.a.createElement;
 
 
 
-
-
 function MyApp({
   Component,
   pageProps
 }) {
-  const router = Object(router_["useRouter"])();
-  Object(external_react_["useEffect"])(() => {
-    console.log('Google analytics 1');
+  const router = Object(router_["useRouter"])(); //   useEffect(() => {
+  //     console.log('Google analytics 1');
+  //     const handleRouteChange = (url: any) => {
+  //       console.log('Google analytics');
+  //       ReactGA.initialize('G-JK7QQ52ER9');
+  //       ReactGA.pageview(window.location.pathname + window.location.search);
+  //     }
+  //     router.events.on('routeChangeComplete', handleRouteChange)
+  //     return () => {
+  //       router.events.off('routeChangeComplete', handleRouteChange)
+  //     }
+  // }, [router.events])
 
-    const handleRouteChange = url => {
-      console.log('Google analytics');
-      external_react_ga_default.a.initialize('G-JK7QQ52ER9');
-      external_react_ga_default.a.pageview(window.location.pathname + window.location.search);
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
   return _app_jsx(react_["ChakraProvider"], {
     theme: config_theme,
     resetCSS: true
@@ -1316,13 +1310,6 @@ function MyApp({
 }
 
 /* harmony default export */ var _app = __webpack_exports__["default"] = (MyApp);
-
-/***/ }),
-
-/***/ "lJcc":
-/***/ (function(module, exports) {
-
-module.exports = require("react-ga");
 
 /***/ }),
 
